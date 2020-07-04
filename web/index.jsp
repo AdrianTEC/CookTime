@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Servidor CookTime</title>
   </head>
   <body>
-  $END$
+  Hola, soy el servidor, para facilitarle su trabajo como técnico de la prestigiosa empresa CookTime  le escribo la lista }
+  de direcciones a las que puede accesar:
+  /users
+
   </body>
 </html>

@@ -102,7 +102,7 @@ public class  ServerSocketTom implements  Runnable {
             }
 
 
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
