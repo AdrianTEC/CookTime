@@ -1,4 +1,4 @@
-package Sample;
+package zone.tec.servidor.clases;
 
 import Estructuras.ListaLineal;
 

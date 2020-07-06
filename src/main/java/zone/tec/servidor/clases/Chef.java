@@ -1,8 +1,8 @@
-package Sample;
+package zone.tec.servidor.clases;
 
 import Estructuras.ListaLineal;
 
-public class Chef extends Sample.Usuario {
+public class Chef extends Usuario {
     private ListaLineal reseñas;  //recibe strings
 
 

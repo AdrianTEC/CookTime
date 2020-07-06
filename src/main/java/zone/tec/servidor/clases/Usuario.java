@@ -1,4 +1,4 @@
-package Sample;
+package zone.tec.servidor.clases;
 
 import Estructuras.ListaLineal;
 
@@ -6,7 +6,7 @@ public class Usuario {
     private String nombre;
     private String correoElectronico;
     private int edad;
-    private Perfil perfil;
+   // private Perfil perfil;
     private ListaLineal calificaciones; //recibe strings
 
 
@@ -21,7 +21,7 @@ public class Usuario {
         nombre = "";
         correoElectronico = "";
         edad = 0;
-        perfil = new Perfil();
+     //   perfil = new Perfil();
 
         //calificaciones = new Lista();
 

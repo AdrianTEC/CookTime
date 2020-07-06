@@ -1,4 +1,4 @@
-package Sample;
+package zone.tec.servidor.clases;
 
 import java.awt.image.BufferedImage;
 
