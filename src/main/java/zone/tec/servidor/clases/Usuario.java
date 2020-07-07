@@ -1,31 +1,55 @@
 package zone.tec.servidor.clases;
 
 import Estructuras.ListaLineal;
+import com.google.gson.Gson;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 public class Usuario {
     private String nombre;
+    private String apellido1;
+    private String apellido2;
+    private String contrasena;
     private String correoElectronico;
-    private int edad;
+    private String edad;
+    private String perfil;
+    private String id;
    // private Perfil perfil;
-    private ListaLineal calificaciones; //recibe strings
 
 
 
-    public Usuario() {
+
+    public  Usuario(JSONObject x) {
         /*This funtion is the constructor of the class
          *@author Andrés Quirós Guzmán
          *@Version 21/06/2020
          * @param nothing
          */
 
-        nombre = "";
-        correoElectronico = "";
-        edad = 0;
-     //   perfil = new Perfil();
-
+        nombre = (String) x.get("nombre");
+        apellido1 = (String) x.get("apellido1");
+        apellido2 = (String) x.get("apellido2");
+        correoElectronico = (String) x.get("correo");
+        edad = (String) x.get("edad");
+        contrasena= (String) x.get("contrasena");
+        id=String.valueOf((int) (Math.random() * 100) +1);
+        perfil=nombre+"ID"+id;
         //calificaciones = new Lista();
 
     }
+    public JSONObject convertToJSON()
+        {
+
+            JSONParser parser = new JSONParser();
+            Gson gson= new Gson();
+            JSONObject response= new JSONObject();
+            try {
+                response= (JSONObject) parser.parse(gson.toJson(this));
+            }catch (Exception ignored){}
+
+
+            return  response;
+        }
 
 
     public String getNombre() {
@@ -44,17 +68,8 @@ public class Usuario {
         this.correoElectronico = correoElectronico;
     }
 
-    public int getEdad() {
-        return edad;
-    }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
 
-    public ListaLineal getCalificaciones() {
-        return calificaciones;
-    }
 
 
 
@@ -68,10 +83,6 @@ public class Usuario {
     }
 
     public void borrar(){
-
-    }
-
-    public void cambiarContraseña(){
 
     }
 

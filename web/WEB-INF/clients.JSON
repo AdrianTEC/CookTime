@@ -1,0 +1,61 @@
+{"Usuarios":
+  [
+    {
+      "id": "1",
+      "nombre":"Adrian",
+      "apellido1": "González",
+      "apellido2": "Jimenez",
+      "correo": "Adrian@gmail.com",
+      "edad": "19",
+      "contrasena": "laProgramacionEsDivertida",
+      "Perfil": "AdrianID50123"
+
+
+    },
+    {
+      "id": "2",
+      "nombre":"Josue",
+      "apellido1": "Rodriguez",
+      "apellido2": "Jimenez",
+      "correo": "Josue@gmail.com",
+      "edad": "23",
+      "contrasena": "laProgramacionEsEstresante",
+      "Perfil": "JosueID50123"
+
+
+    }
+  ],
+
+  "Perfiles":
+  [
+    {
+      "ID": "AdrianID50123",
+      "Foto de Perfil": "AdrianPhotoID912832",
+      "MyMenu": [
+        {
+          "nombre": "arrozConPolloId1234",
+          "dificultad": "Dificil",
+          "tipoDePlato": "Cena",
+          "dieta": "Carnívora",
+          "instrucciones":"Hervir pollo, cocinar arroz, mezclar pollo y arroz"
+        }],
+      "Following": [],
+      "Followers":[],
+      "calificaciones": []
+    },
+    {
+      "ID": "JosueID50123",
+      "Foto de Perfil": "JosuePhotoID176",
+      "MyMenu": [],
+      "Following": ["Adrian"],
+      "Followers":["Adrian"],
+      "calificaciones": []
+    }
+
+
+
+
+
+  ]
+
+}

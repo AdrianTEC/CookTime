@@ -13,14 +13,15 @@ import javax.servlet.ServletContext;
  * Código inspirado por el enseñado por  xcheko51x
  * https://github.com/xcheko51x/Leer-JSON-JSONSimple-JAVA
  */
-public class UserManager {
 
-    private  JSONArray array;  //ARREGLO DE TODOS LOS USUARIOS
+public class JSONManager {
+
+    private  JSONArray userArray;  //ARREGLO DE TODOS LOS USUARIOS
     private final ServletContext context; //CONTEXTO NECESARIO PARA ENCONTRAR LAS COSAS
     private File datafile;
     private JSONObject jsonObject;
 
-    public UserManager(ServletContext x)
+    public JSONManager(ServletContext x)
         {
             context=x; //para ubicar los archivos  ocupamos un contexto
             refreshArray();
@@ -35,7 +36,27 @@ public class UserManager {
     */
 
     public JSONArray giveMeJson(){
-        return  array;
+        return  userArray;
+    }
+
+    /* This returns the last ID in some array
+   @Author: Adrian Gonzalez
+   @Version: 7/07/20
+   @Params: String
+   @Exeption:nothing
+   @returns: String
+    */
+
+
+    public String giveTheLastIDInArray(String arrayName)
+    {
+        String response="";
+        if(arrayName.equals("Users"))
+        {
+            response= (String) ((JSONObject) (userArray.get(userArray.size()))).get("id");
+
+        }
+        return response;
     }
     /* This returns a Requested user  exploring array
    @Author: Adrian Gonzalez
@@ -44,9 +65,10 @@ public class UserManager {
    @Exeption:nothing
    @returns: JSONObject
     */
-    public JSONObject giveMeUser(String id){
+
+    public JSONObject giveMeObjetWithdId(String id){
         JSONObject user= new JSONObject();
-        for (Object i: array){
+        for (Object i: userArray){
 
                     user= (JSONObject) i;
                     if(user.get("id").equals(id)){
@@ -59,7 +81,7 @@ public class UserManager {
     }
     public void addToArray(JSONObject thing)
         {
-        array.add(thing);
+        userArray.add(thing);
 
         }
         /* This saves the current state of JSON file
@@ -92,12 +114,12 @@ public class UserManager {
 
             try {
                 JSONParser parser = new JSONParser();
-              datafile = new File(context.getRealPath("WEB-INF/clients.text"));//  Esto adquiere el documento desde el archivo WAR, por lo tanto si usamos este no podremos editar el texto
+              datafile = new File(context.getRealPath("WEB-INF/clients.JSON"));//  Esto adquiere el documento desde el archivo WAR, por lo tanto si usamos este no podremos editar el texto
 
                 // datafile= new File("C:\\Users\\Adrián González\\Desktop\\CookTime-CE1103\\CookTime\\web\\WEB-INF\\clients.text");
 
                 jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
-                array = (JSONArray) jsonObject.get("Usuarios");
+                userArray = (JSONArray) jsonObject.get("Usuarios");
 
 
             } catch(Exception ignored) { }
