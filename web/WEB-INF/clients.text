@@ -1,8 +1,1 @@
-{
-  "Usuarios":[
-    {"id":"1","nombre":"sergio","telefono":"1234567890","email":"sergio@mail.com"},
-    {"id":"2","nombre":"laura","telefono":"0987654321","email":"laura@mail.com"},
-    {"id":"22","nombre":"laura","telefono":"0987654321","email":"laura@mail.com"},
-
-  ]
-}
+{"Usuarios":[{"id":"1","telefono":"1234567890","nombre":"sergio","email":"sergio@mail.com"},{"id":"2","telefono":"0987654321","nombre":"laura","email":"laura@mail.com"},{"id":"22","telefono":"0987654321","nombre":"laura","email":"laura@mail.com"},{"id":"51","telefono":"5222","nombre":"adr","email":"aaa"},{"id":"231","telefono":"5sds222","nombre":"adri","email":"aaaqq"},{"id":"232231","telefono":"5sds222","nombre":"adri","email":"aaaqq"},{"id":"2231","telefono":"5sds222","nombre":"adri","email":"aaaqq"}]}

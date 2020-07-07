@@ -59,7 +59,7 @@ public class UsersServlet extends HttpServlet {
             JSONObject newJson= (JSONObject) parser.parse(String.valueOf(agregado));
             manager.addToArray(newJson);
            // manager.refreshArray();
-         //   manager.saveJSONfile();
+            manager.saveJSONfile();
             resp.setContentType("application/json");
             resp.getWriter().write(manager.giveMeJson().toString());
         } catch (ParseException e) {

@@ -18,6 +18,8 @@ public class UserManager {
     private  JSONArray array;  //ARREGLO DE TODOS LOS USUARIOS
     private final ServletContext context; //CONTEXTO NECESARIO PARA ENCONTRAR LAS COSAS
     private File datafile;
+    private JSONObject jsonObject;
+
     public UserManager(ServletContext x)
         {
             context=x; //para ubicar los archivos  ocupamos un contexto
@@ -30,7 +32,7 @@ public class UserManager {
    @Params:
    @Exeption:
    @returns: JSONArray
- */
+    */
 
     public JSONArray giveMeJson(){
         return  array;
@@ -41,7 +43,7 @@ public class UserManager {
    @Params: String id
    @Exeption:nothing
    @returns: JSONObject
- */
+    */
     public JSONObject giveMeUser(String id){
         JSONObject user= new JSONObject();
         for (Object i: array){
@@ -60,26 +62,25 @@ public class UserManager {
         array.add(thing);
 
         }
-
-    /* This saves the current state of JSON file
+        /* This saves the current state of JSON file
    @Author: Adrian Gonzalez
    @Version: 5/07/20
    @Params: nothing
    @Exeption: IOExeption
    @returns: nothinh
- */
+    */
 
     public void saveJSONfile()
         {
             try {
                 FileWriter escritor= new FileWriter(datafile);
-                escritor.write(array.toJSONString());
+                escritor.write(jsonObject.toJSONString());
                 escritor.flush();
                 escritor.close();
             }catch (Exception ignored){}
 
         }
-        /* This updates the context of "array" in case of deleting or adding something
+    /* This updates the context of "array" in case of deleting or adding something
     @Author: Adrian Gonzalez
     @Version: 5/07/20
     @Params: nothing
@@ -87,16 +88,19 @@ public class UserManager {
     @returns: nothing
     */
     public void refreshArray()
-    {
+        {
 
-        try {
-            JSONParser parser = new JSONParser();
-            datafile = new File(context.getRealPath("WEB-INF/clients.text"));
-            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
-            array = (JSONArray) jsonObject.get("Usuarios");
+            try {
+                JSONParser parser = new JSONParser();
+              datafile = new File(context.getRealPath("WEB-INF/clients.text"));//  Esto adquiere el documento desde el archivo WAR, por lo tanto si usamos este no podremos editar el texto
+
+                // datafile= new File("C:\\Users\\Adrián González\\Desktop\\CookTime-CE1103\\CookTime\\web\\WEB-INF\\clients.text");
+
+                jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
+                array = (JSONArray) jsonObject.get("Usuarios");
 
 
-        } catch(Exception ignored) { }
+            } catch(Exception ignored) { }
 
-    }
+        }
 }
