@@ -1,0 +1,8 @@
+{
+  "Recetas":[
+    {"id":"1","nombre":"arroz","autor":"user1","tipo de plato":"cena","tiempo":"1h","dieta":"Veg","instrucciones":"x","precio":"$12"},
+    {"id":"2","nombre":"frijoles","autor":"user2","tipo de plato":"desayuno", "tiempo":"2h", "dieta":"veg2","instrucciones":"x2","precio":"$25"},
+    {"id":"3","nombre":"huevo","autor":"user3","tipo de plato":"almuerzo","tiempo":"3h","dieta":"veg3","instrucciones":"x3","precio":"$5"},
+
+  ]
+}
