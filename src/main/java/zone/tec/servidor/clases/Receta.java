@@ -1,6 +1,7 @@
 package zone.tec.servidor.clases;
 
 import Estructuras.ListaLineal;
+import org.json.simple.JSONObject;
 
 import java.awt.image.BufferedImage;
 
@@ -13,36 +14,36 @@ public class Receta {
     private String instrucciones;
     private String precio;
 
-    private int porciones;
-    private int dificultad;
+    private String porciones;
+    private String dificultad;
 
     private ListaLineal ingredientes; //recibe strings
 
     private BufferedImage receta;
 
 
-    public Receta(){
-
+    public  Receta(JSONObject x) {
         /*This funtion is the constructor of the class
          *@author Andrés Quirós Guzmán
          *@Version 21/06/2020
          * @param nothing
          */
 
-        nombre = "";
-        autor = "";
-        tipoPlato = "";
-        tiempo = "";
-        dieta = "";
-        instrucciones = "";
-        precio = "";
+        nombre = (String) x.get("nombre");
+        autor = (String) x.get("autor");
+        tipoPlato = (String) x.get("tipo de plato");
+        tiempo = (String) x.get("tiempo");
+        dieta = (String) x.get("dieta");
+        instrucciones = (String) x.get("instrucciones");
+        precio = (String) x.get("precio");
+        porciones = (String) x.get("porciones");
+        dificultad = (String) x.get("dificultad");
 
-        porciones = 0;
-        dificultad = 0;
+        //ingredientes
+        //imagen
 
-        ingredientes = new ListaLineal();
 
-        //receta = BufferedImage;
+
     }
 
     public String getNombre() {
@@ -101,19 +102,19 @@ public class Receta {
         this.precio = precio;
     }
 
-    public int getPorciones() {
+    public String getPorciones() {
         return porciones;
     }
 
-    public void setPorciones(int porciones) {
+    public void setPorciones(String porciones) {
         this.porciones = porciones;
     }
 
-    public int getDificultad() {
+    public String getDificultad() {
         return dificultad;
     }
 
-    public void setDificultad(int dificultad) {
+    public void setDificultad(String dificultad) {
         this.dificultad = dificultad;
     }
 

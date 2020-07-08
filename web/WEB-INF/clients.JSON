@@ -52,10 +52,57 @@
       "calificaciones": []
     }
 
+  ],
 
 
+  "Empresas":
+  [
+    {
+      "id":"10",
+      "nombre":"Restaurante1",
+      "contacto": "84848484",
+      "horario": "7am-7pm",
 
+    },
+    {
+      "id": "20",
+      "nombre":"Restaurante2",
+      "contacto": "88888888",
+      "horario": "9am-11pm",
 
+    }
+  ],
+
+  "Recetas":
+  [
+    {
+      "id":"1",
+      "nombre":"arroz",
+      "autor":"user1",
+      "tipo de plato":"cena",
+      "tiempo":"1h",
+      "dieta":"Veg",
+      "instrucciones":"x",
+      "precio":"$12"
+      "porciones":"5",
+      "dificultad":"fácil",
+
+    },
+    {
+      "id":"2",
+      "nombre":"frijoles",
+      "autor":"user2",
+      "tipo de plato":"almuerzo",
+      "tiempo":"2h",
+      "dieta":"Carnívoro",
+      "instrucciones":"x2",
+      "precio":"$1"
+      "porciones":"2",
+      "dificultad":"difícil",
+    }
   ]
+
+
+
 
 }

@@ -20,6 +20,8 @@ public class JSONManager {
 
     private JSONArray userArray;  //ARREGLO DE TODOS LOS USUARIOS
     private JSONArray profilesArray;
+    private JSONArray companiesArray;
+    private JSONArray recipesArray;
     private final ServletContext context; //CONTEXTO NECESARIO PARA ENCONTRAR LAS COSAS
     private File datafile;
     private JSONObject jsonObject;
@@ -42,6 +44,8 @@ public class JSONManager {
         JSONArray array= new JSONArray();
         if(arrayName.equals("Users")){ array=userArray; }
         if(arrayName.equals("Profiles")){array=profilesArray;}
+        if(arrayName.equals("Companies")){array=companiesArray;}
+        if(arrayName.equals("Recipes")){array=recipesArray;}
         return  array;
     }
 
@@ -73,6 +77,10 @@ public class JSONManager {
             currentArray= userArray; }
         if (arrayName.equals("Profiles"))
             { currentArray= profilesArray; }
+        if(arrayName.equals("Companies")){
+            currentArray= userArray; }
+        if(arrayName.equals("Recipes")){
+            currentArray= userArray; }
         if(currentArray!=null)
             {   //explores the array looking for
                 for (Object i: userArray){
@@ -95,6 +103,17 @@ public class JSONManager {
 
                 }
             if(arrayName.equals("Profiles"))
+            {
+                profilesArray.add(thing);
+
+            }
+
+            if(arrayName.equals("Companies"))
+            {
+                profilesArray.add(thing);
+
+            }
+            if(arrayName.equals("Recipes"))
             {
                 profilesArray.add(thing);
 
@@ -137,6 +156,8 @@ public class JSONManager {
                 jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
                 userArray = (JSONArray) jsonObject.get("Usuarios");
                 profilesArray=(JSONArray) jsonObject.get("Perfiles");
+                companiesArray=(JSONArray) jsonObject.get("Empresas");
+                recipesArray=(JSONArray) jsonObject.get("Recetas");
 
 
             } catch(Exception ignored) { }

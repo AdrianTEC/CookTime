@@ -1,23 +1,34 @@
 package zone.tec.servidor.clases;
 
+import org.json.simple.JSONObject;
+
 import java.awt.image.BufferedImage;
 
 public class Empresa {
     private String nombre;
     private String contacto;
     private String horario;
+    private String id;
 
     private BufferedImage logotipo;
 
     //private GOOGLEMAPSAPPI dirección;
 
-    public Empresa (){
-        nombre = "";
-        contacto = "";
-        horario = "";
+    public  Empresa(JSONObject x) {
+        /*This funtion is the constructor of the class
+         *@author Andrés Quirós Guzmán
+         *@Version 21/06/2020
+         * @param nothing
+         */
 
-        //logotipo = BufferedImage;
+        nombre = (String) x.get("nombre");
+        contacto = (String) x.get("contacto");
+        horario = (String) x.get("horario");
+        id=String.valueOf((int) (Math.random() * 100) +1);
+
+
     }
+
 
 
     public String getNombre() {
