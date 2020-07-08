@@ -37,19 +37,7 @@ public class Usuario {
         //calificaciones = new Lista();
 
     }
-    public JSONObject convertToJSON()
-        {
 
-            JSONParser parser = new JSONParser();
-            Gson gson= new Gson();
-            JSONObject response= new JSONObject();
-            try {
-                response= (JSONObject) parser.parse(gson.toJson(this));
-            }catch (Exception ignored){}
-
-
-            return  response;
-        }
 
 
     public String getNombre() {

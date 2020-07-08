@@ -3,6 +3,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,7 +18,8 @@ import javax.servlet.ServletContext;
 
 public class JSONManager {
 
-    private  JSONArray userArray;  //ARREGLO DE TODOS LOS USUARIOS
+    private JSONArray userArray;  //ARREGLO DE TODOS LOS USUARIOS
+    private JSONArray profilesArray;
     private final ServletContext context; //CONTEXTO NECESARIO PARA ENCONTRAR LAS COSAS
     private File datafile;
     private JSONObject jsonObject;
@@ -35,8 +38,11 @@ public class JSONManager {
    @returns: JSONArray
     */
 
-    public JSONArray giveMeJson(){
-        return  userArray;
+    public JSONArray giveMeJson(String arrayName){
+        JSONArray array= new JSONArray();
+        if(arrayName.equals("Users")){ array=userArray; }
+        if(arrayName.equals("Profiles")){array=profilesArray;}
+        return  array;
     }
 
     /* This returns the last ID in some array
@@ -48,41 +54,51 @@ public class JSONManager {
     */
 
 
-    public String giveTheLastIDInArray(String arrayName)
-    {
-        String response="";
-        if(arrayName.equals("Users"))
-        {
-            response= (String) ((JSONObject) (userArray.get(userArray.size()))).get("id");
 
-        }
-        return response;
-    }
-    /* This returns a Requested user  exploring array
+    /* This returns a Requested JSONobject from arrayName array
    @Author: Adrian Gonzalez
    @Version: 5/07/20
-   @Params: String id
+   @Params: String id ,String arrayName
    @Exeption:nothing
    @returns: JSONObject
     */
 
-    public JSONObject giveMeObjetWithdId(String id){
-        JSONObject user= new JSONObject();
-        for (Object i: userArray){
+    public JSONObject giveMeObjetWithdId(String arrayName,String id){
+        //will returns this
+        JSONObject object= new JSONObject();
+        //this array will be explored
+        JSONArray currentArray= null;
 
-                    user= (JSONObject) i;
-                    if(user.get("id").equals(id)){
+        if(arrayName.equals("Users")){
+            currentArray= userArray; }
+        if (arrayName.equals("Profiles"))
+            { currentArray= profilesArray; }
+        if(currentArray!=null)
+            {   //explores the array looking for
+                for (Object i: userArray){
+
+                    object= (JSONObject) i;
+                    if(object.get("id").equals(id)){
                         break;
                     }
-        }
+                }
+            }
 
 
-        return user;
+        return object;
     }
-    public void addToArray(JSONObject thing)
+    public void addToArray(String arrayName, JSONObject thing)
         {
-        userArray.add(thing);
+            if(arrayName.equals("Users"))
+                {
+                    userArray.add(thing);
 
+                }
+            if(arrayName.equals("Profiles"))
+            {
+                profilesArray.add(thing);
+
+            }
         }
         /* This saves the current state of JSON file
    @Author: Adrian Gonzalez
@@ -120,9 +136,31 @@ public class JSONManager {
 
                 jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
                 userArray = (JSONArray) jsonObject.get("Usuarios");
+                profilesArray=(JSONArray) jsonObject.get("Perfiles");
 
 
             } catch(Exception ignored) { }
 
         }
+
+    /* This Converts java objects in JSON objects
+    @Author: Adrian Gonzalez
+    @Version: 7/07/20
+    @Params: Object thing
+    @Exeption:
+    @returns: JSONObject
+    */
+    public JSONObject convertToJSON(Object thing)
+    {
+
+        JSONParser parser = new JSONParser();
+        Gson gson= new Gson();
+        JSONObject response= new JSONObject();
+        try {
+            response= (JSONObject) parser.parse(gson.toJson(thing));
+        }catch (Exception ignored){}
+
+
+        return  response;
+    }
 }

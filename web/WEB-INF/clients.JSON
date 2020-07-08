@@ -8,7 +8,7 @@
       "correo": "Adrian@gmail.com",
       "edad": "19",
       "contrasena": "laProgramacionEsDivertida",
-      "Perfil": "AdrianID50123"
+      "perfil": "AdrianID50123"
 
 
     },
@@ -20,7 +20,7 @@
       "correo": "Josue@gmail.com",
       "edad": "23",
       "contrasena": "laProgramacionEsEstresante",
-      "Perfil": "JosueID50123"
+      "perfil": "JosueID50123"
 
 
     }
@@ -29,7 +29,7 @@
   "Perfiles":
   [
     {
-      "ID": "AdrianID50123",
+      "ID": "AdrianID1",
       "Foto de Perfil": "AdrianPhotoID912832",
       "MyMenu": [
         {
@@ -44,7 +44,7 @@
       "calificaciones": []
     },
     {
-      "ID": "JosueID50123",
+      "ID": "JosueID2",
       "Foto de Perfil": "JosuePhotoID176",
       "MyMenu": [],
       "Following": ["Adrian"],
