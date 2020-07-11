@@ -1,11 +1,11 @@
 package zone.tec.servidor.clases;
 
-import Estructuras.ListaLineal;
+import zone.tec.servidor.clases.Estructuras.Lista;
 
 public class Publicación {
 
     //private Json contenido;
-    private ListaLineal comentarios; //recibe strings
+    private Lista comentarios; //recibe strings
 
 
     public Publicación() {
@@ -14,11 +14,11 @@ public class Publicación {
          *@Version 21/06/2020
          * @param nothing
          */
-        comentarios = new ListaLineal();
+        comentarios = new Lista();
 
     }
 
-    public ListaLineal getComentarios() {
+    public Lista getComentarios() {
         return comentarios;
     }
 

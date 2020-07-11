@@ -11,9 +11,10 @@
     <title>Servidor CookTime</title>
   </head>
   <body>
-  Hola, soy el servidor, para facilitarle su trabajo como técnico de la prestigiosa empresa CookTime  le escribo la lista }
-  de direcciones a las que puede accesar:
-  /users
+   Bienvenido al servidor de CookTime
 
   </body>
+  <%
+
+  %>
 </html>

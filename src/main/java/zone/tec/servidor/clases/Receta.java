@@ -1,6 +1,5 @@
 package zone.tec.servidor.clases;
 
-import Estructuras.ListaLineal;
 import org.json.simple.JSONObject;
 
 import java.awt.image.BufferedImage;
@@ -13,11 +12,10 @@ public class Receta {
     private String dieta;
     private String instrucciones;
     private String precio;
-
+    private String id;
     private String porciones;
     private String dificultad;
 
-    private ListaLineal ingredientes; //recibe strings
 
     private BufferedImage receta;
 
@@ -39,11 +37,16 @@ public class Receta {
         porciones = (String) x.get("porciones");
         dificultad = (String) x.get("dificultad");
 
+
         //ingredientes
         //imagen
 
 
 
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getNombre() {
@@ -118,9 +121,6 @@ public class Receta {
         this.dificultad = dificultad;
     }
 
-    public ListaLineal getIngredientes() {
-        return ingredientes;
-    }
 
     public BufferedImage getReceta() {
         return receta;

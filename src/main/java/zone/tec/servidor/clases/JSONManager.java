@@ -2,9 +2,7 @@ package zone.tec.servidor.clases;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -32,7 +30,10 @@ public class JSONManager {
             refreshArray();
         }
 
-    /* This returns the JSON array
+
+
+
+    /* This returns the JSON array asked for
    @Author: Adrian Gonzalez
    @Version: 5/07/20
    @Params:
@@ -78,12 +79,12 @@ public class JSONManager {
         if (arrayName.equals("Profiles"))
             { currentArray= profilesArray; }
         if(arrayName.equals("Companies")){
-            currentArray= userArray; }
+            currentArray= companiesArray; }
         if(arrayName.equals("Recipes")){
-            currentArray= userArray; }
+            currentArray= recipesArray; }
         if(currentArray!=null)
             {   //explores the array looking for
-                for (Object i: userArray){
+                for (Object i: currentArray){
 
                     object= (JSONObject) i;
                     if(object.get("id").equals(id)){
@@ -110,12 +111,12 @@ public class JSONManager {
 
             if(arrayName.equals("Companies"))
             {
-                profilesArray.add(thing);
+                companiesArray.add(thing);
 
             }
             if(arrayName.equals("Recipes"))
             {
-                profilesArray.add(thing);
+                recipesArray.add(thing);
 
             }
         }
