@@ -54,8 +54,8 @@ public class RecipesServlet extends HttpServlet {
 
             //verifico que la receta tiene lo minimo para ingresar
 
-            if(newJson.get("nombre") != null && newJson.get("autor")!=null &&newJson.get("tipo de plato")!=null &&newJson.get("tiempo")!=null &&newJson.get("dieta")!=null &&newJson.get("instrucciones")!=null &&newJson.get("precio")!=null &&newJson.get("porciones")!=null &&newJson.get("dificultad")!=null)
-            {   //Crea una nueva receta
+            if(newJson.get("nombre") != null && newJson.get("autor")!=null &&newJson.get("instrucciones")!=null) {
+                //Crea una nueva receta
                 Receta nuevaReceta= new Receta(newJson);
                 //Convierto esa receta en un JSON
                 newJson = manager.convertToJSON(nuevaReceta);
@@ -69,8 +69,7 @@ public class RecipesServlet extends HttpServlet {
                 resp.setContentType("application/json");
                 resp.getWriter().write(manager.giveMeJson("Recipes").toString());
 
-            }
-            else { resp.getWriter().write("Esta Receta No es Agregable"); }
+            }else { resp.getWriter().write("Esta Receta No es Agregable"); }
         } catch (ParseException e) { e.printStackTrace(); }
     }
 }
