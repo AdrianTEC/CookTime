@@ -118,7 +118,7 @@
       "id":"3",
       "nombre":"Sopa De Mondongo",
       "autor":"user3",
-      "tipo de plato":"Almuerzo",
+      "tipo":"Almuerzo",
       "tiempo":"3h",
       "dieta":"Carnívoro",
       "instrucciones":"x2",
@@ -131,7 +131,7 @@
       "id":"4",
       "nombre":"CornFles",
       "autor":"user4",
-      "tipo de plato":"Cena",
+      "tipo":"Cena",
       "tiempo":"30min",
       "dieta":"Vegetariano",
       "instrucciones":"x2",
@@ -141,17 +141,18 @@
       "foto": "https://cdnimg.webstaurantstore.com/images/products/large/429821/1659430.jpg"
     },
     {
-      "id":"3",
+      "id":"5",
       "nombre":"Pastel de Chocolate",
       "autor":"user5",
-      "tipo de plato":"Especial",
+      "tipo":"Especial",
       "tiempo":"5h",
       "dieta":"Carnívoro",
       "instrucciones":"x2",
-      "precio":"$1",
+      "precio":"$4",
       "porciones":"16",
       "dificultad":"difícil",
-      "foto": "https://content-recetas.lecturas.com/medio/2018/07/19/pastel-de-trufa-y-frutas-rojas_f9c768c4_800x800.jpg"
+      "foto": "https://content-recetas.lecturas.com/medio/2018/07/19/pastel-de-trufa-y-frutas-rojas_f9c768c4_800x800.jpg",
+
     }
   ]
 
