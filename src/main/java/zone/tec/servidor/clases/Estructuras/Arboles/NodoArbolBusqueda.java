@@ -1,16 +1,16 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
-public class NodoArbol<T extends Comparable<? super T>> {
+public class NodoArbolBusqueda<T extends Comparable<? super T>> {
 
     private T elemento;
-    private NodoArbol<T> nodoIzquierdo;
-    private NodoArbol<T> nodoDerecho;
+    private NodoArbolBusqueda<T> nodoIzquierdo;
+    private NodoArbolBusqueda<T> nodoDerecho;
 
-    public NodoArbol(T elemento) {
+    public NodoArbolBusqueda(T elemento) {
         this.elemento = elemento;
     }
 
-    public NodoArbol(T elemento, NodoArbol<T> nodoIzquierdo, NodoArbol<T> nodoDerecho) {
+    public NodoArbolBusqueda(T elemento, NodoArbolBusqueda<T> nodoIzquierdo, NodoArbolBusqueda<T> nodoDerecho) {
         this.elemento = elemento;
         this.nodoIzquierdo = nodoIzquierdo;
         this.nodoDerecho = nodoDerecho;
@@ -24,19 +24,19 @@ public class NodoArbol<T extends Comparable<? super T>> {
         this.elemento = elemento;
     }
 
-    public NodoArbol<T> getNodoIzquierdo() {
+    public NodoArbolBusqueda<T> getNodoIzquierdo() {
         return nodoIzquierdo;
     }
 
-    public void setNodoIzquierdo(NodoArbol<T> nodoIzquierdo) {
+    public void setNodoIzquierdo(NodoArbolBusqueda<T> nodoIzquierdo) {
         this.nodoIzquierdo = nodoIzquierdo;
     }
 
-    public NodoArbol<T> getNodoDerecho() {
+    public NodoArbolBusqueda<T> getNodoDerecho() {
         return nodoDerecho;
     }
 
-    public void setNodoDerecho(NodoArbol<T> nodoDerecho) {
+    public void setNodoDerecho(NodoArbolBusqueda<T> nodoDerecho) {
         this.nodoDerecho = nodoDerecho;
     }
 }
