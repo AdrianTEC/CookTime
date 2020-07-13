@@ -2,9 +2,9 @@ package zone.tec.servidor.clases.Estructuras.Arboles;
 
 public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
 
-    private NodoArbol<T> raiz;
+    private NodoArbolBusqueda<T> raiz;
 
-    public ArbolBinarioBusqueda(NodoArbol<T> raiz) {
+    public ArbolBinarioBusqueda(NodoArbolBusqueda<T> raiz) {
         this.raiz = raiz;
     }
 
@@ -16,7 +16,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         return contains(elemento, raiz);
     }
 
-    public boolean contains(T elemento, NodoArbol<T> nodoComparado) {
+    private boolean contains(T elemento, NodoArbolBusqueda<T> nodoComparado) {
         if (nodoComparado == null) {
             return false;
         }else {
@@ -39,7 +39,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         }
     }
 
-    public NodoArbol<T> findMin(NodoArbol<T> nodo) {
+    private NodoArbolBusqueda<T> findMin(NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
             return null;
         } else if (nodo.getNodoIzquierdo() == null) {
@@ -57,7 +57,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         }
     }
 
-    public NodoArbol<T> findMax(NodoArbol<T> nodo) {
+    private NodoArbolBusqueda<T> findMax(NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
             return null;
         } else if (nodo.getNodoDerecho() == null) {
@@ -71,9 +71,9 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         raiz = insert(elemento, raiz);
     }
 
-    public NodoArbol<T> insert(T elemento, NodoArbol<T> nodo) {
+    private NodoArbolBusqueda<T> insert(T elemento, NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
-            return new NodoArbol<T>(elemento);
+            return new NodoArbolBusqueda<T>(elemento);
         }
         int comparacion = elemento.compareTo(nodo.getElemento());
         if (comparacion < 0) {
@@ -88,7 +88,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         raiz = remove(elemento, raiz);
     }
 
-    public NodoArbol<T> remove(T elemento, NodoArbol<T> nodo) {
+    private NodoArbolBusqueda<T> remove(T elemento, NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
             return nodo;
         }
