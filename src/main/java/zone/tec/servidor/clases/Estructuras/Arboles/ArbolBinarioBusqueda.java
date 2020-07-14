@@ -24,10 +24,21 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         return this.raiz == null;
     }
 
+    /**
+     * Revisa si un elemento está contenido en el árbol
+     * @param elemento Elemento a buscar en el árbol
+     * @return Booleano que dice si el elemento está o no en el árbol
+     */
     public boolean contains(T elemento) {
         return contains(elemento, raiz);
     }
 
+    /**
+     * Se utiliza en recursión del método anterior. Compara los elementos del árbol hasta encontrar el que se busca
+     * @param elemento Elemento a buscar en el árbol
+     * @param nodoComparado Nodo en el que se busca el elemento actualmente
+     * @return Booleano que dice si el elemento está o no en el árbol
+     */
     private boolean contains(T elemento, NodoArbolBusqueda<T> nodoComparado) {
         if (nodoComparado == null) {
             return false;
@@ -43,6 +54,10 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         }
     }
 
+    /**
+     * Busca el elemento más pequeño del árbol
+     * @return elemento más pequeño
+     */
     public T findMin() {
         if (isEmpty()) {
             return null;
@@ -51,6 +66,11 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         }
     }
 
+    /**
+     * Llamado úicamente en recursión. Revisa los hijos izquierdos buscando el elemento más pequeño del árbol
+     * @param nodo Nodo en el que se encuentra buscando al más pequeño
+     * @return elemento más pequeño
+     */
     private NodoArbolBusqueda<T> findMin(NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
             return null;
@@ -61,6 +81,10 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         }
     }
 
+    /**
+     * Busca el elemento más grande del árbol
+     * @return elemento más grande
+     */
     public T findMax() {
         if (isEmpty()) {
             return null;
@@ -69,6 +93,11 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         }
     }
 
+    /**
+     * Llamado úicamente en recursión. Revisa los hijos derechos buscando el elemento más grande del árbol
+     * @param nodo Nodo en el que se encuentra buscando al más grande
+     * @return elemento más grande
+     */
     private NodoArbolBusqueda<T> findMax(NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
             return null;
@@ -79,10 +108,21 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         }
     }
 
+    /**
+     * Inserta un elemento en la árbol en la hoja que corresponda
+     * @param elemento Elemento a insertar
+     */
     public void insert(T elemento) {
         raiz = insert(elemento, raiz);
     }
 
+    /**
+     * Llamado úicamente en recursión. Busca la hoja apropiada donde se agrega el nuevo elemento, revisando si son
+     * mayores o menores que él y recorriendolo a la izquierda o derecha, según corresponda
+     * @param elemento Elemento a insertar
+     * @param nodo Ubicación actual, siguiendo el camino del nodo a insertar
+     * @return Nodo que sigue el camino a recorrer
+     */
     private NodoArbolBusqueda<T> insert(T elemento, NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
             return new NodoArbolBusqueda<T>(elemento);
@@ -96,10 +136,20 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
         return nodo;
     }
 
+    /**
+     * Borra a un nodo con el elemento ingresado
+     * @param elemento Elemento a borrar del árbol
+     */
     public void remove(T elemento) {
         raiz = remove(elemento, raiz);
     }
 
+    /**
+     * Llamado úicamente en recursión. Busca el elemento a borrar. Si lo encuentra, lo elimina
+     * @param elemento Elemento a eliminar
+     * @param nodo Nodo que se recorre para encontrar el elemento a eliminar
+     * @return Nodo que sigue el camino a recorrer
+     */
     private NodoArbolBusqueda<T> remove(T elemento, NodoArbolBusqueda<T> nodo) {
         if (nodo == null) {
             return nodo;
