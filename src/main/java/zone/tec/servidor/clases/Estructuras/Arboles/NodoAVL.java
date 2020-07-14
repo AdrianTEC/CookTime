@@ -1,18 +1,18 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
-public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
+public class NodoAVL<T extends Comparable<T>> implements Comparable<NodoAVL<T>> {
 
     private T data;
-    private Node<T> left;
-    private Node<T> right;
+    private NodoAVL<T> left;
+    private NodoAVL<T> right;
     public int level;
     private int depth;
 
-    public Node(T data) {
+    public NodoAVL(T data) {
         this(data, null, null);
     }
 
-    public Node(T data, Node<T> left, Node<T> right) {
+    public NodoAVL(T data, NodoAVL<T> left, NodoAVL<T> right) {
         super();
         this.data = data;
         this.left = left;
@@ -35,19 +35,19 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
         this.data = data;
     }
 
-    public Node<T> getLeft() {
+    public NodoAVL<T> getLeft() {
         return left;
     }
 
-    public void setLeft(Node<T> left) {
+    public void setLeft(NodoAVL<T> left) {
         this.left = left;
     }
 
-    public Node<T> getRight() {
+    public NodoAVL<T> getRight() {
         return right;
     }
 
-    public void setRight(Node<T> right) {
+    public void setRight(NodoAVL<T> right) {
         this.right = right;
     }
 
@@ -67,7 +67,7 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     }
 
     @Override
-    public int compareTo(Node<T> o) {
+    public int compareTo(NodoAVL<T> o) {
         return this.data.compareTo(o.data);
     }
 

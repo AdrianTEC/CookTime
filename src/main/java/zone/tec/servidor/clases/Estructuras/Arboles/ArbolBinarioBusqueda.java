@@ -1,13 +1,25 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
+/**
+ * Arbol binario con el hijo menor a la izquierda y el mayor a la derecha.
+ * @param <T> Tipo de dato que almacena el árbol
+ */
 public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
 
     private NodoArbolBusqueda<T> raiz;
 
+    /**
+     * Constructor que define la raíz del árbol
+     * @param raiz Raíz del árbol
+     */
     public ArbolBinarioBusqueda(NodoArbolBusqueda<T> raiz) {
         this.raiz = raiz;
     }
 
+    /**
+     * Dice si el árbol está vacío o no
+     * @return Booleano con valor "true" si el árbol está vacío
+     */
     public boolean isEmpty() {
         return this.raiz == null;
     }
