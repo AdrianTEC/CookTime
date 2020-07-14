@@ -1,16 +1,13 @@
 package zone.tec.servidor.clases;
 
-import Estructuras.ListaLineal;
+import zone.tec.servidor.clases.Estructuras.Listas.ListaSimple;
 
 public class Chef  {
-    private ListaLineal reseñas;  //recibe strings
+
+    private ListaSimple<String> reseñas;  //recibe strings
 
 
-
-
-
-
-    public ListaLineal getReseñas() {
+    public ListaSimple<String> getReseñas() {
         return reseñas;
     }
 }

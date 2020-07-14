@@ -1,11 +1,11 @@
 package zone.tec.servidor.clases;
 
-import Estructuras.ListaLineal;
+import zone.tec.servidor.clases.Estructuras.Listas.ListaSimple;
 
 public class Publicación {
 
     //private Json contenido;
-    private ListaLineal comentarios; //recibe strings
+    private ListaSimple<String> comentarios; //recibe strings
 
 
     public Publicación() {
@@ -14,11 +14,11 @@ public class Publicación {
          *@Version 21/06/2020
          * @param nothing
          */
-        comentarios = new ListaLineal();
+        comentarios = new ListaSimple<String>();
 
     }
 
-    public ListaLineal getComentarios() {
+    public ListaSimple<String> getComentarios() {
         return comentarios;
     }
 
@@ -26,11 +26,11 @@ public class Publicación {
     } //,comentarios)
 
 
-    public void borrarse(){
+    public void borrar(){
 
     }
 
-    public void compartirse(){
+    public void compartir(){
 
     }
 
@@ -38,7 +38,7 @@ public class Publicación {
 
     }
 
-    public void desplegarse(){
+    public void desplegar(){
 
     }
 

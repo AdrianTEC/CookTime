@@ -1,9 +1,6 @@
 package zone.tec.servidor.clases;
 
-import Estructuras.ListaLineal;
-import com.google.gson.Gson;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 public class Usuario {
     private String nombre;

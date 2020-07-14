@@ -1,6 +1,6 @@
 package zone.tec.servidor.clases;
 
-import Estructuras.ListaLineal;
+import zone.tec.servidor.clases.Estructuras.Listas.ListaSimple;
 
 import java.awt.image.BufferedImage;
 
@@ -16,7 +16,7 @@ public class Receta {
     private int porciones;
     private int dificultad;
 
-    private ListaLineal ingredientes; //recibe strings
+    private ListaSimple<String> ingredientes; //recibe strings
 
     private BufferedImage receta;
 
@@ -40,7 +40,7 @@ public class Receta {
         porciones = 0;
         dificultad = 0;
 
-        ingredientes = new ListaLineal();
+        ingredientes = new ListaSimple<String>();
 
         //receta = BufferedImage;
     }
@@ -117,7 +117,7 @@ public class Receta {
         this.dificultad = dificultad;
     }
 
-    public ListaLineal getIngredientes() {
+    public ListaSimple<String> getIngredientes() {
         return ingredientes;
     }
 

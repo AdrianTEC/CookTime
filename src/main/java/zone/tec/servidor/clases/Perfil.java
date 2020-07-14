@@ -1,12 +1,6 @@
 package zone.tec.servidor.clases;
 
-import Estructuras.ListaLineal;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import java.awt.image.BufferedImage;
 
 public class Perfil {
 
