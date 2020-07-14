@@ -10,7 +10,15 @@ import java.io.IOException;
 
 public class GeneralServlet {
 
+    private JSONObject reponseUser;
 
+    public GeneralServlet(){
+
+        reponseUser= new JSONObject();
+    }
+    public JSONObject getConsultedUser(){
+        return reponseUser;
+    }
     public void getting(ServletContext context, HttpServletRequest req, HttpServletResponse resp, String arrayName) throws IOException {
 
 
@@ -20,20 +28,20 @@ public class GeneralServlet {
         JSONManager manager = new JSONManager(context);
 
         if(req.getParameter("ID")!=null)
-        { // /usersID=????
-            JSONObject reponseUser= manager.giveMeObjetWithdId(arrayName,req.getParameter("ID"));
+        {
+             reponseUser= manager.giveMeObjetWithdId(arrayName,req.getParameter("ID"));
 
             if(req.getParameter("DATA")!=null)  //si hay una petición en especifico
-            {// /users?ID=????&DATA=????
-                String peticion= req.getParameter("DATA");
-                if(reponseUser.get(req.getParameter("DATA"))!=null)
                 {
-                    resp.getWriter().write((reponseUser.get(peticion)).toString());
+                    String peticion= req.getParameter("DATA");
+                    if(reponseUser.get(req.getParameter("DATA"))!=null)
+                        {
+                            resp.getWriter().write((reponseUser.get(peticion)).toString());
+                        }
+                    else {
+                        resp.getWriter().write("El parámetro ingresado es inválido");
+                    }
                 }
-                else {
-                    resp.getWriter().write("El parámetro ingresado es inválido");
-                }
-            }
 
 
             else
@@ -46,7 +54,7 @@ public class GeneralServlet {
 
         }
         else
-        { //users?ID=?
+        {
             resp.getWriter().write(String.valueOf(manager.giveMeJson(arrayName)));
 
         }

@@ -35,7 +35,9 @@ public class Usuario {
 
     }
 
-
+    public String getId() {
+        return id;
+    }
 
     public String getNombre() {
         return nombre;

@@ -2,9 +2,7 @@ package zone.tec.servidor.clases;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,6 +18,8 @@ public class JSONManager {
 
     private JSONArray userArray;  //ARREGLO DE TODOS LOS USUARIOS
     private JSONArray profilesArray;
+    private JSONArray companiesArray;
+    private JSONArray recipesArray;
     private final ServletContext context; //CONTEXTO NECESARIO PARA ENCONTRAR LAS COSAS
     private File datafile;
     private JSONObject jsonObject;
@@ -30,7 +30,10 @@ public class JSONManager {
             refreshArray();
         }
 
-    /* This returns the JSON array
+
+
+
+    /* This returns the JSON array asked for
    @Author: Adrian Gonzalez
    @Version: 5/07/20
    @Params:
@@ -42,6 +45,8 @@ public class JSONManager {
         JSONArray array= new JSONArray();
         if(arrayName.equals("Users")){ array=userArray; }
         if(arrayName.equals("Profiles")){array=profilesArray;}
+        if(arrayName.equals("Companies")){array=companiesArray;}
+        if(arrayName.equals("Recipes")){array=recipesArray;}
         return  array;
     }
 
@@ -73,9 +78,13 @@ public class JSONManager {
             currentArray= userArray; }
         if (arrayName.equals("Profiles"))
             { currentArray= profilesArray; }
+        if(arrayName.equals("Companies")){
+            currentArray= companiesArray; }
+        if(arrayName.equals("Recipes")){
+            currentArray= recipesArray; }
         if(currentArray!=null)
             {   //explores the array looking for
-                for (Object i: userArray){
+                for (Object i: currentArray){
 
                     object= (JSONObject) i;
                     if(object.get("id").equals(id)){
@@ -97,6 +106,17 @@ public class JSONManager {
             if(arrayName.equals("Profiles"))
             {
                 profilesArray.add(thing);
+
+            }
+
+            if(arrayName.equals("Companies"))
+            {
+                companiesArray.add(thing);
+
+            }
+            if(arrayName.equals("Recipes"))
+            {
+                recipesArray.add(thing);
 
             }
         }
@@ -137,6 +157,8 @@ public class JSONManager {
                 jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
                 userArray = (JSONArray) jsonObject.get("Usuarios");
                 profilesArray=(JSONArray) jsonObject.get("Perfiles");
+                companiesArray=(JSONArray) jsonObject.get("Empresas");
+                recipesArray=(JSONArray) jsonObject.get("Recetas");
 
 
             } catch(Exception ignored) { }
