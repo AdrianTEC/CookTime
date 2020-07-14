@@ -1,79 +1,118 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
-public class NodoAVL<T extends Comparable<T>> implements Comparable<NodoAVL<T>> {
+/**
+ * Nodo que almacena los datos en el arbol AVL. La diferencia más notable es el constructor adicional utlilizado
+ * en rotaciones.
+ * @param <T> Tipo de dato contenido en el nodo
+ */
+public class NodoAVL<T extends Comparable<? super T>> implements Comparable<NodoAVL<T>> {
 
-    private T data;
-    private NodoAVL<T> left;
-    private NodoAVL<T> right;
-    public int level;
-    private int depth;
+    private T elemento;
+    private NodoAVL<T> nodoIzquierdo;
+    private NodoAVL<T> nodoDerecho;
+    public int nivel;
+    private int profundidad;
 
-    public NodoAVL(T data) {
-        this(data, null, null);
+    /**
+     * Constructor que guarda un elemento en el nodo
+     * @param elemento Elemento que se guarda dentro del nodo
+     */
+    public NodoAVL(T elemento) {
+        this.elemento = elemento;
     }
 
-    public NodoAVL(T data, NodoAVL<T> left, NodoAVL<T> right) {
-        super();
-        this.data = data;
-        this.left = left;
-        this.right = right;
-        if (left == null && right == null)
-            setDepth(1);
-        else if (left == null)
-            setDepth(right.getDepth() + 1);
-        else if (right == null)
-            setDepth(left.getDepth() + 1);
+    /**
+     * Constructor utilizado en inserciones y rotaciones para manipular el nodo izquierdo y el derecho
+     * @param elemento Elemento contenido en el nodo
+     * @param nodoIzquierdo Hijo izquierdo del nodo
+     * @param nodoDerecho Hijo derecho del nodo
+     */
+    public NodoAVL(T elemento, NodoAVL<T> nodoIzquierdo, NodoAVL<T> nodoDerecho) {
+        this.elemento = elemento;
+        this.nodoIzquierdo = nodoIzquierdo;
+        this.nodoDerecho = nodoDerecho;
+        if (nodoIzquierdo == null && nodoDerecho == null)
+            setProfundidad(1);
+        else if (nodoIzquierdo == null)
+            setProfundidad(nodoDerecho.getProfundidad() + 1);
+        else if (nodoDerecho == null)
+            setProfundidad(nodoIzquierdo.getProfundidad() + 1);
         else
-            setDepth(Math.max(left.getDepth(), right.getDepth()) + 1);
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public NodoAVL<T> getLeft() {
-        return left;
-    }
-
-    public void setLeft(NodoAVL<T> left) {
-        this.left = left;
-    }
-
-    public NodoAVL<T> getRight() {
-        return right;
-    }
-
-    public void setRight(NodoAVL<T> right) {
-        this.right = right;
+            setProfundidad(Math.max(nodoIzquierdo.getProfundidad(), nodoDerecho.getProfundidad()) + 1);
     }
 
     /**
-     * @return the depth
+     * Retorna el elemento del nodo
+     * @return elemento contenido en el nodo
      */
-    public int getDepth() {
-        return depth;
+    public T getElemento() {
+        return elemento;
     }
 
     /**
-     * @param depth
-     *            the depth to set
+     * Le asigna un elemento al nodo
+     * @param elemento Elemento a asignar en el nodo
      */
-    public void setDepth(int depth) {
-        this.depth = depth;
+    public void setElemento(T elemento) {
+        this.elemento = elemento;
     }
 
+    /**
+     * Retorna el elemento del nodo izquierdo
+     * @return elemento contenido en el nodo izquierdo
+     */
+    public NodoAVL<T> getNodoIzquierdo() {
+        return nodoIzquierdo;
+    }
+
+    /**
+     * Le asigna un elemento al nodo izquierdo
+     * @param nodoIzquierdo Elemento a asignar en el nodo izquierdo
+     */
+    public void setNodoIzquierdo(NodoAVL<T> nodoIzquierdo) {
+        this.nodoIzquierdo = nodoIzquierdo;
+    }
+
+    /**
+     * Retorna el elemento del nodo derecho
+     * @return elemento contenido en el nodo derecho
+     */
+    public NodoAVL<T> getNodoDerecho() {
+        return nodoDerecho;
+    }
+
+    /**
+     * Le asigna un elemento al nodo derecho
+     * @param nodoDerecho Elemento a asignar en el nodo derecho
+     */
+    public void setNodoDerecho(NodoAVL<T> nodoDerecho) {
+        this.nodoDerecho = nodoDerecho;
+    }
+
+    /**
+     * Retorna la cantidad de aristas que hay desde la raíz hasta el nodo
+     * @return Profundidad del nodo en el árbol
+     */
+    public int getProfundidad() {
+        return profundidad;
+    }
+
+    /**
+     * Determina la profundidad del nodo al ser insertado en un árbol
+     * @param profundidad Profundidad del nodo en el árbol
+     */
+    public void setProfundidad(int profundidad) {
+        this.profundidad = profundidad;
+    }
+
+    /**
+     * Compara el elemento que está dentro del nodo con el de otro nodo
+     * @param o Nodo a comparar
+     * @return Comparación entre el contenido de ambos nodos
+     */
     @Override
     public int compareTo(NodoAVL<T> o) {
-        return this.data.compareTo(o.data);
-    }
-
-    @Override
-    public String toString() {
-        return "Level " + level + ": " + data;
+        return this.elemento.compareTo(o.elemento);
     }
 
 }

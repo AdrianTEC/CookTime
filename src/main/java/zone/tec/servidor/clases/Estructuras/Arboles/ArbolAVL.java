@@ -11,25 +11,25 @@ public class ArbolAVL<T extends Comparable<T>> {
         NodoAVL<T> local = root;
         if (local == null)
             return null;
-        while (local.getRight() != null)
-            local = local.getRight();
-        return local.getData();
+        while (local.getNodoDerecho() != null)
+            local = local.getNodoDerecho();
+        return local.getElemento();
     }
 
     public T findMin() {
         NodoAVL<T> local = root;
         if (local == null)
             return null;
-        while (local.getLeft() != null) {
-            local = local.getLeft();
+        while (local.getNodoIzquierdo() != null) {
+            local = local.getNodoIzquierdo();
         }
-        return local.getData();
+        return local.getElemento();
     }
 
     private int depth(NodoAVL<T> nodoAVL) {
         if (nodoAVL == null)
             return 0;
-        return nodoAVL.getDepth();
+        return nodoAVL.getProfundidad();
         // 1 + Math.max(depth(node.getLeft()), depth(node.getRight()));
     }
 
@@ -51,14 +51,14 @@ public class ArbolAVL<T extends Comparable<T>> {
     public NodoAVL<T> insert(NodoAVL<T> nodoAVL, T data) {
         if (nodoAVL == null)
             return new NodoAVL<T>(data);
-        if (nodoAVL.getData().compareTo(data) > 0) {
-            nodoAVL = new NodoAVL<T>(nodoAVL.getData(), insert(nodoAVL.getLeft(), data),
-                    nodoAVL.getRight());
+        if (nodoAVL.getElemento().compareTo(data) > 0) {
+            nodoAVL = new NodoAVL<T>(nodoAVL.getElemento(), insert(nodoAVL.getNodoIzquierdo(), data),
+                    nodoAVL.getNodoDerecho());
             // node.setLeft(insert(node.getLeft(), data));
-        } else if (nodoAVL.getData().compareTo(data) < 0) {
+        } else if (nodoAVL.getElemento().compareTo(data) < 0) {
             // node.setRight(insert(node.getRight(), data));
-            nodoAVL = new NodoAVL<T>(nodoAVL.getData(), nodoAVL.getLeft(), insert(
-                    nodoAVL.getRight(), data));
+            nodoAVL = new NodoAVL<T>(nodoAVL.getElemento(), nodoAVL.getNodoIzquierdo(), insert(
+                    nodoAVL.getNodoDerecho(), data));
         }
         // After insert the new node, check and rebalance the current node if
         // necessary.
@@ -76,8 +76,8 @@ public class ArbolAVL<T extends Comparable<T>> {
     }
 
     private int balanceNumber(NodoAVL<T> nodoAVL) {
-        int L = depth(nodoAVL.getLeft());
-        int R = depth(nodoAVL.getRight());
+        int L = depth(nodoAVL.getNodoIzquierdo());
+        int R = depth(nodoAVL.getNodoDerecho());
         if (L - R >= 2)
             return -1;
         else if (L - R <= -2)
@@ -87,35 +87,35 @@ public class ArbolAVL<T extends Comparable<T>> {
 
     private NodoAVL<T> rotateLeft(NodoAVL<T> nodoAVL) {
         NodoAVL<T> q = nodoAVL;
-        NodoAVL<T> p = q.getRight();
-        NodoAVL<T> c = q.getLeft();
-        NodoAVL<T> a = p.getLeft();
-        NodoAVL<T> b = p.getRight();
-        q = new NodoAVL<T>(q.getData(), c, a);
-        p = new NodoAVL<T>(p.getData(), q, b);
+        NodoAVL<T> p = q.getNodoDerecho();
+        NodoAVL<T> c = q.getNodoIzquierdo();
+        NodoAVL<T> a = p.getNodoIzquierdo();
+        NodoAVL<T> b = p.getNodoDerecho();
+        q = new NodoAVL<T>(q.getElemento(), c, a);
+        p = new NodoAVL<T>(p.getElemento(), q, b);
         return p;
     }
 
     private NodoAVL<T> rotateRight(NodoAVL<T> nodoAVL) {
         NodoAVL<T> q = nodoAVL;
-        NodoAVL<T> p = q.getLeft();
-        NodoAVL<T> c = q.getRight();
-        NodoAVL<T> a = p.getLeft();
-        NodoAVL<T> b = p.getRight();
-        q = new NodoAVL<T>(q.getData(), b, c);
-        p = new NodoAVL<T>(p.getData(), a, q);
+        NodoAVL<T> p = q.getNodoIzquierdo();
+        NodoAVL<T> c = q.getNodoDerecho();
+        NodoAVL<T> a = p.getNodoIzquierdo();
+        NodoAVL<T> b = p.getNodoDerecho();
+        q = new NodoAVL<T>(q.getElemento(), b, c);
+        p = new NodoAVL<T>(p.getElemento(), a, q);
         return p;
     }
 
     public boolean search(T data) {
         NodoAVL<T> local = root;
         while (local != null) {
-            if (local.getData().compareTo(data) == 0)
+            if (local.getElemento().compareTo(data) == 0)
                 return true;
-            else if (local.getData().compareTo(data) > 0)
-                local = local.getLeft();
+            else if (local.getElemento().compareTo(data) > 0)
+                local = local.getNodoIzquierdo();
             else
-                local = local.getRight();
+                local = local.getNodoDerecho();
         }
         return false;
     }
