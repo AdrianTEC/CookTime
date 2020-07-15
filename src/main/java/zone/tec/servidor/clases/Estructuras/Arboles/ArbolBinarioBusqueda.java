@@ -1,7 +1,7 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
 /**
- * Arbol binario con el hijo menor a la izquierda y el mayor a la derecha.
+ * Árbol binario con el hijo menor a la izquierda y el mayor a la derecha.
  * @param <T> Tipo de dato que almacena el árbol
  */
 public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {

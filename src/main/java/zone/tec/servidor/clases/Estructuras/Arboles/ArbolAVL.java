@@ -1,21 +1,42 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
-public class ArbolAVL<T extends Comparable<T>> {
+/**
+ * Árbol binario de búsqueda que siempre está balanceado, lo que significa que la profundidad de sus nodos hoja solo
+ * tendrán 1 de diferencia entre ellos.
+ * @param <T>
+ */
+public class ArbolAVL<T extends Comparable<? super T>> {
     NodoAVL<T> root;
 
+    /**
+     * Constructor del árbol con raíz vacía
+     */
     public ArbolAVL() {
         root = null;
     }
 
-    public T findMax() {
+    /**
+     * Revisa si un elemento está contenido en el árbol
+     * @param elemento Elemento a buscar en el árbol
+     * @return Booleano que dice si el elemento está o no en el árbol
+     */
+    public boolean contains(T elemento) {
         NodoAVL<T> local = root;
-        if (local == null)
-            return null;
-        while (local.getNodoDerecho() != null)
-            local = local.getNodoDerecho();
-        return local.getElemento();
+        while (local != null) {
+            if (local.getElemento().compareTo(elemento) == 0)
+                return true;
+            else if (local.getElemento().compareTo(elemento) > 0)
+                local = local.getNodoIzquierdo();
+            else
+                local = local.getNodoDerecho();
+        }
+        return false;
     }
 
+    /**
+     * Busca el elemento más pequeño del árbol
+     * @return elemento más pequeño
+     */
     public T findMin() {
         NodoAVL<T> local = root;
         if (local == null)
@@ -26,21 +47,44 @@ public class ArbolAVL<T extends Comparable<T>> {
         return local.getElemento();
     }
 
-    private int depth(NodoAVL<T> nodoAVL) {
-        if (nodoAVL == null)
+    /**
+     * Busca el elemento más grande del árbol
+     * @return elemento más grande
+     */
+    public T findMax() {
+        NodoAVL<T> local = root;
+        if (local == null)
+            return null;
+        while (local.getNodoDerecho() != null)
+            local = local.getNodoDerecho();
+        return local.getElemento();
+    }
+
+    /**
+     * Retorna la profundidad de un nodo determinado
+     * @param nodo Nodo con la profundidad a determinar
+     * @return Profundidad del nodo
+     */
+    private int getProfundidad(NodoAVL<T> nodo) {
+        if (nodo == null)
             return 0;
-        return nodoAVL.getProfundidad();
+        return nodo.getProfundidad();
         // 1 + Math.max(depth(node.getLeft()), depth(node.getRight()));
     }
 
-    public NodoAVL<T> insert(T data) {
-        root = insert(root, data);
-        switch (balanceNumber(root)) {
+    /**
+     * Inserta un elemento y aplica una rotación de acuerdo a su factor de balanceo
+     * @param elemento Elemento a insertar
+     * @return nodo a insertar
+     */
+    public NodoAVL<T> insert(T elemento) {
+        root = insert(elemento, root);
+        switch (factorBalance(root)) {
             case 1:
-                root = rotateLeft(root);
+                root = rotacionIzquierda(root);
                 break;
             case -1:
-                root = rotateRight(root);
+                root = rotacionDerecha(root);
                 break;
             default:
                 break;
@@ -48,36 +92,46 @@ public class ArbolAVL<T extends Comparable<T>> {
         return root;
     }
 
-    public NodoAVL<T> insert(NodoAVL<T> nodoAVL, T data) {
-        if (nodoAVL == null)
-            return new NodoAVL<T>(data);
-        if (nodoAVL.getElemento().compareTo(data) > 0) {
-            nodoAVL = new NodoAVL<T>(nodoAVL.getElemento(), insert(nodoAVL.getNodoIzquierdo(), data),
-                    nodoAVL.getNodoDerecho());
-            // node.setLeft(insert(node.getLeft(), data));
-        } else if (nodoAVL.getElemento().compareTo(data) < 0) {
-            // node.setRight(insert(node.getRight(), data));
-            nodoAVL = new NodoAVL<T>(nodoAVL.getElemento(), nodoAVL.getNodoIzquierdo(), insert(
-                    nodoAVL.getNodoDerecho(), data));
+    /**
+     * Llamado úicamente en recursión. Recorre el árbol realizando las rotaciones necesarias para insertar un nodo.
+     * @param elemento Elemento a insertar
+     * @param nodo Nodo que se recorre actualmente
+     * @return Nodo a insertar
+     */
+    public NodoAVL<T> insert(T elemento, NodoAVL<T> nodo) {
+        if (nodo == null)
+            return new NodoAVL<T>(elemento);
+        if (nodo.getElemento().compareTo(elemento) > 0) {
+            nodo = new NodoAVL<T>(nodo.getElemento(), insert(elemento, nodo.getNodoIzquierdo()), nodo.getNodoDerecho());
+            // node.setLeft(insert(node.getLeft(), elemento));
+        } else if (nodo.getElemento().compareTo(elemento) < 0) {
+            // node.setRight(insert(node.getRight(), elemento));
+            nodo = new NodoAVL<T>(nodo.getElemento(), nodo.getNodoIzquierdo(), insert(elemento, nodo.getNodoDerecho()));
         }
         // After insert the new node, check and rebalance the current node if
         // necessary.
-        switch (balanceNumber(nodoAVL)) {
+        switch (factorBalance(nodo)) {
             case 1:
-                nodoAVL = rotateLeft(nodoAVL);
+                nodo = rotacionIzquierda(nodo);
                 break;
             case -1:
-                nodoAVL = rotateRight(nodoAVL);
+                nodo = rotacionDerecha(nodo);
                 break;
             default:
-                return nodoAVL;
+                return nodo;
         }
-        return nodoAVL;
+        return nodo;
     }
 
-    private int balanceNumber(NodoAVL<T> nodoAVL) {
-        int L = depth(nodoAVL.getNodoIzquierdo());
-        int R = depth(nodoAVL.getNodoDerecho());
+    /**
+     * Factor de balance que define si hay que rotar un subárbol o no
+     * @param nodo Nodo con subárbol a rotar
+     * @return Resultado que depende entre la diferencia entre la profundidad del subárbol izquierdo menos el
+     * subárbol derecho
+     */
+    private int factorBalance(NodoAVL<T> nodo) {
+        int L = getProfundidad(nodo.getNodoIzquierdo());
+        int R = getProfundidad(nodo.getNodoDerecho());
         if (L - R >= 2)
             return -1;
         else if (L - R <= -2)
@@ -85,43 +139,36 @@ public class ArbolAVL<T extends Comparable<T>> {
         return 0;
     }
 
-    private NodoAVL<T> rotateLeft(NodoAVL<T> nodoAVL) {
-        NodoAVL<T> q = nodoAVL;
-        NodoAVL<T> p = q.getNodoDerecho();
-        NodoAVL<T> c = q.getNodoIzquierdo();
-        NodoAVL<T> a = p.getNodoIzquierdo();
-        NodoAVL<T> b = p.getNodoDerecho();
-        q = new NodoAVL<T>(q.getElemento(), c, a);
-        p = new NodoAVL<T>(p.getElemento(), q, b);
-        return p;
+    /**
+     * Rota el subárbol del nodo a la izquierda
+     * @param nodo raíz del subárbol a rotar
+     * @return raíz del subárbol después de la rotación
+     */
+    private NodoAVL<T> rotacionIzquierda(NodoAVL<T> nodo) {
+        NodoAVL<T> nodoPadre = nodo;
+        NodoAVL<T> nodoDerecho = nodoPadre.getNodoDerecho();
+        NodoAVL<T> nodoIzquierdo = nodoPadre.getNodoIzquierdo();
+        NodoAVL<T> hijoIzquierdoNodoDerecho = nodoDerecho.getNodoIzquierdo();
+        NodoAVL<T> hijoDerechoNodoDerecho = nodoDerecho.getNodoDerecho();
+        nodoPadre = new NodoAVL<T>(nodoPadre.getElemento(), nodoIzquierdo, hijoIzquierdoNodoDerecho);
+        nodoDerecho = new NodoAVL<T>(nodoDerecho.getElemento(), nodoPadre, hijoDerechoNodoDerecho);
+        return nodoDerecho;
     }
 
-    private NodoAVL<T> rotateRight(NodoAVL<T> nodoAVL) {
-        NodoAVL<T> q = nodoAVL;
-        NodoAVL<T> p = q.getNodoIzquierdo();
-        NodoAVL<T> c = q.getNodoDerecho();
-        NodoAVL<T> a = p.getNodoIzquierdo();
-        NodoAVL<T> b = p.getNodoDerecho();
-        q = new NodoAVL<T>(q.getElemento(), b, c);
-        p = new NodoAVL<T>(p.getElemento(), a, q);
-        return p;
-    }
-
-    public boolean search(T data) {
-        NodoAVL<T> local = root;
-        while (local != null) {
-            if (local.getElemento().compareTo(data) == 0)
-                return true;
-            else if (local.getElemento().compareTo(data) > 0)
-                local = local.getNodoIzquierdo();
-            else
-                local = local.getNodoDerecho();
-        }
-        return false;
-    }
-
-    public String toString() {
-        return root.toString();
+    /**
+     * Rota el subárbol del nodo a la derecha
+     * @param nodo raíz del subárbol a rotar
+     * @return raíz del subárbol después de la rotación
+     */
+    private NodoAVL<T> rotacionDerecha(NodoAVL<T> nodo) {
+        NodoAVL<T> nodoPadre = nodo;
+        NodoAVL<T> nodoIzquierdo = nodoPadre.getNodoIzquierdo();
+        NodoAVL<T> nodoDerecho = nodoPadre.getNodoDerecho();
+        NodoAVL<T> hijoIzquierdoNodoIzquierdo = nodoIzquierdo.getNodoIzquierdo();
+        NodoAVL<T> hijoDerechoNodoIzquierdo = nodoIzquierdo.getNodoDerecho();
+        nodoPadre = new NodoAVL<T>(nodoPadre.getElemento(), hijoDerechoNodoIzquierdo, nodoDerecho);
+        nodoIzquierdo = new NodoAVL<T>(nodoIzquierdo.getElemento(), hijoIzquierdoNodoIzquierdo, nodoPadre);
+        return nodoIzquierdo;
     }
 
 }
