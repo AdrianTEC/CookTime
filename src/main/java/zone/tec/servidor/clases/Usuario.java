@@ -2,7 +2,7 @@ package zone.tec.servidor.clases;
 
 import org.json.simple.JSONObject;
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
     private String nombre;
     private String apellido1;
     private String apellido2;
@@ -35,6 +35,10 @@ public class Usuario {
 
     }
 
+    public String getNombreCompleto()
+        {
+            return  nombre+ apellido1+apellido2;
+        }
     public String getId() {
         return id;
     }
@@ -79,5 +83,8 @@ public class Usuario {
     }
 
 
-
+    @Override
+    public int compareTo(Usuario o) {
+        return nombre.compareTo(o.getNombre());
+    }
 }

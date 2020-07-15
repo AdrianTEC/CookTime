@@ -1,7 +1,9 @@
 package zone.tec.servidor.servlets;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import zone.tec.servidor.clases.AlmacenDeEstructuras;
 import zone.tec.servidor.clases.JSONManager;
 import zone.tec.servidor.clases.Perfil;
 import zone.tec.servidor.clases.Usuario;
@@ -29,8 +31,17 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
-            GeneralServlet getter= new GeneralServlet();
-            getter.getting(getServletContext(),req,resp,"Users");
+           if(req.getParameter("Nombre")!=null)
+            {
+                resp.getWriter().write(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), Integer.parseInt(req.getParameter("Cantidad"))).toJSONString());
+            }
+           else
+                {
+                    GeneralServlet x= new GeneralServlet();
+                    x.getting(getServletContext(),req,resp,"Users");
+                }
+
+
         }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
@@ -67,7 +78,7 @@ public class UsersServlet extends HttpServlet {
                             //Convierto el perfil en un JSON
                             JSONObject newProfile= manager.convertToJSON(nuevoPerfil);
 
-                        //Agrego esos JSON a el array de usuarios
+                        //Agrego esos JSON a el array de usuarios al texto
                         manager.addToArray("Users",newJson);
                         manager.addToArray("Profiles", newProfile);
                         manager.saveJSONfile();

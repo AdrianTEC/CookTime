@@ -1,5 +1,11 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import zone.tec.servidor.clases.AlmacenDeEstructuras;
+import zone.tec.servidor.clases.JSONManager;
+import zone.tec.servidor.clases.Usuario;
+
 /**
  * Árbol binario con el hijo menor a la izquierda y el mayor a la derecha.
  * @param <T> Tipo de dato que almacena el árbol
@@ -8,12 +14,8 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
 
     private NodoArbolBusqueda<T> raiz;
 
-    /**
-     * Constructor que define la raíz del árbol
-     * @param raiz Raíz del árbol
-     */
-    public ArbolBinarioBusqueda(NodoArbolBusqueda<T> raiz) {
-        this.raiz = raiz;
+    public ArbolBinarioBusqueda() {
+
     }
 
     /**
@@ -51,18 +53,6 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             } else {
                 return true;
             }
-        }
-    }
-
-    /**
-     * Busca el elemento más pequeño del árbol
-     * @return elemento más pequeño
-     */
-    public T findMin() {
-        if (isEmpty()) {
-            return null;
-        } else {
-            return findMin(raiz).getElemento();
         }
     }
 
@@ -166,5 +156,120 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             nodo = nodo.getNodoIzquierdo() != null ? nodo.getNodoIzquierdo() : nodo.getNodoDerecho();
         }
         return nodo;
+
+
+
+    }
+
+    /**
+     * Llamado úicamente en recursión. Busca unicamente un elemento
+     * @param thing Elemento a buscar
+     * @return Nodo que sigue el camino a recorrer
+     */
+
+    public JSONObject lookForOne( String thing)
+        {
+            return lookForOne(thing,raiz);
+        }
+    private JSONObject lookForOne(String thing, NodoArbolBusqueda puntero)
+        {
+            if(((Usuario)puntero.getElemento()).getNombreCompleto().equals(thing))
+                {
+                    JSONObject  response= new JSONManager(AlmacenDeEstructuras.getContexto()).convertToJSON(puntero.getElemento());
+                    return response;
+                }
+            else {
+                int comparacion=thing.compareTo(((Usuario) puntero.getElemento()).getNombreCompleto());
+                if(comparacion>1)
+                    {
+                        puntero=puntero.getNodoDerecho();
+                    }
+                else
+                    {
+                        puntero=puntero.getNodoIzquierdo();
+                    }
+                if(puntero!=null){
+                return lookForOne(thing,puntero);}
+                else {return null;}
+
+            }
+        }
+
+    /**
+     * Llamado úicamente en recursión. Busca varios elementos con similitud
+     * @param thing Elemento a buscar
+     * @param cantidad cantidad maxima de resultados
+     * @return Array de usuarios que comparten la indicación
+     */
+    public  JSONArray lookForSome(String  thing, int cantidad)
+        {
+            return lookForSome(thing,raiz,cantidad,new JSONArray());
+        }
+    private JSONArray lookForSome(String thing, NodoArbolBusqueda puntero,int cantidad,JSONArray respuesta)
+        {
+            if(cantidad>0)
+                {
+                    //si contiene lo que busco, o es igual, o tiene la primera letra....
+                    if (((Usuario) puntero.getElemento()).getNombre().equals(thing) || ((Usuario) puntero.getElemento()).getNombreCompleto().contains(thing) )
+                        {   //lo añado a mi respuesta
+                            cantidad-=1;
+                            respuesta.add(new JSONManager(AlmacenDeEstructuras.getContexto()).convertToJSON(puntero.getElemento()));
+                        }
+                    //si estoy en un nodo que no contiene lo que busco
+                    else
+                        {int comparacion= thing.compareTo(((Usuario) puntero.getElemento()).getNombreCompleto());
+                            NodoArbolBusqueda newPuntero=puntero;
+                            if(comparacion>1)
+                                {   if(puntero.getNodoDerecho()!=null){
+                                    newPuntero= puntero.getNodoDerecho();}
+                                }
+                            else
+                                {
+                                    if(puntero.getNodoIzquierdo()!=null){
+                                        newPuntero=puntero.getNodoIzquierdo();}
+                                }
+                            if(puntero!=null&&puntero!=newPuntero){
+                            return lookForSome(thing,newPuntero,cantidad,respuesta);}
+                            else {return respuesta;}
+
+
+                        }
+                    //si resulta y acontece que su nodo derecho posee igualmente la cosa, analicemoslo a él
+                    if(puntero.getNodoDerecho()!=null)
+                        {
+                            if (((Usuario) puntero.getNodoDerecho().getElemento()).getNombreCompleto().contains(thing)) {
+                                //añado si tengo que añadir
+                                //respuesta = lookForSome(thing, puntero.getNodoDerecho(), cantidad, respuesta);
+
+
+                                respuesta=  lookForSome(thing,puntero.getNodoDerecho(),cantidad,respuesta);
+
+                            }
+                        }
+                    //si resulta y acontece que su nodo izquierdo posee igualmente la cosa, analicemoslo a él
+                     if(puntero.getNodoIzquierdo()!=null)
+                        {
+                            if (((Usuario) puntero.getNodoIzquierdo().getElemento()).getNombreCompleto().contains(thing)) {   //añado si tengo que añadir
+                                //respuesta = lookForSome(thing, puntero.getNodoDerecho(), cantidad, respuesta);
+
+                                respuesta=  lookForSome(thing,puntero.getNodoIzquierdo(),cantidad,respuesta);
+
+
+                            }
+                        }
+                }
+            else {return respuesta;}
+         return respuesta;
+        }
+
+    public void JSONinsert(JSONArray array)
+    {
+        for (Object i : array) {
+            Usuario x=new Usuario((JSONObject) i) ;
+            if(raiz!=null){
+                insert((T) x);}
+            else
+                {raiz= new NodoArbolBusqueda<T>((T) x);}
+        }
     }
 }
