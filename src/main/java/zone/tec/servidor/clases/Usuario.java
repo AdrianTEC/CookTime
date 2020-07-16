@@ -41,7 +41,11 @@ public class Usuario implements Comparable<Usuario> {
             }
         else {
             perfil=new Perfil();
-
+            perfil.setNombre(nombre);
+            perfil.setApellido1(apellido1);
+            perfil.setApellido2(apellido2);
+            perfil.setCorreoElectronico(correoElectronico);
+            perfil.setEdad(edad);
         }
         //calificaciones = new Lista();
 

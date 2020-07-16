@@ -5,7 +5,11 @@ import org.json.simple.JSONObject;
 
 public class Perfil {
 
-          private String iD;
+            private String nombre;
+            private String apellido1;
+            private String apellido2;
+            private String correoElectronico;
+            private String edad;
           private JSONArray MyMenu;
           private JSONArray Following;
           private JSONArray Followers;
@@ -37,6 +41,24 @@ public class Perfil {
 
 
     }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public void setApellido1(String apellido1) {
+        this.apellido1 = apellido1;
+    }
+
+    public void setApellido2(String apellido2) {
+        this.apellido2 = apellido2;
+    }
+
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
+    }
+
+    public void setEdad(String edad) {
+        this.edad = edad;
+    }
 
 }
