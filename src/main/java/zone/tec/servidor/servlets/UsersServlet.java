@@ -33,7 +33,7 @@ public class UsersServlet extends HttpServlet {
         {
            if(req.getParameter("Nombre")!=null)
             {
-                resp.getWriter().write(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), Integer.parseInt(req.getParameter("Cantidad"))).toJSONString());
+                resp.getWriter().write(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
             }
            else
                 {
@@ -69,25 +69,19 @@ public class UsersServlet extends HttpServlet {
 
                 if(newJson.get("nombre") != null && newJson.get("contrasena")!=null &&newJson.get("edad")!=null && newJson.get("correo")!=null&& newJson.get("apellido1")!=null&&newJson.get("apellido2")!=null)
                     {   //Creo un nuevo usuario
+
                         Usuario nuevoUsuario= new Usuario(newJson);
-                            //Convierto ese usuario en un JSON
-                            newJson = manager.convertToJSON(nuevoUsuario);
+                        AlmacenDeEstructuras.getUsers().insert(nuevoUsuario);
 
-                        //Creo un perfil de cooktime para el nuevo usuario
-                        Perfil nuevoPerfil= new Perfil((String) newJson.get("perfil"));
-                            //Convierto el perfil en un JSON
-                            JSONObject newProfile= manager.convertToJSON(nuevoPerfil);
-
-                        //Agrego esos JSON a el array de usuarios al texto
+                        //Agrego esos JSON al JSONFILE
                         manager.addToArray("Users",newJson);
-                        manager.addToArray("Profiles", newProfile);
                         manager.saveJSONfile();
-
                         //Escribo lo que agregué en la página
+                        /*
                         resp.setContentType("application/json");
                         resp.getWriter().write(manager.giveMeJson("Users").toString());
                         resp.getWriter().write(manager.giveMeJson("Profiles").toString());
-
+                        */
                     }
                 else { resp.getWriter().write("Este Usuario No es Agregable"); }
             } catch (ParseException e) { e.printStackTrace(); }

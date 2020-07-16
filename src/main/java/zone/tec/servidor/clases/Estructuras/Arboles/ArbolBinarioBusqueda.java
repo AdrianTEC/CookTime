@@ -13,9 +13,10 @@ import zone.tec.servidor.clases.Usuario;
 public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
 
     private NodoArbolBusqueda<T> raiz;
+    private int ultimaID;
 
     public ArbolBinarioBusqueda() {
-
+            ultimaID=0;
     }
 
     /**
@@ -103,6 +104,11 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param elemento Elemento a insertar
      */
     public void insert(T elemento) {
+
+        if(Integer.parseInt(((Usuario) elemento).getId())>ultimaID)
+            {
+                ultimaID=Integer.parseInt(((Usuario) elemento).getId());
+            }
         raiz = insert(elemento, raiz);
     }
 
@@ -199,6 +205,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * Llamado úicamente en recursión. Busca varios elementos con similitud
      * @param thing Elemento a buscar
      * @param cantidad cantidad maxima de resultados
+     * @Author Adrián González
      * @return Array de usuarios que comparten la indicación
      */
     public  JSONArray lookForSome(String  thing, int cantidad)
@@ -261,7 +268,12 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             else {return respuesta;}
          return respuesta;
         }
-
+    /**
+     * Agrega objetos desde un JSONArray
+     * @param array arreglo de objetos JSON que componen al árbol
+     * @Author Adrián González
+     * @return nada
+     */
     public void JSONinsert(JSONArray array)
     {
         for (Object i : array) {
@@ -271,5 +283,9 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             else
                 {raiz= new NodoArbolBusqueda<T>((T) x);}
         }
+    }
+
+    public int getUltimaID() {
+        return ultimaID;
     }
 }

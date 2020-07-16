@@ -8,6 +8,7 @@ package zone.tec.servidor.clases;
  * Entonces no intente instanciarme, no podrá, y fallará pateticamente, buen día
  */
 
+import zone.tec.servidor.clases.Estructuras.Arboles.ArbolAVL;
 import zone.tec.servidor.clases.Estructuras.Arboles.ArbolBinarioBusqueda;
 import javax.servlet.ServletContext;
 
@@ -15,12 +16,9 @@ public class AlmacenDeEstructuras
 {
     private static AlmacenDeEstructuras yo;
     private static ArbolBinarioBusqueda<Usuario> users;
+    private static ArbolAVL<Receta> recipes;
     private static ServletContext contexto;
-    /*
-    private ArbolBinarioBusqueda usuarios;
-    private ArbolSP empresas;
-    private ArbolAVL recetas;
-   */
+
     private  AlmacenDeEstructuras() //Porqué privado? porque solo yo voy a existir y yo controlo mi propia existencia
         {
         }
@@ -32,6 +30,10 @@ public class AlmacenDeEstructuras
                 users=new ArbolBinarioBusqueda<Usuario>();
                 users.JSONinsert(jsonManager.giveMeJson("Users"));
                 contexto=context;
+
+                recipes= new ArbolAVL<Receta>();
+                recipes.JSONinsert(jsonManager.giveMeJson("Recipes"));
+
         }
 
     private synchronized static AlmacenDeEstructuras getAlmacen()
@@ -48,13 +50,11 @@ public class AlmacenDeEstructuras
         return yo;
     }
 
+    public static ArbolAVL<Receta> getRecipes() {
+        return recipes;
+    }
     public static ServletContext getContexto() {
         return contexto;
     }
-/*
-    public ArbolBB getUsuarios(){}
-    public ArbolSP getEmpresas(){}
-    public ArbolAVL getUsuarios(){}
-    */
 
 }

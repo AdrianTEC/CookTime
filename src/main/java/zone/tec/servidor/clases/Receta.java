@@ -5,7 +5,8 @@ import org.json.simple.JSONObject;
 
 import java.awt.image.BufferedImage;
 
-public class Receta {
+public class Receta implements Comparable<Receta> {
+
     private String nombre;
     private String autor;
     private String tipo;
@@ -17,11 +18,7 @@ public class Receta {
     private String porciones;
     private String dificultad;
     private String foto;
-
     private ListaSimple<String> ingredientes; //recibe strings
-
-    private BufferedImage receta;
-
 
     public  Receta(JSONObject x) {
         /*This funtion is the constructor of the class
@@ -51,4 +48,12 @@ public class Receta {
 
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    @Override
+    public int compareTo(Receta o) {
+        return nombre.compareTo(o.getNombre());
+    }
 }

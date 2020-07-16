@@ -9,7 +9,7 @@ public class Usuario implements Comparable<Usuario> {
     private String contrasena;
     private String correoElectronico;
     private String edad;
-    private String perfil;
+    private Perfil perfil;
     private String id;
    // private Perfil perfil;
 
@@ -29,8 +29,20 @@ public class Usuario implements Comparable<Usuario> {
         correoElectronico = (String) x.get("correo");
         edad = (String) x.get("edad");
         contrasena= (String) x.get("contrasena");
-        id=String.valueOf((int) (Math.random() * 100) +1);
-        perfil=nombre+"ID"+id;
+        if(x.get("id")!= null){
+            id=(String) x.get("id");}
+        else {
+            id=String.valueOf(AlmacenDeEstructuras.getUsers().getUltimaID());
+        }
+
+        if(x.get("perfil")!=null)
+            {
+                perfil=new Perfil((JSONObject) x.get("perfil"));
+            }
+        else {
+            perfil=new Perfil();
+
+        }
         //calificaciones = new Lista();
 
     }
@@ -39,49 +51,14 @@ public class Usuario implements Comparable<Usuario> {
         {
             return  nombre+ apellido1+apellido2;
         }
-    public String getId() {
-        return id;
-    }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getId() {
+        return id;
     }
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-
-
-
-
-
-
-    public void crearReceta(){
-
-    }
-
-    public void crearEmpresa(){
-
-    }
-
-    public void borrar(){
-
-    }
-
-
-    public void seguir (Usuario usuario){
-
-    }
-
 
     @Override
     public int compareTo(Usuario o) {

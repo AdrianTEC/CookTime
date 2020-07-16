@@ -2,6 +2,7 @@ package zone.tec.servidor.servlets;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import zone.tec.servidor.clases.AlmacenDeEstructuras;
 import zone.tec.servidor.clases.Empresa;
 import zone.tec.servidor.clases.JSONManager;
 import zone.tec.servidor.clases.Receta;
@@ -17,18 +18,30 @@ public class RecipesServlet extends HttpServlet {
     private JSONManager manager;
 
 
-    /* This returns a Requested user or users list in JSON format
+    /** This returns a Requested recipe or recipe list in JSON format
        @Author: Adrian Gonzalez
        @Version: 5/07/20
        @Params: HttpServlet Request and HttpServletResponse
        @Exeption: IOExeption
        @returns: nothing, but it will be able later
-     */
+     **/
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
-        GeneralServlet getter= new GeneralServlet();
-        getter.getting(getServletContext(),req,resp,"Recipes");
+        if(req.getParameter("Nombre")!=null)
+        {
+            resp.getWriter().write(AlmacenDeEstructuras.getRecipes().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
+        }
+        else
+        {
+            GeneralServlet x= new GeneralServlet();
+            resp.getWriter().write("No se indicó ninguna especificación, se retorna todas las recetas");
+            x.getting(getServletContext(),req,resp,"Recipes");
+        }
+
+
+
+
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
@@ -60,15 +73,17 @@ public class RecipesServlet extends HttpServlet {
                 //Convierto esa receta en un JSON
                 newJson = manager.convertToJSON(nuevaReceta);
 
+                AlmacenDeEstructuras.getRecipes().insert(nuevaReceta);
 
                 //Agrego esos JSON a el array de recetas
                 manager.addToArray("Recipes",newJson);
                 manager.saveJSONfile();
 
                 //Escribo lo que agregué en la página
+                /*
                 resp.setContentType("application/json");
                 resp.getWriter().write(manager.giveMeJson("Recipes").toString());
-
+                */
             }else { resp.getWriter().write("Esta Receta No es Agregable"); }
         } catch (ParseException e) { e.printStackTrace(); }
     }

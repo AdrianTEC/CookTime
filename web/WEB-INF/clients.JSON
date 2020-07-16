@@ -9,7 +9,6 @@
     "edad": "19",
     "contrasena": "nosequeescribir",
     "perfil": {
-              "id": "1",
               "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
               "MyMenu": [],
               "Following": [],
@@ -27,7 +26,6 @@
     "edad": "19",
     "contrasena": "laProgramacionEsDivertida",
     "perfil": {
-      "id": "1",
       "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
       "MyMenu": [],
       "Following": [],
@@ -45,7 +43,6 @@
     "edad": "19",
     "contrasena": "santaNoexiste",
     "perfil": {
-      "id": "1",
       "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
       "MyMenu": [],
       "Following": [],
@@ -63,7 +60,6 @@
     "edad": "19",
     "contrasena": "laProgramacionEsDivertida",
     "perfil": {
-      "id": "1",
       "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
       "MyMenu": [],
       "Following": [],
@@ -81,7 +77,6 @@
     "edad": "23",
     "contrasena": "laProgramacionEsEstresante",
     "perfil": {
-                "id": "2",
                 "Foto": "https://i.ytimg.com/vi/6mRLju55waw/hqdefault.jpg",
                 "MyMenu": [],
                 "Following": [],
@@ -100,7 +95,6 @@
     "edad": "17",
     "contrasena": "IdontLikeIt",
     "perfil": {
-              "id": "3",
               "Foto": "https://pbs.twimg.com/profile_images/3550680490/c18277bddf17b9759afd7da6f38d3283_400x400.jpeg",
               "MyMenu": [],
               "Following": [],
