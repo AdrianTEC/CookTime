@@ -6,13 +6,13 @@ package zone.tec.servidor.clases.Estructuras.Arboles;
  */
 public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
 
-    private NodoArbolBusqueda<T> raiz;
+    private NodoArbolBinario<T> raiz;
 
     /**
      * Constructor que define la raíz del árbol
      * @param raiz Raíz del árbol
      */
-    public ArbolBinarioBusqueda(NodoArbolBusqueda<T> raiz) {
+    public ArbolBinarioBusqueda(NodoArbolBinario<T> raiz) {
         this.raiz = raiz;
     }
 
@@ -39,7 +39,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param nodoComparado Nodo en el que se busca el elemento actualmente
      * @return Booleano que dice si el elemento está o no en el árbol
      */
-    private boolean contains(T elemento, NodoArbolBusqueda<T> nodoComparado) {
+    private boolean contains(T elemento, NodoArbolBinario<T> nodoComparado) {
         if (nodoComparado == null) {
             return false;
         }else {
@@ -71,7 +71,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param nodo Nodo en el que se encuentra buscando al más pequeño
      * @return elemento más pequeño
      */
-    private NodoArbolBusqueda<T> findMin(NodoArbolBusqueda<T> nodo) {
+    private NodoArbolBinario<T> findMin(NodoArbolBinario<T> nodo) {
         if (nodo == null) {
             return null;
         } else if (nodo.getNodoIzquierdo() == null) {
@@ -98,7 +98,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param nodo Nodo en el que se encuentra buscando al más grande
      * @return elemento más grande
      */
-    private NodoArbolBusqueda<T> findMax(NodoArbolBusqueda<T> nodo) {
+    private NodoArbolBinario<T> findMax(NodoArbolBinario<T> nodo) {
         if (nodo == null) {
             return null;
         } else if (nodo.getNodoDerecho() == null) {
@@ -123,9 +123,9 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param nodo Ubicación actual, siguiendo el camino del nodo a insertar
      * @return Nodo que sigue el camino a recorrer
      */
-    private NodoArbolBusqueda<T> insert(T elemento, NodoArbolBusqueda<T> nodo) {
+    private NodoArbolBinario<T> insert(T elemento, NodoArbolBinario<T> nodo) {
         if (nodo == null) {
-            return new NodoArbolBusqueda<T>(elemento);
+            return new NodoArbolBinario<T>(elemento);
         }
         int comparacion = elemento.compareTo(nodo.getElemento());
         if (comparacion < 0) {
@@ -150,7 +150,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param nodo Nodo que se recorre para encontrar el elemento a eliminar
      * @return Nodo que sigue el camino a recorrer
      */
-    private NodoArbolBusqueda<T> remove(T elemento, NodoArbolBusqueda<T> nodo) {
+    private NodoArbolBinario<T> remove(T elemento, NodoArbolBinario<T> nodo) {
         if (nodo == null) {
             return nodo;
         }
