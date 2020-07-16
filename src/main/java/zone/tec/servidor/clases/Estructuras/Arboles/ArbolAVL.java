@@ -13,11 +13,12 @@ import zone.tec.servidor.clases.Receta;
  */
 public class ArbolAVL<T extends Comparable<? super T>> {
     NodoAVL<T> root;
-
+    private int ultimaID;
     /**
      * Constructor del árbol con raíz vacía
      */
     public ArbolAVL() {
+        ultimaID=1;
         root = null;
     }
 
@@ -84,6 +85,7 @@ public class ArbolAVL<T extends Comparable<? super T>> {
      * @return nodo a insertar
      */
     public NodoAVL<T> insert(T elemento) {
+        ultimaID+=1;
         root = insert(elemento, root);
         switch (factorBalance(root)) {
             case 1:
@@ -262,5 +264,9 @@ public class ArbolAVL<T extends Comparable<? super T>> {
             else
             {root= new NodoAVL<T>((T) x);}
         }
+    }
+
+    public int getUltimaID() {
+        return ultimaID;
     }
 }

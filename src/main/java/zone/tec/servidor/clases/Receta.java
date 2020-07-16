@@ -26,8 +26,13 @@ public class Receta implements Comparable<Receta> {
          *@Version 21/06/2020
          * @param nothing
          */
-
-        id = (String) x.get("id");
+        if( x.get("id")!=null)
+            {
+                id = (String) x.get("id");
+            }
+        else {
+            id= String.valueOf(AlmacenDeEstructuras.getRecipes().getUltimaID()+1);
+        }
         nombre = (String) x.get("nombre");
         autor = (String) x.get("autor");
         tipo = (String) x.get("tipo");
@@ -50,6 +55,10 @@ public class Receta implements Comparable<Receta> {
 
     public String getNombre() {
         return nombre;
+    }
+
+    public String getId() {
+        return id;
     }
 
     @Override

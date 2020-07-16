@@ -1,11 +1,10 @@
 package zone.tec.servidor.servlets;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import zone.tec.servidor.clases.AlmacenDeEstructuras;
-import zone.tec.servidor.clases.Empresa;
-import zone.tec.servidor.clases.JSONManager;
-import zone.tec.servidor.clases.Receta;
+import zone.tec.servidor.clases.*;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +34,7 @@ public class RecipesServlet extends HttpServlet {
         else
         {
             GeneralServlet x= new GeneralServlet();
-            resp.getWriter().write("No se indicó ninguna especificación, se retorna todas las recetas");
+           // resp.getWriter().write("No se indicó ninguna especificación, se retorna todas las recetas");
             x.getting(getServletContext(),req,resp,"Recipes");
         }
 
@@ -68,12 +67,24 @@ public class RecipesServlet extends HttpServlet {
             //verifico que la receta tiene lo minimo para ingresar
 
             if(newJson.get("nombre") != null && newJson.get("autor")!=null &&newJson.get("instrucciones")!=null) {
+
                 //Crea una nueva receta
                 Receta nuevaReceta= new Receta(newJson);
                 //Convierto esa receta en un JSON
                 newJson = manager.convertToJSON(nuevaReceta);
-
+                //agrego la nueva receta al arbol de recetas
                 AlmacenDeEstructuras.getRecipes().insert(nuevaReceta);
+
+                //referencio la id de la receta en MyMenu del usuario que realizó la peticion
+                JSONObject usuario = AlmacenDeEstructuras.getUsers().findUserBynameAndID(req.getParameter("Nombre"),req.getParameter("Id"));
+                JSONObject perfil= (JSONObject) usuario.get("perfil");
+                JSONArray mymenu= (JSONArray) perfil.get("MyMenu");
+                mymenu.add(nuevaReceta.getId());
+
+                JSONObject user = manager.giveMeObjetWithdId("Users", req.getParameter("Id"));
+                JSONObject current = (JSONObject) user.get("perfil");
+                JSONArray myMenu=(JSONArray) current.get("MyMenu");
+                myMenu.add(newJson.get("id"));
 
                 //Agrego esos JSON a el array de recetas
                 manager.addToArray("Recipes",newJson);

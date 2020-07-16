@@ -6,9 +6,9 @@ import org.json.simple.JSONObject;
 public class Perfil {
 
           private String iD;
-          private JSONArray myMenu;
-          private JSONArray following;
-          private JSONArray followers;
+          private JSONArray MyMenu;
+          private JSONArray Following;
+          private JSONArray Followers;
           private  JSONArray calificaciones;
     /*This funtion is the constructor of the class
      *@author Andrés Quirós Guzmán
@@ -17,9 +17,9 @@ public class Perfil {
      */
     public Perfil()
         {
-            myMenu=new JSONArray();
-            followers=new JSONArray();
-            following=new JSONArray();
+            MyMenu=new JSONArray();
+            Followers=new JSONArray();
+            Following=new JSONArray();
             calificaciones=new JSONArray();
 
 
@@ -28,9 +28,9 @@ public class Perfil {
         }
     public Perfil(JSONObject x)
     {
-        myMenu= (JSONArray) x.get("MyMenu");
-        followers= (JSONArray) x.get("Followers");
-        following= (JSONArray) x.get("Following");
+        MyMenu= (JSONArray) x.get("MyMenu");
+        Followers= (JSONArray) x.get("Followers");
+        Following= (JSONArray) x.get("Following");
         calificaciones= (JSONArray) x.get("calificaciones");
 
 

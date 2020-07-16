@@ -268,6 +268,19 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             else {return respuesta;}
          return respuesta;
         }
+
+
+    public JSONObject findUserBynameAndID(String name, String id)
+        {
+            for(Object i:lookForSome(name,15))
+                {
+                    if(((JSONObject) i).get("id").equals(id))
+                        {
+                            return (JSONObject) i;
+                        }
+                }
+            return null;
+        }
     /**
      * Agrega objetos desde un JSONArray
      * @param array arreglo de objetos JSON que componen al árbol
