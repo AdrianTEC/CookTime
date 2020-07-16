@@ -22,7 +22,8 @@ public class NodoAVL<T extends Comparable<? super T>> implements Comparable<Nodo
     }
 
     /**
-     * Constructor utilizado en inserciones y rotaciones para manipular el nodo izquierdo y el derecho
+     * Constructor utilizado en inserciones y rotaciones para manipular el nodo izquierdo y el derecho, además de
+     * definir la profundidad del nodo.
      * @param elemento Elemento contenido en el nodo
      * @param nodoIzquierdo Hijo izquierdo del nodo
      * @param nodoDerecho Hijo derecho del nodo

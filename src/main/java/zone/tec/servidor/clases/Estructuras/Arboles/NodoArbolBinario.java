@@ -18,12 +18,6 @@ public class NodoArbolBinario<T extends Comparable<? super T>> {
         this.elemento = elemento;
     }
 
-//    public NodoArbolBusqueda(T elemento, NodoArbolBusqueda<T> nodoIzquierdo, NodoArbolBusqueda<T> nodoDerecho) {
-//        this.elemento = elemento;
-//        this.nodoIzquierdo = nodoIzquierdo;
-//        this.nodoDerecho = nodoDerecho;
-//    }
-
     /**
      * Retorna el elemento del nodo
      * @return elemento contenido en el nodo

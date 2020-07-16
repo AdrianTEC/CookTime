@@ -103,13 +103,13 @@ public class ArbolAVL<T extends Comparable<? super T>> {
             return new NodoAVL<T>(elemento);
         if (nodo.getElemento().compareTo(elemento) > 0) {
             nodo = new NodoAVL<T>(nodo.getElemento(), insert(elemento, nodo.getNodoIzquierdo()), nodo.getNodoDerecho());
-            // node.setLeft(insert(node.getLeft(), elemento));
+            // node.setLeft(insert(elemento, node.getLeft()));
         } else if (nodo.getElemento().compareTo(elemento) < 0) {
-            // node.setRight(insert(node.getRight(), elemento));
+            // node.setRight(insert(elemento, node.getRight()));
             nodo = new NodoAVL<T>(nodo.getElemento(), nodo.getNodoIzquierdo(), insert(elemento, nodo.getNodoDerecho()));
         }
-        // After insert the new node, check and rebalance the current node if
-        // necessary.
+        // Después de insertar el nodo, verifica su factor de balance para revisar si es necesario realizar una
+        // rotación
         switch (factorBalance(nodo)) {
             case 1:
                 nodo = rotacionIzquierda(nodo);

@@ -153,8 +153,9 @@ public class ArbolSplay<T extends Comparable<? super T>> {
                 if (nuevaRaiz.getNodoIzquierdo() == null) {
                     break;
                 }
+                // Rotación a la derecha
                 if (element.compareTo(nuevaRaiz.getNodoIzquierdo().getElemento()) < 0) {
-                    temp = nuevaRaiz.getNodoIzquierdo();                            /* rotate right */
+                    temp = nuevaRaiz.getNodoIzquierdo();
                     nuevaRaiz.setNodoIzquierdo(temp.getNodoDerecho());
                     temp.setNodoDerecho(nuevaRaiz);
                     nuevaRaiz = temp;
@@ -162,15 +163,17 @@ public class ArbolSplay<T extends Comparable<? super T>> {
                         break;
                     }
                 }
-                hijoDerecho.setNodoIzquierdo(nuevaRaiz);                                 /* link right */
+                // Conexión previa del hijo derecho
+                hijoDerecho.setNodoIzquierdo(nuevaRaiz);
                 hijoDerecho = nuevaRaiz;
                 nuevaRaiz = nuevaRaiz.getNodoIzquierdo();
             } else if (comp > 0) {
                 if (nuevaRaiz.getNodoDerecho() == null) {
                     break;
                 }
+                // Rotación a la izquierda
                 if (element.compareTo(nuevaRaiz.getNodoDerecho().getElemento()) > 0) {
-                    temp = nuevaRaiz.getNodoDerecho();                            /* rotate left */
+                    temp = nuevaRaiz.getNodoDerecho();
                     nuevaRaiz.setNodoDerecho(temp.getNodoIzquierdo());
                     temp.setNodoIzquierdo(nuevaRaiz);
                     nuevaRaiz = temp;
@@ -178,14 +181,16 @@ public class ArbolSplay<T extends Comparable<? super T>> {
                         break;
                     }
                 }
-                hijoIzquierdo.setNodoDerecho(nuevaRaiz);                                /* link left */
+                // Conexión previa del hijo izquierdo
+                hijoIzquierdo.setNodoDerecho(nuevaRaiz);
                 hijoIzquierdo = nuevaRaiz;
                 nuevaRaiz = nuevaRaiz.getNodoDerecho();
             } else {
                 break;
             }
         }
-        hijoIzquierdo.setNodoDerecho(nuevaRaiz.getNodoIzquierdo());                                   /* assemble */
+        // Conexión final
+        hijoIzquierdo.setNodoDerecho(nuevaRaiz.getNodoIzquierdo());
         hijoDerecho.setNodoIzquierdo(nuevaRaiz.getNodoDerecho());
         nuevaRaiz.setNodoIzquierdo(aux.getNodoDerecho());
         nuevaRaiz.setNodoDerecho(aux.getNodoIzquierdo());
