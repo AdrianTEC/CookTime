@@ -15,12 +15,17 @@
 
 
    <button class="favorite styled"
-           type="button">
-     No hace nada
+           type="button"
+           onclick = "function clickEvent() {
+               <%
+
+
+               %>
+           }
+        clickEvent()";
+           name = "i">
+       Hola
    </button>
-
-
-   <label> Mecago </label>
 
 
 

@@ -1,5 +1,6 @@
 package zone.tec.servidor.servlets;
 
+import org.json.simple.JSONObject;
 import zone.tec.servidor.clases.AlmacenDeEstructuras;
 
 import javax.servlet.RequestDispatcher;
@@ -14,10 +15,24 @@ import java.io.IOException;
 
 public class AdminServlet extends HttpServlet
 {
+
+    protected  void  clickEvent(){
+
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Admin.jsp");
-        dispatcher.forward(req,resp);
+        //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Admin.jsp");
+        //dispatcher.forward(req,resp);
+
+        resp.setContentType("text/html;charset=UTF-8");
+        for (Object i:AlmacenDeEstructuras.getPeticionesChef()){
+            resp.getWriter().print(i);
+            resp.getWriter().print("<button name=\"a\"  onclick=\"\n" +
+                    "\n" +
+                    "        <%AlmacenDeEstructuras.getUsers().lookForOneForID(Integer.parseInt("+i+")).put('chef', '2');%> \n" +
+                    "      \"> HOLA </button>");
+        }
 
     }
 

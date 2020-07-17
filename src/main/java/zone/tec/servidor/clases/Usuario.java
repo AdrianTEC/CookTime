@@ -27,7 +27,7 @@ public class Usuario implements Comparable<Usuario> {
         nombre = (String) x.get("nombre");
         apellido1 = (String) x.get("apellido1");
         apellido2 = (String) x.get("apellido2");
-        chef="false";
+        chef="0";
         correoElectronico = (String) x.get("correo");
         edad = (String) x.get("edad");
         contrasena= (String) x.get("contrasena");

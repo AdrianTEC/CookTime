@@ -6,7 +6,7 @@
     "apellido1": "Rodriguez",
     "apellido2": "Jimenez",
     "correo": "x",
-    "chef": "false",
+    "chef": "0",
     "edad": "19",
     "contrasena": "x",
     "perfil": {
@@ -30,7 +30,7 @@
     "apellido2": "Jimenez",
     "correo": "AdrianE@gmail.com",
     "edad": "19",
-    "chef": false,
+    "chef": "0",
     "contrasena": "laProgramacionEsDivertida",
     "perfil": {
       "nombre":"AdrianE",
@@ -53,7 +53,7 @@
     "apellido2": "Herrero",
     "correo": "AdriaDn@gmail.com",
     "edad": "19",
-    "chef": false,
+    "chef": "0",
     "contrasena": "santaNoexiste",
     "perfil": {
       "nombre":"AdrianG",
@@ -75,7 +75,7 @@
     "apellido1": "González",
     "apellido2": "Jimenez",
     "correo": "AdrianC@gmail.com",
-    "chef": false,
+    "chef": "0",
     "edad": "19",
     "contrasena": "laProgramacionEsDivertida",
     "perfil": {
@@ -98,7 +98,7 @@
     "nombre":"AdrianC",
     "apellido1": "González",
     "apellido2": "Jimenez",
-    "chef": false,
+    "chef": "0",
     "correo": "AdrianC@gmail.com",
     "edad": "19",
     "contrasena": "laProgramacionEsEstresante",
@@ -124,7 +124,7 @@
     "apellido2": "Diaz",
     "correo": "yordanelsexyrojas@gmail.com",
     "edad": "17",
-    "chef": false,
+    "chef": "0",
     "contrasena": "IdontLikeIt",
     "perfil": {
               "nombre":"Yordan",
