@@ -1,9 +1,6 @@
 package zone.tec.servidor.clases;
-
-import zone.tec.servidor.clases.Estructuras.Listas.ListaSimple;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import java.awt.image.BufferedImage;
 
 public class Receta implements Comparable<Receta> {
 
@@ -18,7 +15,7 @@ public class Receta implements Comparable<Receta> {
     private String porciones;
     private String dificultad;
     private String foto;
-    private ListaSimple<String> ingredientes; //recibe strings
+    private JSONArray ingredientes; //recibe strings
 
     public  Receta(JSONObject x) {
         /*This funtion is the constructor of the class
@@ -45,7 +42,7 @@ public class Receta implements Comparable<Receta> {
         foto = (String) x.get("foto");
 
 
-        ingredientes = new ListaSimple<String>();
+        ingredientes = new JSONArray();
         //ingredientes
         //imagen
 

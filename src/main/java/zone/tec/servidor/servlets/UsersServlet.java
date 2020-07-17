@@ -116,6 +116,7 @@ public class UsersServlet extends HttpServlet {
 
             x.saveJSONfile();
 
+            resp.getWriter().write("se ha recibido una petición");
 
         }
 }
