@@ -8,31 +8,61 @@ package zone.tec.servidor.clases;
  * Entonces no intente instanciarme, no podrá, y fallará pateticamente, buen día
  */
 
+import zone.tec.servidor.clases.Estructuras.Arboles.ArbolAVL;
+import zone.tec.servidor.clases.Estructuras.Arboles.ArbolBinarioBusqueda;
+import javax.servlet.ServletContext;
+
 public class AlmacenDeEstructuras
 {
     private static AlmacenDeEstructuras yo;
-    /*
-    private ArbolBB usuarios;
-    private ArbolSP empresas;
-    private ArbolAVL recetas;
-   */
+    private static ArbolBinarioBusqueda users;
+    private static ArbolBinarioBusqueda usersPorID;
+    private static ArbolAVL<Receta> recipes;
+    private static ServletContext contexto;
+
     private  AlmacenDeEstructuras() //Porqué privado? porque solo yo voy a existir y yo controlo mi propia existencia
         {
+        }
+
+    public  synchronized  static void renovarArboles( ServletContext context)
+        {
+            //ocupo meterle un JSON a un árbol
+                JSONManager jsonManager= new JSONManager(context);
+                users=new ArbolBinarioBusqueda();
+                usersPorID=new ArbolBinarioBusqueda();
+                users.JSONinsert(jsonManager.giveMeJson("Users"),false);
+                usersPorID.JSONinsert(jsonManager.giveMeJson("Users"),true);
+                contexto=context;
+
+                recipes= new ArbolAVL<Receta>();
+                recipes.JSONinsert(jsonManager.giveMeJson("Recipes"));
 
         }
+
     private synchronized static AlmacenDeEstructuras getAlmacen()
         {
             if(yo == null) { yo= new AlmacenDeEstructuras(); }
             return yo;
         }
 
+    public static ArbolBinarioBusqueda getUsers() {
+        return users;
+    }
 
+    public static AlmacenDeEstructuras getYo() {
+        return yo;
+    }
 
+    public static ArbolAVL<Receta> getRecipes() {
+        return recipes;
+    }
 
-    /*
-    public ArbolBB getUsuarios(){}
-    public ArbolSP getEmpresas(){}
-    public ArbolAVL getUsuarios(){}
-    */
+    public static ArbolBinarioBusqueda getUsersPorID() {
+        return usersPorID;
+    }
+
+    public static ServletContext getContexto() {
+        return contexto;
+    }
 
 }

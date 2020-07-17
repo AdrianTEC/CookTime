@@ -1,10 +1,13 @@
 package zone.tec.servidor.servlets;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import zone.tec.servidor.clases.AlmacenDeEstructuras;
 import zone.tec.servidor.clases.JSONManager;
-import zone.tec.servidor.clases.Perfil;
 import zone.tec.servidor.clases.Usuario;
+
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +17,8 @@ import java.io.IOException;
 
 @WebServlet("/users")
 
-
+@SuppressWarnings("unchecked")
 public class UsersServlet extends HttpServlet {
-    private JSONManager manager;
 
 
     /* This returns a Requested user or users list in JSON format
@@ -29,8 +31,17 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
-            GeneralServlet getter= new GeneralServlet();
-            getter.getting(getServletContext(),req,resp,"Users");
+           if(req.getParameter("Nombre")!=null)
+            {
+                resp.getWriter().write(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
+            }
+           else
+                {
+                    GeneralServlet x= new GeneralServlet();
+                    x.getting(getServletContext(),req,resp,"Users");
+                }
+
+
         }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
@@ -39,7 +50,7 @@ public class UsersServlet extends HttpServlet {
             StringBuilder agregado= new StringBuilder();
 
             //El contexto es requerido para ubicar los archivos
-            manager= new JSONManager(getServletContext());
+            JSONManager manager = new JSONManager(getServletContext());
 
             //Lector del mensaje HTTP, lee la primera linea
             BufferedReader x=req.getReader();// esto es para leer el JSON
@@ -58,27 +69,54 @@ public class UsersServlet extends HttpServlet {
 
                 if(newJson.get("nombre") != null && newJson.get("contrasena")!=null &&newJson.get("edad")!=null && newJson.get("correo")!=null&& newJson.get("apellido1")!=null&&newJson.get("apellido2")!=null)
                     {   //Creo un nuevo usuario
+
                         Usuario nuevoUsuario= new Usuario(newJson);
-                            //Convierto ese usuario en un JSON
-                            newJson = manager.convertToJSON(nuevoUsuario);
+                        AlmacenDeEstructuras.getUsers().insert( nuevoUsuario,false);
 
-                        //Creo un perfil de cooktime para el nuevo usuario
-                        Perfil nuevoPerfil= new Perfil((String) newJson.get("perfil"));
-                            //Convierto el perfil en un JSON
-                            JSONObject newProfile= manager.convertToJSON(nuevoPerfil);
-
-                        //Agrego esos JSON a el array de usuarios
+                        //Agrego esos JSON al JSONFILE
                         manager.addToArray("Users",newJson);
-                        manager.addToArray("Profiles", newProfile);
                         manager.saveJSONfile();
-
                         //Escribo lo que agregué en la página
+                        /*
                         resp.setContentType("application/json");
                         resp.getWriter().write(manager.giveMeJson("Users").toString());
                         resp.getWriter().write(manager.giveMeJson("Profiles").toString());
-
+                        */
                     }
                 else { resp.getWriter().write("Este Usuario No es Agregable"); }
             } catch (ParseException e) { e.printStackTrace(); }
+        }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+        {
+            //para cambiar una característica de un usuario ocupo identificarlo
+            //la manera easy pisy lemon squicy sería identificar en usuario con la ID
+            //por lo tanto es recomendable tener un ABB que funcione con IDs
+            //hecho lo anterior lo primero que ocupo hacer es recoger el parámetro ID y buscarlo en el árbol correspondiente
+             JSONObject user=AlmacenDeEstructuras.getUsersPorID().lookForOneForID(Integer.parseInt(req.getParameter("Id")));
+             //cambio el dato
+             user.put(req.getParameter("Target"),req.getParameter("Value"));
+            //Ahora, si cambié algo en el usuario así debe ser en el perfil
+             JSONObject profile= (JSONObject) user.get("perfil");
+             try {
+                 profile.put(req.getParameter("Target"),req.getParameter("Value"));
+             }
+             catch (Exception ignored){}
+            //posteriormente ocupo editarlo en el JSON para esto lo debo de encontrar
+            JSONManager x= new JSONManager(getServletContext());
+            JSONObject userJSON=x.giveMeObjetWithdId("Users",req.getParameter("Id"));
+            //remplazo el valor en el archivo de texto
+            userJSON.put(req.getParameter("Target"),req.getParameter("Value"));
+            JSONObject perfil= (JSONObject) userJSON.get("perfil");
+            try {
+                perfil.put(req.getParameter("Target"),req.getParameter("Value"));
+            }
+            catch (Exception ignored){}
+
+            x.saveJSONfile();
+
+            resp.getWriter().write("se ha recibido una petición");
+
         }
 }

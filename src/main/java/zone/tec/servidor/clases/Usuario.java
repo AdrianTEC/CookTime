@@ -2,15 +2,16 @@ package zone.tec.servidor.clases;
 
 import org.json.simple.JSONObject;
 
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
     private String nombre;
     private String apellido1;
     private String apellido2;
     private String contrasena;
     private String correoElectronico;
     private String edad;
-    private String perfil;
+    private Perfil perfil;
     private String id;
+    private String chef;
    // private Perfil perfil;
 
 
@@ -26,58 +27,57 @@ public class Usuario {
         nombre = (String) x.get("nombre");
         apellido1 = (String) x.get("apellido1");
         apellido2 = (String) x.get("apellido2");
+        chef="false";
         correoElectronico = (String) x.get("correo");
         edad = (String) x.get("edad");
         contrasena= (String) x.get("contrasena");
-        id=String.valueOf((int) (Math.random() * 100) +1);
-        perfil=nombre+"ID"+id;
+        if(x.get("id")!= null){
+            id=(String) x.get("id");}
+        else {
+            id=String.valueOf(Math.random()*100+AlmacenDeEstructuras.getUsers().getUltimaID());
+        }
+
+        if(x.get("perfil")!=null)
+            {
+                perfil=new Perfil((JSONObject) x.get("perfil"));
+            }
+        else {
+            perfil=new Perfil();
+            perfil.setNombre(nombre);
+            perfil.setApellido1(apellido1);
+            perfil.setApellido2(apellido2);
+            perfil.setCorreoElectronico(correoElectronico);
+            perfil.setEdad(edad);
+        }
         //calificaciones = new Lista();
 
+    }
+
+    public String getNombreCompleto()
+        {
+            return  nombre+ apellido1+apellido2;
+        }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
+    public int compareTo(Usuario o,Boolean porID) {
+        if(porID){
+            return id.compareTo(o.getId());
+        }
+        else {
+        return nombre.compareTo(o.getNombre());}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
-    }
-
-
-
-
-
-
-
-    public void crearReceta(){
 
     }
 
-    public void crearEmpresa(){
-
+    @Override
+    public int compareTo(Usuario o) {
+        return 0;
     }
-
-    public void borrar(){
-
-    }
-
-
-    public void seguir (Usuario usuario){
-
-    }
-
-
-
 }

@@ -19,7 +19,7 @@ public class GeneralServlet {
     public JSONObject getConsultedUser(){
         return reponseUser;
     }
-    public void getting(ServletContext context, HttpServletRequest req, HttpServletResponse resp, String arrayName) throws IOException {
+    public void getting(ServletContext context, HttpServletRequest req, HttpServletResponse resp, String treeName) throws IOException {
 
 
         //Establezco el tipo de respuesta que voy a dar
@@ -29,7 +29,7 @@ public class GeneralServlet {
 
         if(req.getParameter("ID")!=null)
         {
-             reponseUser= manager.giveMeObjetWithdId(arrayName,req.getParameter("ID"));
+             reponseUser= manager.giveMeObjetWithdId(treeName,req.getParameter("ID"));
 
             if(req.getParameter("DATA")!=null)  //si hay una petición en especifico
                 {
@@ -55,7 +55,7 @@ public class GeneralServlet {
         }
         else
         {
-            resp.getWriter().write(String.valueOf(manager.giveMeJson(arrayName)));
+            resp.getWriter().write(String.valueOf(manager.giveMeJson(treeName)));
 
         }
 

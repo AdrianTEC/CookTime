@@ -1,11 +1,9 @@
 package zone.tec.servidor.clases;
-
-import zone.tec.servidor.clases.Estructuras.Listas.ListaSimple;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.awt.image.BufferedImage;
+public class Receta implements Comparable<Receta> {
 
-public class Receta {
     private String nombre;
     private String autor;
     private String tipo;
@@ -17,11 +15,7 @@ public class Receta {
     private String porciones;
     private String dificultad;
     private String foto;
-
-    private ListaSimple<String> ingredientes; //recibe strings
-
-    private BufferedImage receta;
-
+    private JSONArray ingredientes; //recibe strings
 
     public  Receta(JSONObject x) {
         /*This funtion is the constructor of the class
@@ -29,8 +23,13 @@ public class Receta {
          *@Version 21/06/2020
          * @param nothing
          */
-
-        id = (String) x.get("id");
+        if( x.get("id")!=null)
+            {
+                id = (String) x.get("id");
+            }
+        else {
+            id= String.valueOf(AlmacenDeEstructuras.getRecipes().getUltimaID()+1);
+        }
         nombre = (String) x.get("nombre");
         autor = (String) x.get("autor");
         tipo = (String) x.get("tipo");
@@ -43,7 +42,7 @@ public class Receta {
         foto = (String) x.get("foto");
 
 
-        ingredientes = new ListaSimple<String>();
+        ingredientes = new JSONArray();
         //ingredientes
         //imagen
 
@@ -51,4 +50,16 @@ public class Receta {
 
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public int compareTo(Receta o) {
+        return id.compareTo(o.getId());
+    }
 }

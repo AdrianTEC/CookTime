@@ -1,5 +1,11 @@
 package zone.tec.servidor.clases.Estructuras.Arboles;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import zone.tec.servidor.clases.AlmacenDeEstructuras;
+import zone.tec.servidor.clases.JSONManager;
+import zone.tec.servidor.clases.Receta;
+
 /**
  * Árbol binario de búsqueda que siempre está balanceado, lo que significa que la profundidad de sus nodos hoja solo
  * tendrán 1 de diferencia entre ellos.
@@ -7,11 +13,12 @@ package zone.tec.servidor.clases.Estructuras.Arboles;
  */
 public class ArbolAVL<T extends Comparable<? super T>> {
     NodoAVL<T> root;
-
+    private int ultimaID;
     /**
      * Constructor del árbol con raíz vacía
      */
     public ArbolAVL() {
+        ultimaID=1;
         root = null;
     }
 
@@ -78,6 +85,7 @@ public class ArbolAVL<T extends Comparable<? super T>> {
      * @return nodo a insertar
      */
     public NodoAVL<T> insert(T elemento) {
+        ultimaID+=1;
         root = insert(elemento, root);
         switch (factorBalance(root)) {
             case 1:
@@ -171,4 +179,94 @@ public class ArbolAVL<T extends Comparable<? super T>> {
         return nodoIzquierdo;
     }
 
+
+
+
+    /**
+     * Llamado úicamente en recursión. Busca varios elementos con similitud
+     * @param thing Elemento a buscar
+     * @param cantidad cantidad maxima de resultados
+     * @Author Adrián González
+     * @return Array de recetas que comparten la indicación
+     */
+    public  JSONArray lookForSome(String  thing, int cantidad)
+    {
+        return lookForSome(thing,root,cantidad,new JSONArray());
+    }
+    private JSONArray lookForSome(String thing, NodoAVL puntero,int cantidad,JSONArray respuesta)
+    {
+        if(cantidad>0)
+        {
+            //si contiene lo que busco, o es igual, o tiene la primera letra....
+            if (((Receta) puntero.getElemento()).getNombre().equals(thing) || ((Receta) puntero.getElemento()).getNombre().contains(thing) )
+            {   //lo añado a mi respuesta
+                cantidad-=1;
+                respuesta.add(new JSONManager(AlmacenDeEstructuras.getContexto()).convertToJSON(puntero.getElemento()));
+            }
+            //si estoy en un nodo que no contiene lo que busco
+            else
+            {int comparacion= thing.compareTo(((Receta) puntero.getElemento()).getNombre());
+                NodoAVL newPuntero=puntero;
+                if(comparacion>1)
+                {   if(puntero.getNodoDerecho()!=null){
+                    newPuntero= puntero.getNodoDerecho();}
+                }
+                else
+                {
+                    if(puntero.getNodoIzquierdo()!=null){
+                        newPuntero=puntero.getNodoIzquierdo();}
+                }
+                if(puntero != newPuntero){
+                    return lookForSome(thing,newPuntero,cantidad,respuesta);}
+                else {return respuesta;}
+
+
+            }
+            //si resulta y acontece que su nodo derecho posee igualmente la cosa, analicemoslo a él
+            if(puntero.getNodoDerecho()!=null)
+            {
+                if (((Receta) puntero.getNodoDerecho().getElemento()).getNombre().contains(thing)) {
+                    //añado si tengo que añadir
+                    //respuesta = lookForSome(thing, puntero.getNodoDerecho(), cantidad, respuesta);
+
+
+                    respuesta=  lookForSome(thing,puntero.getNodoDerecho(),cantidad,respuesta);
+
+                }
+            }
+            //si resulta y acontece que su nodo izquierdo posee igualmente la cosa, analicemoslo a él
+            if(puntero.getNodoIzquierdo()!=null)
+            {
+                if (((Receta) puntero.getNodoIzquierdo().getElemento()).getNombre().contains(thing)) {   //añado si tengo que añadir
+                    //respuesta = lookForSome(thing, puntero.getNodoDerecho(), cantidad, respuesta);
+
+                    respuesta=  lookForSome(thing,puntero.getNodoIzquierdo(),cantidad,respuesta);
+
+
+                }
+            }
+        }
+        else {return respuesta;}
+        return respuesta;
+    }
+    /**
+     * Agrega objetos desde un JSONArray
+     * @param array arreglo de objetos JSON que componen al árbol
+     * @Author Adrián González
+     * @return nada
+     */
+    public void JSONinsert(JSONArray array)
+    {
+        for (Object i : array) {
+            Receta x=new Receta((JSONObject) i) ;
+            if(root!=null){
+                insert((T) x);}
+            else
+            {root= new NodoAVL<T>((T) x);}
+        }
+    }
+
+    public int getUltimaID() {
+        return ultimaID;
+    }
 }

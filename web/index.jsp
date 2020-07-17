@@ -1,4 +1,4 @@
-<%--
+<%@ page import="zone.tec.servidor.clases.AlmacenDeEstructuras" %><%--
   Created by IntelliJ IDEA.
   User: Adrian
   Date: 29/06/2020
@@ -15,6 +15,6 @@
 
   </body>
   <%
-
+    AlmacenDeEstructuras.renovarArboles(getServletConfig().getServletContext());
   %>
 </html>
