@@ -103,13 +103,13 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * Inserta un elemento en la árbol en la hoja que corresponda
      * @param elemento Elemento a insertar
      */
-    public void insert(T elemento) {
+    public void insert(Usuario elemento, Boolean porID) {
 
         if(Integer.parseInt(((Usuario) elemento).getId())>ultimaID)
             {
                 ultimaID=Integer.parseInt(((Usuario) elemento).getId());
             }
-        raiz = insert(elemento, raiz);
+        raiz = insert((Usuario) elemento, raiz,porID);
     }
 
     /**
@@ -119,16 +119,32 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param nodo Ubicación actual, siguiendo el camino del nodo a insertar
      * @return Nodo que sigue el camino a recorrer
      */
-    private NodoArbolBusqueda<T> insert(T elemento, NodoArbolBusqueda<T> nodo) {
+    private NodoArbolBusqueda<T> insert(Usuario elemento, NodoArbolBusqueda<T> nodo,boolean porID) {
         if (nodo == null) {
-            return new NodoArbolBusqueda<T>(elemento);
+            return new NodoArbolBusqueda<T>((T) elemento);
         }
-        int comparacion = elemento.compareTo(nodo.getElemento());
-        if (comparacion < 0) {
-            nodo.setNodoIzquierdo(insert(elemento, nodo.getNodoIzquierdo()));
-        } else if (comparacion > 0) {
-            nodo.setNodoDerecho(insert(elemento, nodo.getNodoDerecho()));
+        if(!porID)
+        {
+            int comparacion = elemento.compareTo((Usuario) nodo.getElemento(),porID);
+            if (comparacion < 0)
+                {
+                    nodo.setNodoIzquierdo(insert(elemento, nodo.getNodoIzquierdo(),porID));
+                }
+            else if (comparacion > 0)
+                {
+                    nodo.setNodoDerecho(insert(elemento, nodo.getNodoDerecho(),porID));
+                }
         }
+        else
+            {       int comp=Integer.parseInt(  ((Usuario)nodo.getElemento()).getId()    );
+                if(Integer.parseInt(elemento.getId())>comp )
+                    {
+                        nodo.setNodoDerecho(insert(elemento, nodo.getNodoDerecho(),porID));
+                    }
+                else {
+                    nodo.setNodoIzquierdo(insert(elemento, nodo.getNodoIzquierdo(),porID));
+                    }
+            }
         return nodo;
     }
 
@@ -201,6 +217,34 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             }
         }
 
+    public JSONObject lookForOneForID(int id)
+        {
+            return lookForOneForID(id,raiz);
+        }
+
+    private JSONObject lookForOneForID(int thing,NodoArbolBusqueda puntero)
+        {   //Si es igual
+            if( Integer.parseInt(((Usuario)puntero.getElemento()).getId()) == thing)
+                {
+                    return  new JSONManager(AlmacenDeEstructuras.getContexto()).convertToJSON(puntero.getElemento());
+                }
+            else
+                {
+                    //SI MI OBJETO ES MAYOR
+                    if(Integer.parseInt(((Usuario)puntero.getElemento()).getId()) < thing)
+                        {
+                            puntero=puntero.getNodoDerecho();
+                        }
+                    else
+                        {
+                            puntero=puntero.getNodoIzquierdo();
+                        }
+                    if(puntero!=null){
+                        return lookForOneForID(thing,puntero);}
+                    else {return null;}
+
+                }
+        }
     /**
      * Llamado úicamente en recursión. Busca varios elementos con similitud
      * @param thing Elemento a buscar
@@ -287,14 +331,14 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @Author Adrián González
      * @return nada
      */
-    public void JSONinsert(JSONArray array)
+    public void JSONinsert(JSONArray array,Boolean porID)
     {
         for (Object i : array) {
             Usuario x=new Usuario((JSONObject) i) ;
             if(raiz!=null){
-                insert((T) x);}
+                insert( x,porID);}
             else
-                {raiz= new NodoArbolBusqueda<T>((T) x);}
+                {raiz= (NodoArbolBusqueda<T>) new NodoArbolBusqueda<Usuario>( x);}
         }
     }
 

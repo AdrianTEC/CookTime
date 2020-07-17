@@ -63,6 +63,6 @@ public class Receta implements Comparable<Receta> {
 
     @Override
     public int compareTo(Receta o) {
-        return nombre.compareTo(o.getNombre());
+        return id.compareTo(o.getId());
     }
 }

@@ -13,8 +13,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 @WebServlet("/recipes")
+@SuppressWarnings("unchecked")
 public class RecipesServlet extends HttpServlet {
-    private JSONManager manager;
 
 
     /** This returns a Requested recipe or recipe list in JSON format
@@ -49,7 +49,7 @@ public class RecipesServlet extends HttpServlet {
         StringBuilder agregado= new StringBuilder();
 
         //El contexto es requerido para ubicar los archivos
-        manager= new JSONManager(getServletContext());
+        JSONManager manager = new JSONManager(getServletContext());
 
         //Lector del mensaje HTTP, lee la primera linea
         BufferedReader x=req.getReader();// esto es para leer el JSON

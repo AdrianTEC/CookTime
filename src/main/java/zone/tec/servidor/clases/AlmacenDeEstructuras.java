@@ -15,7 +15,8 @@ import javax.servlet.ServletContext;
 public class AlmacenDeEstructuras
 {
     private static AlmacenDeEstructuras yo;
-    private static ArbolBinarioBusqueda<Usuario> users;
+    private static ArbolBinarioBusqueda users;
+    private static ArbolBinarioBusqueda usersPorID;
     private static ArbolAVL<Receta> recipes;
     private static ServletContext contexto;
 
@@ -27,8 +28,10 @@ public class AlmacenDeEstructuras
         {
             //ocupo meterle un JSON a un árbol
                 JSONManager jsonManager= new JSONManager(context);
-                users=new ArbolBinarioBusqueda<Usuario>();
-                users.JSONinsert(jsonManager.giveMeJson("Users"));
+                users=new ArbolBinarioBusqueda();
+                usersPorID=new ArbolBinarioBusqueda();
+                users.JSONinsert(jsonManager.giveMeJson("Users"),false);
+                usersPorID.JSONinsert(jsonManager.giveMeJson("Users"),true);
                 contexto=context;
 
                 recipes= new ArbolAVL<Receta>();
@@ -42,7 +45,7 @@ public class AlmacenDeEstructuras
             return yo;
         }
 
-    public static ArbolBinarioBusqueda<Usuario> getUsers() {
+    public static ArbolBinarioBusqueda getUsers() {
         return users;
     }
 
@@ -53,6 +56,11 @@ public class AlmacenDeEstructuras
     public static ArbolAVL<Receta> getRecipes() {
         return recipes;
     }
+
+    public static ArbolBinarioBusqueda getUsersPorID() {
+        return usersPorID;
+    }
+
     public static ServletContext getContexto() {
         return contexto;
     }

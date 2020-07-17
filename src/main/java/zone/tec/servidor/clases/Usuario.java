@@ -11,6 +11,7 @@ public class Usuario implements Comparable<Usuario> {
     private String edad;
     private Perfil perfil;
     private String id;
+    private Boolean chef;
    // private Perfil perfil;
 
 
@@ -26,13 +27,14 @@ public class Usuario implements Comparable<Usuario> {
         nombre = (String) x.get("nombre");
         apellido1 = (String) x.get("apellido1");
         apellido2 = (String) x.get("apellido2");
+        chef=false;
         correoElectronico = (String) x.get("correo");
         edad = (String) x.get("edad");
         contrasena= (String) x.get("contrasena");
         if(x.get("id")!= null){
             id=(String) x.get("id");}
         else {
-            id=String.valueOf(AlmacenDeEstructuras.getUsers().getUltimaID());
+            id=String.valueOf(Math.random()*100+AlmacenDeEstructuras.getUsers().getUltimaID());
         }
 
         if(x.get("perfil")!=null)
@@ -64,8 +66,18 @@ public class Usuario implements Comparable<Usuario> {
         return id;
     }
 
+    public int compareTo(Usuario o,Boolean porID) {
+        if(porID){
+            return id.compareTo(o.getId());
+        }
+        else {
+        return nombre.compareTo(o.getNombre());}
+
+
+    }
+
     @Override
     public int compareTo(Usuario o) {
-        return nombre.compareTo(o.getNombre());
+        return 0;
     }
 }
