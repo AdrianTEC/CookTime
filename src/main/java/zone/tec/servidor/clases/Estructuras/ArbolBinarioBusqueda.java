@@ -1,4 +1,4 @@
-package zone.tec.servidor.clases.Estructuras.Arboles;
+package zone.tec.servidor.clases.Estructuras;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,12 +15,11 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
     private NodoArbolBusqueda<T> raiz;
     private int ultimaID;
 
-    public ArbolBinarioBusqueda() {
-            ultimaID=0;
     /**
      * Constructor que define la raíz del árbol
-     * @param raiz Raíz del árbol
      */
+    public ArbolBinarioBusqueda() {
+            ultimaID=0;
     }
 
     /**

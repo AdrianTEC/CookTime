@@ -1,4 +1,4 @@
-package zone.tec.servidor.clases.Estructuras.Arboles;
+package zone.tec.servidor.clases.Estructuras;
 
 /**
  * Árbol binario de búsqueda en el que el último nodo accesado pasa a ser la raíz. Utiliza el Mismo nodo que el árbol

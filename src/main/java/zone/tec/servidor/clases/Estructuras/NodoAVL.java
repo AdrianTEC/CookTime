@@ -1,4 +1,4 @@
-package zone.tec.servidor.clases.Estructuras.Arboles;
+package zone.tec.servidor.clases.Estructuras;
 
 /**
  * Nodo que almacena los datos en el arbol AVL. La diferencia más notable es el constructor adicional utlilizado

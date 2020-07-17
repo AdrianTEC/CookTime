@@ -1,4 +1,4 @@
-package zone.tec.servidor.clases.Estructuras.Arboles;
+package zone.tec.servidor.clases.Estructuras;
 
 /**
  * Nodo que almacena los datos en el arbol binario de búsqueda

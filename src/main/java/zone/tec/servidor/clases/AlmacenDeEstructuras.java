@@ -9,8 +9,8 @@ package zone.tec.servidor.clases;
  */
 
 import org.json.simple.JSONArray;
-import zone.tec.servidor.clases.Estructuras.Arboles.ArbolAVL;
-import zone.tec.servidor.clases.Estructuras.Arboles.ArbolBinarioBusqueda;
+import zone.tec.servidor.clases.Estructuras.ArbolAVL;
+import zone.tec.servidor.clases.Estructuras.ArbolBinarioBusqueda;
 import javax.servlet.ServletContext;
 
 public class AlmacenDeEstructuras

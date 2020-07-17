@@ -1,4 +1,4 @@
-package zone.tec.servidor.clases.Estructuras.Arboles;
+package zone.tec.servidor.clases.Estructuras;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -14,6 +14,7 @@ import zone.tec.servidor.clases.Receta;
 public class ArbolAVL<T extends Comparable<? super T>> {
     NodoAVL<T> root;
     private int ultimaID;
+
     /**
      * Constructor del árbol con raíz vacía
      */
