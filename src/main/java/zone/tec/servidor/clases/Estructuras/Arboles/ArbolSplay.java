@@ -7,15 +7,15 @@ package zone.tec.servidor.clases.Estructuras.Arboles;
  */
 public class ArbolSplay<T extends Comparable<? super T>> {
 
-    private NodoArbolBusqueda<T> raiz;
-    private final NodoArbolBusqueda<T> aux;
+    private NodoArbolBinario<T> raiz;
+    private final NodoArbolBinario<T> aux;
 
     /**
      * Constructor del árbol splay. Similar al del binario de búsqueda
      */
     public ArbolSplay() {
         raiz = null;
-        aux = new NodoArbolBusqueda<T>(null);
+        aux = new NodoArbolBinario<T>(null);
     }
 
     /**
@@ -25,7 +25,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
      */
     public boolean insert(T element) {
         if (raiz == null) {
-            raiz = new NodoArbolBusqueda<T>(element);
+            raiz = new NodoArbolBinario<T>(element);
             return true;
         }
         splay(element);
@@ -35,7 +35,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
             return false;
         }
 
-        NodoArbolBusqueda<T> nodoNuevo = new NodoArbolBusqueda<T>(element);
+        NodoArbolBinario<T> nodoNuevo = new NodoArbolBinario<T>(element);
         if (comparacion < 0) {
             nodoNuevo.setNodoIzquierdo(raiz.getNodoIzquierdo());
             nodoNuevo.setNodoDerecho(raiz);
@@ -65,7 +65,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
         if (raiz.getNodoIzquierdo() == null) {
             raiz = raiz.getNodoDerecho();
         } else {
-            NodoArbolBusqueda<T> nuevaRaiz = raiz.getNodoDerecho();
+            NodoArbolBinario<T> nuevaRaiz = raiz.getNodoDerecho();
             raiz = raiz.getNodoIzquierdo();
             splay(element);
             raiz.setNodoDerecho(nuevaRaiz);
@@ -78,7 +78,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
      * @return Elemento más pequeño del árbol
      */
     public T findMin() {
-        NodoArbolBusqueda<T> nodoMin = raiz;
+        NodoArbolBinario<T> nodoMin = raiz;
         if(raiz == null) return null;
         while(nodoMin.getNodoIzquierdo() != null){
             nodoMin = nodoMin.getNodoIzquierdo();
@@ -92,7 +92,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
      * @return Elemento más grande del árbol
      */
     public T findMax() {
-        NodoArbolBusqueda<T> nodoMax = raiz;
+        NodoArbolBinario<T> nodoMax = raiz;
         if(raiz == null){
             return null;
         }
@@ -141,7 +141,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
      * @param element Busca el nodo con el elemento ingrasado para que llegue a ser raíz del árbol.
      */
     private void splay(T element) {
-        NodoArbolBusqueda<T> hijoIzquierdo, hijoDerecho, nuevaRaiz, temp;
+        NodoArbolBinario<T> hijoIzquierdo, hijoDerecho, nuevaRaiz, temp;
         hijoIzquierdo = aux;
         hijoDerecho = aux;
         nuevaRaiz = raiz;
