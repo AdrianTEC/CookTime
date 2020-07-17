@@ -8,6 +8,7 @@ package zone.tec.servidor.clases;
  * Entonces no intente instanciarme, no podrá, y fallará pateticamente, buen día
  */
 
+import org.json.simple.JSONArray;
 import zone.tec.servidor.clases.Estructuras.Arboles.ArbolAVL;
 import zone.tec.servidor.clases.Estructuras.Arboles.ArbolBinarioBusqueda;
 import javax.servlet.ServletContext;
@@ -19,10 +20,10 @@ public class AlmacenDeEstructuras
     private static ArbolBinarioBusqueda usersPorID;
     private static ArbolAVL<Receta> recipes;
     private static ServletContext contexto;
+    private static JSONArray peticionesChef=new JSONArray();
 
     private  AlmacenDeEstructuras() //Porqué privado? porque solo yo voy a existir y yo controlo mi propia existencia
-        {
-        }
+        { }
 
     public  synchronized  static void renovarArboles( ServletContext context)
         {
@@ -64,5 +65,9 @@ public class AlmacenDeEstructuras
     public static ServletContext getContexto() {
         return contexto;
     }
+
+    public static JSONArray getPeticionesChef()
+        { return peticionesChef; }
+
 
 }

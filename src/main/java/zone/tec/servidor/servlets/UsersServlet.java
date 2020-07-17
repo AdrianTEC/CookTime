@@ -115,7 +115,7 @@ public class UsersServlet extends HttpServlet {
             catch (Exception ignored){}
 
             x.saveJSONfile();
-
+            AlmacenDeEstructuras.getPeticionesChef().add(userJSON.get("id"));
             resp.getWriter().write("se ha recibido una petición");
 
         }
