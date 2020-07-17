@@ -4,25 +4,19 @@ package zone.tec.servidor.clases.Estructuras.Arboles;
  * Nodo que almacena los datos en el arbol binario de búsqueda
  * @param <T> Tipo de dato que se agrega al nodo
  */
-public class NodoArbolBusqueda<T extends Comparable<? super T>> {
+public class NodoArbolBinario<T extends Comparable<? super T>> {
 
     private T elemento;
-    private NodoArbolBusqueda<T> nodoIzquierdo;
-    private NodoArbolBusqueda<T> nodoDerecho;
+    private NodoArbolBinario<T> nodoIzquierdo;
+    private NodoArbolBinario<T> nodoDerecho;
 
     /**
      * Constructor que guarda un elemento en el nodo
      * @param elemento elemento que se agrega al nodo
      */
-    public NodoArbolBusqueda(T elemento) {
+    public NodoArbolBinario(T elemento) {
         this.elemento = elemento;
     }
-
-//    public NodoArbolBusqueda(T elemento, NodoArbolBusqueda<T> nodoIzquierdo, NodoArbolBusqueda<T> nodoDerecho) {
-//        this.elemento = elemento;
-//        this.nodoIzquierdo = nodoIzquierdo;
-//        this.nodoDerecho = nodoDerecho;
-//    }
 
     /**
      * Retorna el elemento del nodo
@@ -44,7 +38,7 @@ public class NodoArbolBusqueda<T extends Comparable<? super T>> {
      * Retorna el elemento del nodo izquierdo
      * @return elemento contenido en el nodo izquierdo
      */
-    public NodoArbolBusqueda<T> getNodoIzquierdo() {
+    public NodoArbolBinario<T> getNodoIzquierdo() {
         return nodoIzquierdo;
     }
 
@@ -52,7 +46,7 @@ public class NodoArbolBusqueda<T extends Comparable<? super T>> {
      * Le asigna un elemento al nodo izquierdo
      * @param nodoIzquierdo Elemento a asignar en el nodo izquierdo
      */
-    public void setNodoIzquierdo(NodoArbolBusqueda<T> nodoIzquierdo) {
+    public void setNodoIzquierdo(NodoArbolBinario<T> nodoIzquierdo) {
         this.nodoIzquierdo = nodoIzquierdo;
     }
 
@@ -60,7 +54,7 @@ public class NodoArbolBusqueda<T extends Comparable<? super T>> {
      * Retorna el elemento del nodo derecho
      * @return elemento contenido en el nodo derecho
      */
-    public NodoArbolBusqueda<T> getNodoDerecho() {
+    public NodoArbolBinario<T> getNodoDerecho() {
         return nodoDerecho;
     }
 
@@ -68,7 +62,7 @@ public class NodoArbolBusqueda<T extends Comparable<? super T>> {
      * Le asigna un elemento al nodo derecho
      * @param nodoDerecho Elemento a asignar en el nodo derecho
      */
-    public void setNodoDerecho(NodoArbolBusqueda<T> nodoDerecho) {
+    public void setNodoDerecho(NodoArbolBinario<T> nodoDerecho) {
         this.nodoDerecho = nodoDerecho;
     }
 }
