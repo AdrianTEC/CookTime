@@ -33,6 +33,7 @@ public class CompaniesServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {
+
         //String que se va a armar
         StringBuilder agregado= new StringBuilder();
 

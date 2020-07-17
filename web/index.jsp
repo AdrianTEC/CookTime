@@ -13,7 +13,21 @@
   <body>
    Bienvenido al servidor de CookTime
 
+
+   <button class="favorite styled"
+           type="button">
+     No hace nada
+   </button>
+
+
+   <label> Mecago </label>
+
+
+
+
   </body>
+
+
   <%
     AlmacenDeEstructuras.renovarArboles(getServletConfig().getServletContext());
   %>

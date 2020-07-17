@@ -31,6 +31,7 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
+            resp.getWriter().print("Hola");
            if(req.getParameter("Nombre")!=null)
             {
                 resp.getWriter().write(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
