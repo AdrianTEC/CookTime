@@ -28,24 +28,5 @@
 
 
 
-    <servlet>
-        <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>zone.tec.servidor.servlets.AdminServlet</servlet-class>
 
-        <init-param>
-            <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>com.hkr</param-value>
-        </init-param>
-
-        <init-param>
-            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </servlet>
-
-    <servlet-mapping>
-
-        <servlet-name>AdminServlet</servlet-name>
-        <url-pattern>/admin/*</url-pattern>
-    </servlet-mapping>
 </web-app>
