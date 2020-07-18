@@ -10,27 +10,11 @@
   <head>
     <title>Servidor CookTime</title>
   </head>
-  <body>
-   Bienvenido al servidor de CookTime
+  <form action="Admin.jsp">
 
+      <input type="submit" value="Admin">
 
-   <button class="favorite styled"
-           type="button"
-           onclick = "function clickEvent() {
-               <%
-
-
-               %>
-           }
-        clickEvent()";
-           name = "i">
-       Hola
-   </button>
-
-
-
-
-  </body>
+   </form>
 
 
   <%

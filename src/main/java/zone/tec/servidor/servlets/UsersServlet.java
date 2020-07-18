@@ -101,33 +101,35 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
         {
-            //para cambiar una característica de un usuario ocupo identificarlo
-            //la manera easy pisy lemon squicy sería identificar en usuario con la ID
-            //por lo tanto es recomendable tener un ABB que funcione con IDs
-            //hecho lo anterior lo primero que ocupo hacer es recoger el parámetro ID y buscarlo en el árbol correspondiente
-             JSONObject user=AlmacenDeEstructuras.getUsersPorID().lookForOneForID(Integer.parseInt(req.getParameter("Id")));
-             //cambio el dato
-             user.put(req.getParameter("Target"),req.getParameter("Value"));
-            //Ahora, si cambié algo en el usuario así debe ser en el perfil
-             JSONObject profile= (JSONObject) user.get("perfil");
-             try {
-                 profile.put(req.getParameter("Target"),req.getParameter("Value"));
-             }
-             catch (Exception ignored){}
-            //posteriormente ocupo editarlo en el JSON para esto lo debo de encontrar
-            JSONManager x= new JSONManager(getServletContext());
-            JSONObject userJSON=x.giveMeObjetWithdId("Users",req.getParameter("Id"));
-            //remplazo el valor en el archivo de texto
-            userJSON.put(req.getParameter("Target"),req.getParameter("Value"));
-            JSONObject perfil= (JSONObject) userJSON.get("perfil");
-            try {
-                perfil.put(req.getParameter("Target"),req.getParameter("Value"));
-            }
-            catch (Exception ignored){}
+            if(!req.getParameter("Target").toString().equals("chef")) {
 
-            x.saveJSONfile();
-            AlmacenDeEstructuras.getPeticionesChef().add(userJSON.get("id"));
-            resp.getWriter().write("se ha recibido una petición");
+                JSONObject user = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(Integer.parseInt(req.getParameter("Id")));
+                //cambio el dato
+                user.put(req.getParameter("Target"), req.getParameter("Value"));
+                //Ahora, si cambié algo en el usuario así debe ser en el perfil
+                JSONObject profile = (JSONObject) user.get("perfil");
+                try {
+                    profile.put(req.getParameter("Target"), req.getParameter("Value"));
+                } catch (Exception ignored) {
+                }
+                //posteriormente ocupo editarlo en el JSON para esto lo debo de encontrar
+                JSONManager x = new JSONManager(getServletContext());
+                JSONObject userJSON = x.giveMeObjetWithdId("Users", req.getParameter("Id"));
+
+                //remplazo el valor en el archivo de texto
+                userJSON.put(req.getParameter("Target"), req.getParameter("Value"));
+                JSONObject perfil = (JSONObject) userJSON.get("perfil");
+                try {
+                    perfil.put(req.getParameter("Target"), req.getParameter("Value"));
+                } catch (Exception ignored) {
+                }
+                resp.getWriter().write("se ha realizado una petición");
+                x.saveJSONfile();
+            }
+            else {
+            AlmacenDeEstructuras.getPeticionesChef().add(new JSONManager(getServletContext()).giveMeObjetWithdId("Users", req.getParameter("Id")).get("id"));
+                resp.getWriter().write("se ha recibido una petición");
+                ;}
 
         }
 }

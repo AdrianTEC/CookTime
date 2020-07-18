@@ -2,6 +2,7 @@ package zone.tec.servidor.servlets;
 
 import org.json.simple.JSONObject;
 import zone.tec.servidor.clases.AlmacenDeEstructuras;
+import zone.tec.servidor.clases.JSONManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,26 +17,22 @@ import java.io.IOException;
 public class AdminServlet extends HttpServlet
 {
 
-    protected  void  clickEvent(){
-
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/Admin.jsp");
         //dispatcher.forward(req,resp);
-
-        resp.setContentType("text/html;charset=UTF-8");
-        for (Object i:AlmacenDeEstructuras.getPeticionesChef()){
-            resp.getWriter().print(i);
-            resp.getWriter().print("<button name=\"a\"  onclick=\"\n" +
-                    "\n" +
-                    "        <%AlmacenDeEstructuras.getUsers().lookForOneForID(Integer.parseInt("+i+")).put('chef', '2');%> \n" +
-                    "      \"> HOLA </button>");
-        }
+        req.getRequestDispatcher("/WEB-INF/Admin.jsp").forward(req, resp);
 
     }
-
+    public void Hola(int i)
+        {
+            AlmacenDeEstructuras.getUsers().lookForOneForID(i).put("chef","322222222222222222222222");
+            JSONManager x= new JSONManager(getServletContext());
+            JSONObject userJSON=x.giveMeObjetWithdId("Users",String.valueOf(i));
+            //remplazo el valor en el archivo de texto
+            userJSON.put("chef","3222222222222222222222222");
+            x.saveJSONfile();
+        }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
