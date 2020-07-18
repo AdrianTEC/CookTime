@@ -21,6 +21,7 @@ public class AlmacenDeEstructuras
     private static ArbolAVL<Receta> recipes;
     private static ServletContext contexto;
     private static JSONArray peticionesChef=new JSONArray();
+    private static JSONArray mails= new JSONArray();
 
     private  AlmacenDeEstructuras() //Porqué privado? porque solo yo voy a existir y yo controlo mi propia existencia
         { }
@@ -68,6 +69,15 @@ public class AlmacenDeEstructuras
 
     public static JSONArray getPeticionesChef()
         { return peticionesChef; }
+
+    public static boolean have_this( String thing)
+        {
+            return mails.contains(thing);
+        }
+    public static void addMail(String thing)
+        {
+            mails.add(thing);
+        }
 
 
 }

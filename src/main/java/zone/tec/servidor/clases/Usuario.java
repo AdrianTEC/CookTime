@@ -34,7 +34,7 @@ public class Usuario implements Comparable<Usuario> {
         if(x.get("id")!= null){
             id=(String) x.get("id");}
         else {
-            id=String.valueOf(Math.random()*100+AlmacenDeEstructuras.getUsers().getUltimaID());
+            id=String.valueOf(((int)Math.random())*100+AlmacenDeEstructuras.getUsers().getUltimaID());
         }
 
         if(x.get("perfil")!=null)
@@ -79,5 +79,10 @@ public class Usuario implements Comparable<Usuario> {
     @Override
     public int compareTo(Usuario o) {
         return 0;
+    }
+
+
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 }

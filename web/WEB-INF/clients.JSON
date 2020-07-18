@@ -13,7 +13,7 @@
               "nombre":"Arnolf",
               "apellido1": "Rodriguez",
               "apellido2": "Jimenez",
-              "correo": "Adrian@gmail.com",
+              "correo": "x",
               "edad": "19",
               "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
               "MyMenu": [],
@@ -99,14 +99,14 @@
     "apellido1": "González",
     "apellido2": "Jimenez",
     "chef": "0",
-    "correo": "AdrianC@gmail.com",
+    "correo": "Adrianh@gmail.com",
     "edad": "19",
     "contrasena": "laProgramacionEsEstresante",
     "perfil": {
                 "nombre":"AdrianC",
                 "apellido1": "González",
                 "apellido2": "Jimenez",
-                "correo": "AdrianC@gmail.com",
+                "correo": "Adrianh@gmail.com",
                 "edad": "19",
                 "Foto": "https://i.ytimg.com/vi/6mRLju55waw/hqdefault.jpg",
                 "MyMenu": [],
@@ -174,7 +174,6 @@
       "porciones":"5",
       "dificultad":"fácil",
       "foto": "https://ichef.bbci.co.uk/news/ws/410/amz/worldservice/live/assets/images/2015/03/24/150324162836_arroz_624x351_thinkstock.jpg"
-
     },
     {
       "id":"2",
@@ -216,7 +215,6 @@
       "foto": "https://cdnimg.webstaurantstore.com/images/products/large/429821/1659430.jpg"
     },
     {
-
       "id":"5",
       "nombre":"Pastel de Chocolate",
       "autor":"user5",
@@ -224,7 +222,7 @@
       "tiempo":"5h",
       "dieta":"Carnívoro",
       "instrucciones":"x2",
-      "precio":"$4",
+      "precio":"$2",
       "porciones":"16",
       "dificultad":"difícil",
       "foto": "https://content-recetas.lecturas.com/medio/2018/07/19/pastel-de-trufa-y-frutas-rojas_f9c768c4_800x800.jpg"

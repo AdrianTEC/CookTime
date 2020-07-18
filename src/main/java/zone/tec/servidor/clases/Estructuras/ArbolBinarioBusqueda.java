@@ -10,6 +10,8 @@ import zone.tec.servidor.clases.Usuario;
  * Árbol binario con el hijo menor a la izquierda y el mayor a la derecha.
  * @param <T> Tipo de dato que almacena el árbol
  */
+@SuppressWarnings("unchecked")
+
 public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
 
     private NodoArbolBusqueda<T> raiz;
@@ -35,7 +37,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param elemento Elemento a buscar en el árbol
      * @return Booleano que dice si el elemento está o no en el árbol
      */
-    public boolean contains(T elemento) {
+    public boolean contains(String elemento) {
         return contains(elemento, raiz);
     }
 
@@ -45,11 +47,11 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @param nodoComparado Nodo en el que se busca el elemento actualmente
      * @return Booleano que dice si el elemento está o no en el árbol
      */
-    private boolean contains(T elemento, NodoArbolBusqueda<T> nodoComparado) {
+    private boolean contains(String elemento, NodoArbolBusqueda<T> nodoComparado) {
         if (nodoComparado == null) {
             return false;
         }else {
-            int comparacion = elemento.compareTo(nodoComparado.getElemento());
+            int comparacion = elemento.compareTo(((Usuario)nodoComparado.getElemento()).getCorreoElectronico());
             if (comparacion < 0) {
                 return contains(elemento, nodoComparado.getNodoIzquierdo());
             } else if (comparacion > 0) {
@@ -108,11 +110,14 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      */
     public void insert(Usuario elemento, Boolean porID) {
 
-        if(Integer.parseInt(((Usuario) elemento).getId())>ultimaID)
+        if(Integer.parseInt(elemento.getId())>ultimaID)
             {
-                ultimaID=Integer.parseInt(((Usuario) elemento).getId());
+                if(contains(elemento.getCorreoElectronico()))
+                    {
+                    ultimaID=Integer.parseInt(elemento.getId());
+                    }
             }
-        raiz = insert((Usuario) elemento, raiz,porID);
+        raiz = insert(elemento, raiz,porID);
     }
 
     /**
@@ -123,32 +128,39 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
      * @return Nodo que sigue el camino a recorrer
      */
     private NodoArbolBusqueda<T> insert(Usuario elemento, NodoArbolBusqueda<T> nodo,boolean porID) {
-        if (nodo == null) {
-            return new NodoArbolBusqueda<T>((T) elemento);
-        }
-        if(!porID)
-        {
-            int comparacion = elemento.compareTo((Usuario) nodo.getElemento(),porID);
-            if (comparacion < 0)
-                {
-                    nodo.setNodoIzquierdo(insert(elemento, nodo.getNodoIzquierdo(),porID));
-                }
-            else if (comparacion > 0)
-                {
-                    nodo.setNodoDerecho(insert(elemento, nodo.getNodoDerecho(),porID));
-                }
-        }
-        else
-            {       int comp=Integer.parseInt(  ((Usuario)nodo.getElemento()).getId()    );
-                if(Integer.parseInt(elemento.getId())>comp )
-                    {
-                        nodo.setNodoDerecho(insert(elemento, nodo.getNodoDerecho(),porID));
-                    }
-                else {
-                    nodo.setNodoIzquierdo(insert(elemento, nodo.getNodoIzquierdo(),porID));
-                    }
+        if (nodo == null)
+            {
+                return new NodoArbolBusqueda<T>((T) elemento);
             }
-        return nodo;
+        if(!porID)
+                    {
+
+
+
+                        int comparacion = elemento.compareTo((Usuario) nodo.getElemento(),porID);
+
+                        if (comparacion < 0)
+                            {
+                                nodo.setNodoIzquierdo(insert(elemento, nodo.getNodoIzquierdo(),porID));
+                            }
+                        else if (comparacion > 0)
+                            {
+                                nodo.setNodoDerecho(insert(elemento, nodo.getNodoDerecho(),porID));
+                            }
+                    }
+                else
+                    {       int comp=Integer.parseInt(  ((Usuario)nodo.getElemento()).getId()    );
+                        if(Integer.parseInt(elemento.getId())>comp )
+                            {
+                                nodo.setNodoDerecho(insert(elemento, nodo.getNodoDerecho(),porID));
+                            }
+                        else {
+                            nodo.setNodoIzquierdo(insert(elemento, nodo.getNodoIzquierdo(),porID));
+                            }
+                    }
+                return nodo;
+
+
     }
 
     /**
@@ -205,7 +217,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
                 }
             else {
                 int comparacion=thing.compareTo(((Usuario) puntero.getElemento()).getNombreCompleto());
-                if(comparacion>1)
+                if(comparacion > 0)
                     {
                         puntero=puntero.getNodoDerecho();
                     }
@@ -273,7 +285,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
                     else
                         {int comparacion= thing.compareTo(((Usuario) puntero.getElemento()).getNombreCompleto());
                             NodoArbolBusqueda newPuntero=puntero;
-                            if(comparacion>1)
+                            if(comparacion > 0)
                                 {   if(puntero.getNodoDerecho()!=null){
                                     newPuntero= puntero.getNodoDerecho();}
                                 }
@@ -282,9 +294,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
                                     if(puntero.getNodoIzquierdo()!=null){
                                         newPuntero=puntero.getNodoIzquierdo();}
                                 }
-                            if(puntero!=null&&puntero!=newPuntero){
-                            return lookForSome(thing,newPuntero,cantidad,respuesta);}
-                            else {return respuesta;}
+                            return lookForSome(thing,newPuntero,cantidad,respuesta);
 
 
                         }

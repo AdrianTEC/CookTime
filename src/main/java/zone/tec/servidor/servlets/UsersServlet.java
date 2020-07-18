@@ -31,7 +31,7 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
-            resp.getWriter().print("Hola");
+
            if(req.getParameter("Nombre")!=null)
             {
                 resp.getWriter().write(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
@@ -74,13 +74,23 @@ public class UsersServlet extends HttpServlet {
                         Usuario nuevoUsuario= new Usuario(newJson);
                         AlmacenDeEstructuras.getUsers().insert( nuevoUsuario,false);
 
+                        if(!AlmacenDeEstructuras.have_this(nuevoUsuario.getCorreoElectronico())){
+                            manager.addToArray("Users",newJson);
+                            manager.saveJSONfile();
+                            AlmacenDeEstructuras.addMail(nuevoUsuario.getCorreoElectronico());
+                            resp.setContentType("application/json");
+                            resp.getWriter().write("Se ha inscrito correctamente");
+                        }
+                        else {
+                            resp.getWriter().write("El correo ingresado es utilizado actualmente por otro usuario");
+                        }
+
                         //Agrego esos JSON al JSONFILE
-                        manager.addToArray("Users",newJson);
-                        manager.saveJSONfile();
+
+
                         //Escribo lo que agregué en la página
                         /*
-                        resp.setContentType("application/json");
-                        resp.getWriter().write(manager.giveMeJson("Users").toString());
+
                         resp.getWriter().write(manager.giveMeJson("Profiles").toString());
                         */
                     }
