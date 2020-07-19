@@ -8,6 +8,8 @@ public class Receta implements Comparable<Receta> {
     private String autor;
     private String tipo;
     private String tiempo;
+    private String likes;
+    private String dislikes;
     private String dieta;
     private String instrucciones;
     private String precio;
@@ -42,6 +44,8 @@ public class Receta implements Comparable<Receta> {
         dificultad = (String) x.get("dificultad");
         foto = (String) x.get("foto");
         comentarios=(JSONArray) x.get("comentarios");
+        likes=(String) x.get("likes");
+        dislikes=(String) x.get("dislikes");
 
 
         ingredientes = new JSONArray();
