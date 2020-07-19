@@ -20,7 +20,7 @@ public class AlmacenDeEstructuras
     private static ArbolBinarioBusqueda usersPorID;
     private static ArbolAVL<Receta> recipes;
     private static ServletContext contexto;
-    private static JSONArray peticionesChef=new JSONArray();
+    private static final JSONArray peticionesChef=new JSONArray();
     private static JSONArray mails= new JSONArray();
 
     private  AlmacenDeEstructuras() //Porqué privado? porque solo yo voy a existir y yo controlo mi propia existencia

@@ -23,23 +23,20 @@ public class AdminServlet extends HttpServlet
         //dispatcher.forward(req,resp);
 
     }
-    public void Hola(int i)
-        {
-            AlmacenDeEstructuras.getUsers().lookForOneForID(i).put("chef","322222222222222222222222");
-            JSONManager x= new JSONManager(getServletContext());
-            JSONObject userJSON=x.giveMeObjetWithdId("Users",String.valueOf(i));
-            //remplazo el valor en el archivo de texto
-            userJSON.put("chef","3222222222222222222222222");
-            x.saveJSONfile();
-        }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sesion =request.getSession();
-        if (request.getParameter("button1") != null) {
-            sesion.setAttribute("abc","1111");
+        if (request.getParameter("Siguiente") != null) {
+            if((Integer)sesion.getAttribute("ActualID")<(Integer)AlmacenDeEstructuras.getPeticionesChef().size()){
+                sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") +1);
 
-        } else if (request.getParameter("button2") != null) {
-            sesion.setAttribute("abc","2222");
+            }
+
+        } else if (request.getParameter("Anterior") != null) {
+            if((Integer)sesion.getAttribute("ActualID")>0) {
+                sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") - 1);
+            }
 
         } else if (request.getParameter("button3") != null) {
 

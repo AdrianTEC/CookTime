@@ -232,9 +232,9 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             }
         }
 
-    public JSONObject lookForOneForID(int id)
+    public JSONObject lookForOneForID(String id)
         {
-            return lookForOneForID(id,raiz);
+            return lookForOneForID(Integer.parseInt(id),raiz);
         }
 
     private JSONObject lookForOneForID(int thing,NodoArbolBusqueda puntero)

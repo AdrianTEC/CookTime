@@ -99,11 +99,11 @@ public class UsersServlet extends HttpServlet {
         }
 
     @Override
-    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
-            if(!req.getParameter("Target").toString().equals("chef")) {
+            if(!req.getParameter("Target").equals("chef")) {
 
-                JSONObject user = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(Integer.parseInt(req.getParameter("Id")));
+                JSONObject user = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(req.getParameter("Id"));
                 //cambio el dato
                 user.put(req.getParameter("Target"), req.getParameter("Value"));
                 //Ahora, si cambié algo en el usuario así debe ser en el perfil
@@ -127,9 +127,9 @@ public class UsersServlet extends HttpServlet {
                 x.saveJSONfile();
             }
             else {
-            AlmacenDeEstructuras.getPeticionesChef().add(new JSONManager(getServletContext()).giveMeObjetWithdId("Users", req.getParameter("Id")).get("id"));
+            AlmacenDeEstructuras.getPeticionesChef().add( req.getParameter("Id"));
                 resp.getWriter().write("se ha recibido una petición");
-                ;}
+            }
 
         }
 }
