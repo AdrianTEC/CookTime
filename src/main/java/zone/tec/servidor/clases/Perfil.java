@@ -10,6 +10,8 @@ public class Perfil {
             private String apellido2;
             private String correoElectronico;
             private String edad;
+            private String Foto;
+            private String correo;
           private JSONArray MyMenu;
           private JSONArray Following;
           private JSONArray Followers;
@@ -32,11 +34,16 @@ public class Perfil {
         }
     public Perfil(JSONObject x)
     {
-        MyMenu= (JSONArray) x.get("MyMenu");
-        Followers= (JSONArray) x.get("Followers");
-        Following= (JSONArray) x.get("Following");
-        calificaciones= (JSONArray) x.get("calificaciones");
-
+        MyMenu= (JSONArray)((JSONObject) x.get("perfil")).get("MyMenu");
+        Followers= (JSONArray)((JSONObject) x.get("perfil")).get("Followers");
+        Following= (JSONArray)((JSONObject) x.get("perfil")).get("Following");
+        calificaciones= (JSONArray)((JSONObject) x.get("perfil")).get("calificaciones");
+        Foto=(String) ((JSONObject) x.get("perfil")).get("Foto");
+        nombre = (String) x.get("nombre");
+        apellido1 = (String) x.get("apellido1");
+        apellido2 = (String) x.get("apellido2");
+        correo = (String) x.get("correo");
+        edad = (String) x.get("edad");
 
 
 

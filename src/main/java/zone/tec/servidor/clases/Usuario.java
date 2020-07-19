@@ -39,7 +39,7 @@ public class Usuario implements Comparable<Usuario> {
 
         if(x.get("perfil")!=null)
             {
-                perfil=new Perfil((JSONObject) x.get("perfil"));
+                perfil=new Perfil(x);
             }
         else {
             perfil=new Perfil();
