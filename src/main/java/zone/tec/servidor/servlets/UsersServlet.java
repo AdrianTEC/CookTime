@@ -33,7 +33,8 @@ public class UsersServlet extends HttpServlet {
         {
 
            if(req.getParameter("Nombre")!=null)
-            {
+            {        resp.setContentType("application/json");
+
                 resp.getWriter().write(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
             }
            else
