@@ -21,12 +21,13 @@ public class Perfil {
      *@Version 21/06/2020
      * @param nothing
      */
-    public Perfil()
+    public Perfil ()
         {
             MyMenu=new JSONArray();
             Followers=new JSONArray();
             Following=new JSONArray();
             calificaciones=new JSONArray();
+            Foto = new String();
 
 
 
@@ -66,6 +67,10 @@ public class Perfil {
 
     public void setEdad(String edad) {
         this.edad = edad;
+    }
+
+    public String getFoto(){
+        return Foto;
     }
 
 }

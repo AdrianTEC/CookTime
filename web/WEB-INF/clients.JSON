@@ -2,6 +2,7 @@
 [
 
 
+
   {
     "id": "54",
     "nombre":"Arnolf",
@@ -25,9 +26,34 @@
                }
 
     },
+
+  {
+    "id": "541",
+    "nombre":"Arnold",
+    "apellido1": "Rodriguez",
+    "apellido2": "Jimenez",
+    "correo": "z",
+    "chef": "0",
+    "edad": "19",
+    "contrasena": "x",
+    "perfil": {
+      "nombre":"Arnold",
+      "apellido1": "Rodriguez",
+      "apellido2": "Jimenez",
+      "correo": "x",
+      "edad": "19",
+      "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
+      "MyMenu": [],
+      "Following": [],
+      "Followers": [],
+      "calificaciones": []
+    }
+
+  },
+
   {
     "id": "90",
-    "nombre":"AdrianE",
+    "nombre":"Cristiano",
     "apellido1": "González",
     "apellido2": "Jimenez",
     "correo": "AdrianE@gmail.com",
@@ -35,12 +61,12 @@
     "chef": "0",
     "contrasena": "laProgramacionEsDivertida",
     "perfil": {
-      "nombre":"AdrianE",
+      "nombre":"Cristiano",
       "apellido1": "González",
       "apellido2": "Jimenez",
       "correo": "AdrianE@gmail.com",
       "edad": "19",
-      "Foto": "https://i.ytimg.com/vi/XgBy_eDFydI/maxresdefault.jpg",
+      "Foto": "https://www.hola.com/imagenes/moda/actualidad/2016120890183/cristiano-ronaldo-gafas/0-408-801/cristiano-gafas2-gt3-z.jpg",
       "MyMenu": [],
       "Following": [],
       "Followers": [],

@@ -1,8 +1,11 @@
 package zone.tec.servidor.servlets;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import zone.tec.servidor.clases.AlmacenDeEstructuras;
+
 import zone.tec.servidor.clases.JSONManager;
+import zone.tec.servidor.clases.Usuario;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +31,7 @@ public class AdminServlet extends HttpServlet
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession sesion =request.getSession();
         if (request.getParameter("Siguiente") != null) {
-            if((Integer)sesion.getAttribute("ActualID")<(Integer)AlmacenDeEstructuras.getPeticionesChef().size()){
+            if((Integer)sesion.getAttribute("ActualID")<(Integer)AlmacenDeEstructuras.getPeticionesChef().size() -1){
                 sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") +1);
 
             }
@@ -38,9 +41,45 @@ public class AdminServlet extends HttpServlet
                 sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") - 1);
             }
 
-        } else if (request.getParameter("button3") != null) {
+        } else if (request.getParameter("Aprobar") != null) {
+            JSONArray peticionesArray=AlmacenDeEstructuras.getPeticionesChef();
+
+            JSONObject user = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(peticionesArray.get((Integer) sesion.getAttribute("ActualID")).toString());;
+            //cambio el dato
+            user.put("chef","2");
+
+            JSONManager x = new JSONManager(getServletContext());
+            JSONObject userJSON = x.giveMeObjetWithdId("Users", String.valueOf( peticionesArray.get((Integer) sesion.getAttribute("ActualID"))));
+            //remplazo el valor en el archivo de texto
+            userJSON.put("chef","2");
+
+
+            x.saveJSONfile();
 
         }
+        else if (request.getParameter("Rechazar") != null) {
+
+            if (AlmacenDeEstructuras.getPeticionesChef().size() == 1){
+                JSONArray peticionesArray = AlmacenDeEstructuras.getPeticionesChef();
+                peticionesArray.remove(peticionesArray.get((Integer) sesion.getAttribute("ActualID")));
+                sesion.setAttribute("ActualID", null);
+
+
+            }
+            else if (AlmacenDeEstructuras.getPeticionesChef().size() > 1){
+                JSONArray peticionesArray = AlmacenDeEstructuras.getPeticionesChef();
+                peticionesArray.remove(peticionesArray.get((Integer) sesion.getAttribute("ActualID")));
+                sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") - 1);
+            }
+            else {
+                sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") - 1);
+                sesion.setAttribute("ActualID", null);
+
+            }
+
+        }
+
+
         response.sendRedirect("/CookTime_war_exploded/Admin.jsp?");
     }
 }
