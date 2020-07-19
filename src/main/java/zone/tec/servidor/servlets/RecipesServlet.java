@@ -50,9 +50,10 @@ public class RecipesServlet extends HttpServlet {
         {
 
             String id= req.getParameter("Id");
+            String UserID= req.getParameter("UserID");
+
             JSONManager x= new JSONManager(getServletContext());
-            
-            x.removeObjectWidthID(id,"Recipes");
+            x.giveMeJson("Users");
             x.saveJSONfile();
 
             AlmacenDeEstructuras.renovarArboles(AlmacenDeEstructuras.getContexto());

@@ -1,5 +1,6 @@
 package zone.tec.servidor.servlets;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -29,11 +30,36 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
-
-           if(req.getParameter("Nombre")!=null)
+            if(req.getParameter("ID!")!=null)
+            {
+                resp.getWriter().write(AlmacenDeEstructuras.getUsersPorID().lookForOneForID(req.getParameter("ID")).toString());
+            }
+           else if(req.getParameter("Nombre")!=null)
             {        resp.setContentType("application/json");
-
                 resp.getWriter().write(String.valueOf(AlmacenDeEstructuras.getUsers().lookForSome(req.getParameter("Nombre"), 15)));
+            }
+           else if(req.getParameter("Verificar")!=null)
+            {
+                JSONManager x= new JSONManager(getServletContext());
+                JSONArray array = x.giveMeJson("Users");
+
+                for(Object i: array)
+                    {
+                        if(((JSONObject)i).get("correo").equals(req.getParameter("Correo")))
+                            {
+                                if(((JSONObject)i).get("contrasena").equals(req.getParameter("Contrasena")))
+                                    {
+                                        resp.getWriter().write(String.valueOf(true));
+                                        break;
+                                    }
+
+                            }
+                        else {
+                            resp.getWriter().write("false");
+                            break;}
+                    }
+
+
             }
            else
                 {
@@ -130,5 +156,7 @@ public class UsersServlet extends HttpServlet {
                 resp.getWriter().write("se ha recibido una petición");
             }
 
+
         }
+
 }
