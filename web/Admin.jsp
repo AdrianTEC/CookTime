@@ -20,8 +20,8 @@
 </head>
 <body>
 
-<%!String actualID;%>
-<%!int peticiones;%>
+<%!String puntero;%>
+<%!String peticiones;%>
 <%!String username;%>
 
 <%!HttpSession sesion;%>
@@ -40,11 +40,14 @@
             username= "";
             nombre="";
             correo="";
+            peticiones="-";
+            usuario=new JSONObject();
+            puntero="-";
         }
     try {
         response.setIntHeader("Refresh", 3);//refresco página
 
-        peticiones =AlmacenDeEstructuras.getPeticionesChef().size();//tomo la cantidad de peticiones
+        peticiones =String.valueOf(AlmacenDeEstructuras.getPeticionesChef().size());//tomo la cantidad de peticiones
 
         JSONArray peticionesArray=AlmacenDeEstructuras.getPeticionesChef(); //tomo la lista de posiciones
 
@@ -52,9 +55,11 @@
 
         usuario= AlmacenDeEstructuras.getUsers().lookForOneForID(userID);//busco el usuario con esa id
         username= userID;
+
         correo= (String) usuario.get("correo");//tomo el correo del usuario
         nombre= (String) usuario.get("nombre");//tomo el nombre del usuario
 
+        puntero= String.valueOf( (Integer) sesion.getAttribute("ActualID") +1  );
     }catch (Exception ignored)
         {
         }
@@ -62,18 +67,20 @@
 %>
 
 
-Peticiones:<%= peticiones%> / noPetición: <%=sesion.getAttribute("ActualID") %>
+Peticiones:<%= peticiones%> / noPetición: <%=puntero%>
 <h1></h1>
 <h1></h1>
 <h1></h1>
 <h1> Usuario: <%= username%> </h1>
 <h1></h1>
      Correo :<%=correo %>
+<h1></h1>
      Nombre :<%=nombre  %>
 
 <h1></h1>
-
-
+<%--- Si algo se le visualiza mal use esto
+        Json:  <%= usuario.toJSONString()%>>
+        ---%>
 
 
 

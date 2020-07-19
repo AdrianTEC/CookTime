@@ -7,7 +7,7 @@ public class Usuario implements Comparable<Usuario> {
     private String apellido1;
     private String apellido2;
     private String contrasena;
-    private String correoElectronico;
+    private String correo;
     private String edad;
     private Perfil perfil;
     private String id;
@@ -28,7 +28,7 @@ public class Usuario implements Comparable<Usuario> {
         apellido1 = (String) x.get("apellido1");
         apellido2 = (String) x.get("apellido2");
         chef="0";
-        correoElectronico = (String) x.get("correo");
+        correo = (String) x.get("correo");
         edad = (String) x.get("edad");
         contrasena= (String) x.get("contrasena");
         if(x.get("id")!= null){
@@ -46,7 +46,7 @@ public class Usuario implements Comparable<Usuario> {
             perfil.setNombre(nombre);
             perfil.setApellido1(apellido1);
             perfil.setApellido2(apellido2);
-            perfil.setCorreoElectronico(correoElectronico);
+            perfil.setCorreoElectronico(correo);
             perfil.setEdad(edad);
         }
         //calificaciones = new Lista();
@@ -83,6 +83,6 @@ public class Usuario implements Comparable<Usuario> {
 
 
     public String getCorreoElectronico() {
-        return correoElectronico;
+        return correo;
     }
 }
