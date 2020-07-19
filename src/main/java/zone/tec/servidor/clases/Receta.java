@@ -43,9 +43,21 @@ public class Receta implements Comparable<Receta> {
         porciones = (String) x.get("porciones");
         dificultad = (String) x.get("dificultad");
         foto = (String) x.get("foto");
+
+        if( x.get("comentarios")!=null){
         comentarios=(JSONArray) x.get("comentarios");
-        likes=(String) x.get("likes");
-        dislikes=(String) x.get("dislikes");
+        }
+        else {
+            comentarios=new JSONArray();
+        }
+        if(x.get("likes")!=null){
+        likes=(String) x.get("likes");}
+        else {
+            likes="";
+        }
+        if(x.get("disikes")!=null){
+        dislikes=(String) x.get("dislikes");}
+        else {dislikes="";}
 
 
         ingredientes = new JSONArray();
