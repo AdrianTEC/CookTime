@@ -5,7 +5,8 @@
 <%@ page import="java.util.concurrent.TimeUnit" %>
 <%@ page import="zone.tec.servidor.clases.Usuario" %>
 <%@ page import="org.json.simple.JSONObject" %>
-<%@ page import="org.json.simple.JSONArray" %><%--
+<%@ page import="org.json.simple.JSONArray" %>
+<%@ page import="zone.tec.servidor.clases.Perfil" %><%--
   Created by IntelliJ IDEA.
   User: Adrian
   Date: 16/07/2020
@@ -28,6 +29,8 @@
 <%!JSONObject usuario;%>
 <%!String  correo;%>
 <%!String  nombre;%>
+<%!String  foto;%>
+<%!JSONObject perfil;%>
 
 
 <%
@@ -40,9 +43,11 @@
             username= "";
             nombre="";
             correo="";
+            foto = "";
             peticiones="-";
             usuario=new JSONObject();
             puntero="-";
+            perfil = new JSONObject();
         }
     try {
         response.setIntHeader("Refresh", 3);//refresco página
@@ -53,11 +58,14 @@
 
         String userID=  peticionesArray.get((Integer) sesion.getAttribute("ActualID")).toString(); //tomo la id
 
-        usuario= AlmacenDeEstructuras.getUsers().lookForOneForID(userID);//busco el usuario con esa id
         username= userID;
+        usuario= AlmacenDeEstructuras.getUsersPorID().lookForOneForID(userID);//busco el usuario con esa id
 
         correo= (String) usuario.get("correo");//tomo el correo del usuario
         nombre= (String) usuario.get("nombre");//tomo el nombre del usuario
+
+        perfil = (JSONObject) usuario.get("perfil");
+        foto = (String) perfil.get("Foto");
 
         puntero= String.valueOf( (Integer) sesion.getAttribute("ActualID") +1  );
     }catch (Exception ignored)
@@ -78,6 +86,12 @@ Peticiones:<%= peticiones%> / noPetición: <%=puntero%>
      Nombre :<%=nombre  %>
 
 <h1></h1>
+
+<h1></h1>
+<img src = <%=foto%>  width="200" height="200"  >
+<h1></h1>
+
+
 <%--- Si algo se le visualiza mal use esto
         Json:  <%= usuario.toJSONString()%>>
         ---%>
