@@ -11,13 +11,17 @@ package zone.tec.servidor.clases;
 import org.json.simple.JSONArray;
 import zone.tec.servidor.clases.Estructuras.ArbolAVL;
 import zone.tec.servidor.clases.Estructuras.ArbolBinarioBusqueda;
+import zone.tec.servidor.clases.Estructuras.ArbolSplay;
+
 import javax.servlet.ServletContext;
+@SuppressWarnings("unchecked")
 
 public class AlmacenDeEstructuras
 {
     private static AlmacenDeEstructuras yo;
     private static ArbolBinarioBusqueda users;
     private static ArbolBinarioBusqueda usersPorID;
+    private static ArbolSplay<Empresa> restaurantes;
     private static ArbolAVL<Receta> recipes;
     private static ServletContext contexto;
     private static final JSONArray peticionesChef=new JSONArray();
@@ -39,6 +43,11 @@ public class AlmacenDeEstructuras
                 recipes= new ArbolAVL<Receta>();
                 recipes.JSONinsert(jsonManager.giveMeJson("Recipes"));
 
+                restaurantes= new ArbolSplay<Empresa>();
+                restaurantes.JSONinsert(jsonManager.giveMeJson("Users"));
+
+
+
         }
 
     private synchronized static AlmacenDeEstructuras getAlmacen()
@@ -51,10 +60,7 @@ public class AlmacenDeEstructuras
         return users;
     }
 
-    public static AlmacenDeEstructuras getYo() {
-        return yo;
-    }
-
+    public static ArbolSplay<Empresa> getEmpresas(){return restaurantes;}
     public static ArbolAVL<Receta> getRecipes() {
         return recipes;
     }

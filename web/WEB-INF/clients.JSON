@@ -167,6 +167,18 @@
     {
       "id":"1",
       "nombre":"arroz",
+      "likes": "31",
+      "dislikes":"2" ,
+
+      "comentarios": [
+        {
+          "contenido":"delicioso"
+        },
+        {
+          "contenido":"terrible"
+        }
+
+      ],
       "autor":"user1",
       "tipo":"cena",
       "tiempo":"1h",
@@ -179,6 +191,8 @@
     },
     {
       "id":"2",
+      "likes": "1",
+      "dislikes":"34" ,
       "nombre":"frijoles",
       "autor":"user2",
       "tipo":"almuerzo",
@@ -186,6 +200,15 @@
       "dieta":"Carnívoro",
       "instrucciones":"x2",
       "precio":"$1",
+      "comentarios": [
+        {
+          "contenido":"delicioso"
+        },
+        {
+          "contenido":"terrible"
+        }
+
+      ],
       "porciones":"2",
       "dificultad":"difícil",
       "foto": "https://frijoleros.info/wp-content/uploads/frijoles-negros-cocido.jpg"
@@ -193,9 +216,20 @@
     {
       "id":"3",
       "nombre":"Sopa De Mondongo",
+      "likes": "3111",
+      "dislikes":"2" ,
       "autor":"user3",
       "tipo":"Almuerzo",
       "tiempo":"3h",
+      "comentarios": [
+        {
+          "contenido":"delicioso"
+        },
+        {
+          "contenido":"exelente"
+        }
+
+      ],
       "dieta":"Carnívoro",
       "instrucciones":"x2",
       "precio":"$1",
@@ -205,12 +239,24 @@
     },
     {
       "id":"4",
+      "likes": "31",
+      "dislikes":"211" ,
       "nombre":"CornFles",
       "autor":"user4",
       "tipo":"Cena",
       "tiempo":"30min",
       "dieta":"Vegetariano",
       "instrucciones":"x2",
+      "comentarios": [
+        {
+          "contenido":"Ñehhh, hay cosas mejores"
+        },
+        {
+          "contenido":"terrible"
+        }
+
+      ],
+
       "precio":"$1",
       "porciones":"1",
       "dificultad":"facil",
@@ -218,11 +264,15 @@
     },
     {
       "id":"5",
+      "likes": "31",
+      "dislikes":"22" ,
       "nombre":"Pastel de Chocolate",
       "autor":"user5",
       "tipo":"Especial",
       "tiempo":"5h",
       "dieta":"Carnívoro",
+      "comentarios": [
+      ],
       "instrucciones":"x2",
       "precio":"$2",
       "porciones":"16",

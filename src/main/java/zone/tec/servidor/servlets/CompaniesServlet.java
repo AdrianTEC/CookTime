@@ -4,7 +4,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zone.tec.servidor.clases.Empresa;
 import zone.tec.servidor.clases.JSONManager;
-import zone.tec.servidor.clases.Empresa;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 @WebServlet("/companies")
-public class CompaniesServlet extends HttpServlet {
-    private JSONManager manager;
 
+public class CompaniesServlet extends HttpServlet {
 
     /* This returns a Requested user or users list in JSON format
        @Author: Adrian Gonzalez
@@ -38,7 +36,7 @@ public class CompaniesServlet extends HttpServlet {
         StringBuilder agregado= new StringBuilder();
 
         //El contexto es requerido para ubicar los archivos
-        manager= new JSONManager(getServletContext());
+        JSONManager manager = new JSONManager(getServletContext());
 
         //Lector del mensaje HTTP, lee la primera linea
         BufferedReader x=req.getReader();// esto es para leer el JSON

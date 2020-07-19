@@ -4,27 +4,25 @@ import org.json.simple.JSONObject;
 
 import java.awt.image.BufferedImage;
 
-public class Empresa {
+public class Empresa implements Comparable<Empresa> {
     private String nombre;
     private String contacto;
     private String horario;
     private String id;
-
+    private String direccion;
     private BufferedImage logotipo;
-
-    //private GOOGLEMAPSAPPI dirección;
-
+    /**This funtion is the constructor of the class
+     *@author Andrés Quirós Guzmán
+     *@Version 21/06/2020
+     * @param x JSONObject
+     **/
     public  Empresa(JSONObject x) {
-        /*This funtion is the constructor of the class
-         *@author Andrés Quirós Guzmán
-         *@Version 21/06/2020
-         * @param nothing
-         */
+
 
         nombre = (String) x.get("nombre");
         contacto = (String) x.get("contacto");
         horario = (String) x.get("horario");
-        id=String.valueOf((int) (Math.random() * 100) +1);
+        direccion=(String) x.get("direccion");
 
 
     }
@@ -61,5 +59,10 @@ public class Empresa {
 
     public void setLogotipo(BufferedImage logotipo) {
         this.logotipo = logotipo;
+    }
+
+    @Override
+    public int compareTo(Empresa o) {
+        return nombre.compareTo(o.getNombre());
     }
 }

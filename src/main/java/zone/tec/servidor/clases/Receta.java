@@ -16,6 +16,7 @@ public class Receta implements Comparable<Receta> {
     private String dificultad;
     private String foto;
     private JSONArray ingredientes; //recibe strings
+    private JSONArray comentarios;
 
     public  Receta(JSONObject x) {
         /*This funtion is the constructor of the class
@@ -40,6 +41,7 @@ public class Receta implements Comparable<Receta> {
         porciones = (String) x.get("porciones");
         dificultad = (String) x.get("dificultad");
         foto = (String) x.get("foto");
+        comentarios=(JSONArray) x.get("comentarios");
 
 
         ingredientes = new JSONArray();

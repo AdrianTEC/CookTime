@@ -1,5 +1,10 @@
 package zone.tec.servidor.clases.Estructuras;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import zone.tec.servidor.clases.Empresa;
+import zone.tec.servidor.clases.Usuario;
+
 /**
  * Árbol binario de búsqueda en el que el último nodo accesado pasa a ser la raíz. Utiliza el Mismo nodo que el árbol
  * binario de búsqueda.
@@ -87,21 +92,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
         return nodoMin.getElemento();
     }
 
-    /**
-     * Busca el elemento más grande del árbol y pasa a ser la raíz
-     * @return Elemento más grande del árbol
-     */
-    public T findMax() {
-        NodoArbolBusqueda<T> nodoMax = raiz;
-        if(raiz == null){
-            return null;
-        }
-        while(nodoMax.getNodoDerecho() != null) {
-            nodoMax = nodoMax.getNodoDerecho();
-        }
-        splay(nodoMax.getElemento());
-        return nodoMax.getElemento();
-    }
+
 
     /**
      * Busca un elemento en el árbol
@@ -128,13 +119,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
         return find(element) != null;
     }
 
-    /**
-     * Revisa si el árbol está vacío
-     * @return Verdadero si está vacío, falso si no
-     */
-    public boolean isEmpty() {
-        return raiz == null;
-    }
+
 
     /**
      * Método para que el nodo suba a ser la raíz
@@ -197,4 +182,17 @@ public class ArbolSplay<T extends Comparable<? super T>> {
         raiz = nuevaRaiz;
     }
 
+    public void JSONinsert(JSONArray array)
+        {
+            for (Object i : array) {
+                Empresa x=new Empresa((JSONObject) i) ;
+                if(raiz!=null){
+                    insert((T) x);}
+                else
+                {raiz= (NodoArbolBusqueda<T>) new NodoArbolBusqueda<Empresa>( x);}
+            }
+        }
+
+
 }
+

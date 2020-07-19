@@ -6,8 +6,6 @@ import org.json.simple.parser.ParseException;
 import zone.tec.servidor.clases.AlmacenDeEstructuras;
 import zone.tec.servidor.clases.JSONManager;
 import zone.tec.servidor.clases.Usuario;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
