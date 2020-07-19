@@ -2,7 +2,9 @@ package zone.tec.servidor.clases.Estructuras;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import zone.tec.servidor.clases.AlmacenDeEstructuras;
 import zone.tec.servidor.clases.Empresa;
+import zone.tec.servidor.clases.JSONManager;
 import zone.tec.servidor.clases.Usuario;
 
 /**
@@ -99,7 +101,7 @@ public class ArbolSplay<T extends Comparable<? super T>> {
      * @param element El elemento que se busca
      * @return El elemento (si está en el árbol)
      */
-    private T find(T element) {
+    public T find(T element) {
         if (raiz == null) {
             return null;
         }
@@ -194,5 +196,27 @@ public class ArbolSplay<T extends Comparable<? super T>> {
         }
 
 
+    public JSONArray LastConsulted()
+        {
+            return LastConsulted(2, new JSONArray(), (NodoArbolBusqueda<Empresa>) raiz);
+
+
+        }
+    private JSONArray LastConsulted(int i,JSONArray response,NodoArbolBusqueda<Empresa> nodo)
+    {   JSONManager js= new JSONManager(AlmacenDeEstructuras.getContexto());
+
+            response.add( js.convertToJSON(nodo.getElemento()));
+            i--;
+            if(i>0) {
+                if (raiz.getNodoIzquierdo() != null) {
+                    response = LastConsulted(i, response, nodo.getNodoIzquierdo());
+                }
+                if (raiz.getNodoDerecho() != null) {
+                    response = LastConsulted(i, response, nodo.getNodoDerecho());
+                }
+            }
+
+            return response;
+        }
 }
 

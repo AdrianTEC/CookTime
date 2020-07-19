@@ -4,7 +4,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import zone.tec.servidor.clases.*;
+import zone.tec.servidor.clases.Estructuras.ArbolAVL;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,22 +28,36 @@ public class RecipesServlet extends HttpServlet {
      **/
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
-    {
-        if(req.getParameter("Nombre")!=null)
         {
-            resp.getWriter().write(AlmacenDeEstructuras.getRecipes().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
+            if(req.getParameter("Nombre")!=null)
+            {
+                resp.getWriter().write(AlmacenDeEstructuras.getRecipes().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
+            }
+            else
+            {
+                GeneralServlet x= new GeneralServlet();
+               // resp.getWriter().write("No se indicó ninguna especificación, se retorna todas las recetas");
+                x.getting(getServletContext(),req,resp,"Recipes");
+            }
+
+
+
+
         }
-        else
+
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
         {
-            GeneralServlet x= new GeneralServlet();
-           // resp.getWriter().write("No se indicó ninguna especificación, se retorna todas las recetas");
-            x.getting(getServletContext(),req,resp,"Recipes");
+
+            String id= req.getParameter("Id");
+            JSONManager x= new JSONManager(getServletContext());
+            
+            x.removeObjectWidthID(id,"Recipes");
+            x.saveJSONfile();
+
+            AlmacenDeEstructuras.renovarArboles(AlmacenDeEstructuras.getContexto());
         }
 
-
-
-
-    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {

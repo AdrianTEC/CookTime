@@ -11,6 +11,8 @@ import zone.tec.servidor.clases.Receta;
  * tendrán 1 de diferencia entre ellos.
  * @param <T>
  */
+@SuppressWarnings("unchecked")
+
 public class ArbolAVL<T extends Comparable<? super T>> {
     NodoAVL<T> root;
     private int ultimaID;
@@ -21,51 +23,6 @@ public class ArbolAVL<T extends Comparable<? super T>> {
     public ArbolAVL() {
         ultimaID=1;
         root = null;
-    }
-
-    /**
-     * Revisa si un elemento está contenido en el árbol
-     * @param elemento Elemento a buscar en el árbol
-     * @return Booleano que dice si el elemento está o no en el árbol
-     */
-    public boolean contains(T elemento) {
-        NodoAVL<T> local = root;
-        while (local != null) {
-            if (local.getElemento().compareTo(elemento) == 0)
-                return true;
-            else if (local.getElemento().compareTo(elemento) > 0)
-                local = local.getNodoIzquierdo();
-            else
-                local = local.getNodoDerecho();
-        }
-        return false;
-    }
-
-    /**
-     * Busca el elemento más pequeño del árbol
-     * @return elemento más pequeño
-     */
-    public T findMin() {
-        NodoAVL<T> local = root;
-        if (local == null)
-            return null;
-        while (local.getNodoIzquierdo() != null) {
-            local = local.getNodoIzquierdo();
-        }
-        return local.getElemento();
-    }
-
-    /**
-     * Busca el elemento más grande del árbol
-     * @return elemento más grande
-     */
-    public T findMax() {
-        NodoAVL<T> local = root;
-        if (local == null)
-            return null;
-        while (local.getNodoDerecho() != null)
-            local = local.getNodoDerecho();
-        return local.getElemento();
     }
 
     /**
@@ -83,9 +40,8 @@ public class ArbolAVL<T extends Comparable<? super T>> {
     /**
      * Inserta un elemento y aplica una rotación de acuerdo a su factor de balanceo
      * @param elemento Elemento a insertar
-     * @return nodo a insertar
      */
-    public NodoAVL<T> insert(T elemento) {
+    public void insert(T elemento) {
         ultimaID+=1;
         root = insert(elemento, root);
         switch (factorBalance(root)) {
@@ -98,7 +54,6 @@ public class ArbolAVL<T extends Comparable<? super T>> {
             default:
                 break;
         }
-        return root;
     }
 
     /**
@@ -208,7 +163,7 @@ public class ArbolAVL<T extends Comparable<? super T>> {
             else
             {int comparacion= thing.compareTo(((Receta) puntero.getElemento()).getNombre());
                 NodoAVL newPuntero=puntero;
-                if(comparacion>1)
+                if(comparacion>0)
                 {   if(puntero.getNodoDerecho()!=null){
                     newPuntero= puntero.getNodoDerecho();}
                 }
@@ -266,8 +221,52 @@ public class ArbolAVL<T extends Comparable<? super T>> {
             {root= new NodoAVL<T>((T) x);}
         }
     }
+    private int height(NodoAVL N){
 
+        if (N == null)
+            return 0;
+        return N.getProfundidad();
+    }
     public int getUltimaID() {
         return ultimaID;
     }
+    private NodoAVL<T> minValueNode(NodoAVL<T> node) {
+        NodoAVL<T> current = node;
+        /* loop down to find the leftmost leaf */
+        while (current.getNodoIzquierdo() != null)
+            current = current.getNodoIzquierdo();
+        return current;
+    }
+
+
+
+
+
+    /**
+     * me devuelve un nodo según la id ingresada
+     * @param id identificación de objeto que voy a devolver
+     * @Author Adrián González
+     * @return nada
+     */
+    public NodoAVL<Receta> giveMebyID(String id)
+        {
+            return  giveMebyID(Integer.parseInt(id), (NodoAVL<Receta>) root);
+
+        }
+    private  NodoAVL<Receta>giveMebyID(int id, NodoAVL<Receta> nodo)
+        {   if(id==Integer.parseInt(nodo.getElemento().getId()))
+                {
+                    return nodo;
+                }
+
+            if(id>Integer.parseInt(nodo.getElemento().getId()))
+                {
+                  nodo=nodo.getNodoDerecho();
+                }
+            else {
+                nodo=nodo.getNodoIzquierdo();
+            }
+
+        return giveMebyID(id,nodo);
+        }
 }

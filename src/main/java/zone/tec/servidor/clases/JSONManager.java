@@ -120,13 +120,13 @@ public class JSONManager {
 
             }
         }
-        /* This saves the current state of JSON file
+        /** This saves the current state of JSON file
    @Author: Adrian Gonzalez
    @Version: 5/07/20
    @Params: nothing
    @Exeption: IOExeption
-   @returns: nothinh
-    */
+   @returns: nothing
+    **/
 
     public void saveJSONfile()
         {
@@ -138,13 +138,13 @@ public class JSONManager {
             }catch (Exception ignored){}
 
         }
-    /* This updates the context of "array" in case of deleting or adding something
+    /** This updates the context of "array" in case of deleting or adding something
     @Author: Adrian Gonzalez
     @Version: 5/07/20
     @Params: nothing
     @Exeption: IOExeption
     @returns: nothing
-    */
+    **/
     public void refreshArray()
         {
 
@@ -165,13 +165,13 @@ public class JSONManager {
 
         }
 
-    /* This Converts java objects in JSON objects
+    /** This Converts java objects in JSON objects
     @Author: Adrian Gonzalez
     @Version: 7/07/20
     @Params: Object thing
     @Exeption:
     @returns: JSONObject
-    */
+    **/
     public JSONObject convertToJSON(Object thing)
     {
 
@@ -185,4 +185,19 @@ public class JSONManager {
 
         return  response;
     }
+    public  void removeObjectWidthID(String id,String arrayname)
+        {
+            JSONArray array= giveMeJson(arrayname);
+            int p=0;
+            for(Object i:array)
+                {
+                    if(((JSONObject)i).get("id").equals(id) )
+                        {
+                        }
+                    else {p++;}
+                }
+            array.remove(0);
+
+
+        }
 }

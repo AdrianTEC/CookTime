@@ -19,13 +19,13 @@ import java.io.IOException;
 public class UsersServlet extends HttpServlet {
 
 
-    /* This returns a Requested user or users list in JSON format
+    /** This returns a Requested user or users list in JSON format
        @Author: Adrian Gonzalez
        @Version: 5/07/20
        @Params: HttpServlet Request and HttpServletResponse
        @Exeption: IOExeption
        @returns: nothing, but it will be able later
-     */
+     **/
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {

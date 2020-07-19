@@ -95,6 +95,7 @@ public class NodoAVL<T extends Comparable<? super T>> implements Comparable<Nodo
      * @return Profundidad del nodo en el árbol
      */
     public int getProfundidad() {
+
         return profundidad;
     }
 

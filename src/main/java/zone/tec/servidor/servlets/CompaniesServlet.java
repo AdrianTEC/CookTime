@@ -1,7 +1,9 @@
 package zone.tec.servidor.servlets;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import zone.tec.servidor.clases.AlmacenDeEstructuras;
 import zone.tec.servidor.clases.Empresa;
 import zone.tec.servidor.clases.JSONManager;
 import javax.servlet.annotation.WebServlet;
@@ -12,21 +14,41 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 @WebServlet("/companies")
-
-public class CompaniesServlet extends HttpServlet {
-
-    /* This returns a Requested user or users list in JSON format
+    /** This returns a Requested user or users list in JSON format
        @Author: Adrian Gonzalez
        @Version: 5/07/20
        @Params: HttpServlet Request and HttpServletResponse
        @Exeption: IOExeption
        @returns: nothing, but it will be able later
-     */
+     **/
+public class CompaniesServlet extends HttpServlet {
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
-    {
-        GeneralServlet getter= new GeneralServlet();
-        getter.getting(getServletContext(),req,resp,"Companies");
+    {                        JSONManager js= new JSONManager(getServletContext());
+
+
+        if (req.getParameter("Target")==null)
+            {
+                GeneralServlet getter= new GeneralServlet();
+                getter.getting(getServletContext(),req,resp,"Companies");
+            }
+        else
+            {
+                if(req.getParameter("Target").equals("consulted"))
+                    {   JSONArray response;
+                        response= AlmacenDeEstructuras.getEmpresas().LastConsulted();
+                        resp.getWriter().write(response.toString());
+                    }
+                if(req.getParameter("Target").equals("company"))
+                    {
+                        Empresa x= new Empresa();
+                        x.setNombre(req.getParameter("name"));
+                        resp.getWriter().write( AlmacenDeEstructuras.getEmpresas().find(x).toString());
+                    }
+
+            }
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException

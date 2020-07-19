@@ -44,7 +44,7 @@ public class AlmacenDeEstructuras
                 recipes.JSONinsert(jsonManager.giveMeJson("Recipes"));
 
                 restaurantes= new ArbolSplay<Empresa>();
-                restaurantes.JSONinsert(jsonManager.giveMeJson("Users"));
+                restaurantes.JSONinsert(jsonManager.giveMeJson("Companies"));
 
 
 
