@@ -2,6 +2,10 @@ package zone.tec.servidor.clases;
 
 import org.json.simple.JSONObject;
 
+import javax.xml.bind.DatatypeConverter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class Usuario implements Comparable<Usuario> {
     private String nombre;
     private String apellido1;
@@ -27,10 +31,10 @@ public class Usuario implements Comparable<Usuario> {
         nombre = (String) x.get("nombre");
         apellido1 = (String) x.get("apellido1");
         apellido2 = (String) x.get("apellido2");
-        chef="0";
+        chef = "0";
         correo = (String) x.get("correo");
         edad = (String) x.get("edad");
-        contrasena= (String) x.get("contrasena");
+        contrasena = encriptar((String) x.get("contrasena"));
         if(x.get("id")!= null){
             id=(String) x.get("id");}
         else {
@@ -50,7 +54,19 @@ public class Usuario implements Comparable<Usuario> {
             perfil.setEdad(edad);
         }
         //calificaciones = new Lista();
+    }
 
+    private String encriptar(String clave){
+
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(clave.getBytes());
+            byte[] convertidor = md.digest();
+            return DatatypeConverter.printHexBinary(convertidor).toUpperCase();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "Error";
     }
 
     public String getNombreCompleto()
