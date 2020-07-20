@@ -130,7 +130,11 @@ public class UsersServlet extends HttpServlet {
 
                 JSONObject user = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(req.getParameter("Id"));
                 //cambio el dato
-                user.put(req.getParameter("Target"), req.getParameter("Value"));
+                if(!req.getParameter("Target").equals("Foto"))
+                    {
+                        user.put(req.getParameter("Target"), req.getParameter("Value"));
+                    }
+                
                 //Ahora, si cambié algo en el usuario así debe ser en el perfil
                 JSONObject profile = (JSONObject) user.get("perfil");
                 try {

@@ -33,6 +33,10 @@ public class RecipesServlet extends HttpServlet {
             {
                 resp.getWriter().write(AlmacenDeEstructuras.getRecipes().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
             }
+            if(req.getParameter("Id")!=null)
+                {
+                    resp.getWriter().write(AlmacenDeEstructuras.getRecipes().giveMebyID(req.getParameter("Id")).toString());
+                }
             else
             {
                 GeneralServlet x= new GeneralServlet();
@@ -48,9 +52,6 @@ public class RecipesServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
         {
-
-            String id= req.getParameter("Id");
-            String UserID= req.getParameter("UserID");
 
             JSONManager x= new JSONManager(getServletContext());
             x.giveMeJson("Users");
