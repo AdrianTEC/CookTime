@@ -13,20 +13,20 @@ public class Usuario implements Comparable<Usuario> {
     private String contrasena;
     private String correo;
     private String edad;
-    private Perfil perfil;
+    private JSONObject perfil;
     private String id;
     private String chef;
    // private Perfil perfil;
 
 
 
-
+    /**This funtion is the constructor of the class
+     *@author Andrés Quirós Guzmán
+     *@Version 21/06/2020
+     * @param x JSONObject
+     **/
     public  Usuario(JSONObject x) {
-        /*This funtion is the constructor of the class
-         *@author Andrés Quirós Guzmán
-         *@Version 21/06/2020
-         * @param nothing
-         */
+
 
         nombre = (String) x.get("nombre");
         apellido1 = (String) x.get("apellido1");
@@ -40,18 +40,21 @@ public class Usuario implements Comparable<Usuario> {
         else {
             id=String.valueOf(((int)Math.random())*100+AlmacenDeEstructuras.getUsers().getUltimaID());
         }
-
+        JSONManager manager= new JSONManager(AlmacenDeEstructuras.getContexto());
         if(x.get("perfil")!=null)
             {
-                perfil=new Perfil(x);
+                Perfil Auxperfil=new Perfil(x);
+                perfil=manager.convertToJSON(Auxperfil);
             }
         else {
-            perfil=new Perfil();
-            perfil.setNombre(nombre);
-            perfil.setApellido1(apellido1);
-            perfil.setApellido2(apellido2);
-            perfil.setCorreoElectronico(correo);
-            perfil.setEdad(edad);
+            Perfil Auxperfil=new Perfil();
+            Auxperfil.setNombre(nombre);
+            Auxperfil.setApellido1(apellido1);
+            Auxperfil.setApellido2(apellido2);
+            Auxperfil.setCorreoElectronico(correo);
+            Auxperfil.setEdad(edad);
+            perfil=manager.convertToJSON(Auxperfil);
+
         }
         //calificaciones = new Lista();
     }

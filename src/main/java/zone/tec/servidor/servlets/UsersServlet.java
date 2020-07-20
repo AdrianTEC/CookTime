@@ -105,7 +105,7 @@ public class UsersServlet extends HttpServlet {
                         AlmacenDeEstructuras.getUsers().insert( nuevoUsuario,false);
 
                         if(!AlmacenDeEstructuras.have_this(nuevoUsuario.getCorreoElectronico())){
-                            manager.addToArray("Users",newJson);
+                            manager.addToArray("Users",manager.convertToJSON(nuevoUsuario));
                             manager.saveJSONfile();
                             AlmacenDeEstructuras.addMail(nuevoUsuario.getCorreoElectronico());
                             resp.setContentType("application/json");
