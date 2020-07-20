@@ -51,7 +51,7 @@ public class UsersServlet extends HttpServlet {
                         if(((JSONObject)i).get("correo").equals(req.getParameter("Correo")))
                             {
                                 String hash = verificarClave(req.getParameter("Contrasena"));
-                                if(((JSONObject)i).get("contrasena").equals(hash))
+                                if(((JSONObject)i).get("contrasena").equals(hash))  //cambiar hash a req.getParameter("Contrasena")
                                     {
                                         resp.getWriter().write(i.toString());
                                         break;

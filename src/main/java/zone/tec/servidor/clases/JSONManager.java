@@ -2,11 +2,15 @@ package zone.tec.servidor.clases;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import com.google.gson.Gson;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import javax.servlet.ServletContext;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
@@ -33,13 +37,13 @@ public class JSONManager {
 
 
 
-    /* This returns the JSON array asked for
+    /** This returns the JSON array asked for
    @Author: Adrian Gonzalez
    @Version: 5/07/20
    @Params:
    @Exeption:
    @returns: JSONArray
-    */
+    **/
 
     public JSONArray giveMeJson(String arrayName){
         JSONArray array= new JSONArray();
@@ -50,23 +54,17 @@ public class JSONManager {
         return  array;
     }
 
-    /* This returns the last ID in some array
-   @Author: Adrian Gonzalez
-   @Version: 7/07/20
-   @Params: String
-   @Exeption:nothing
-   @returns: String
-    */
 
 
 
-    /* This returns a Requested JSONobject from arrayName array
+
+    /** This returns a Requested JSONobject from arrayName array
    @Author: Adrian Gonzalez
    @Version: 5/07/20
    @Params: String id ,String arrayName
    @Exeption:nothing
    @returns: JSONObject
-    */
+    **/
 
     public JSONObject giveMeObjetWithdId(String arrayName,String id){
         //will returns this
@@ -150,12 +148,16 @@ public class JSONManager {
 
             try {
                 JSONParser parser = new JSONParser();
-              datafile = new File(context.getRealPath("WEB-INF/clients.JSON"));//  Esto adquiere el documento desde el archivo WAR, por lo tanto si usamos este no podremos editar el texto
-
-                // datafile= new File("C:\\Users\\Adrián González\\Desktop\\CookTime-CE1103\\CookTime\\web\\WEB-INF\\clients.text");
-
+                datafile = new File(context.getRealPath("WEB-INF/clients.JSON"));//  Esto adquiere el documento desde el archivo WAR, por lo tanto si usamos este no podremos editar el texto
                 jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
                 userArray = (JSONArray) jsonObject.get("Usuarios");
+                for(Object i:userArray)
+                    {
+                        ((JSONObject) i).put("contrasena",verificarClave((String) ((JSONObject) i).get("contrasena")));
+
+                    }
+
+
                 profilesArray=(JSONArray) jsonObject.get("Perfiles");
                 companiesArray=(JSONArray) jsonObject.get("Empresas");
                 recipesArray=(JSONArray) jsonObject.get("Recetas");
@@ -164,6 +166,17 @@ public class JSONManager {
             } catch(Exception ignored) { }
 
         }
+    private String verificarClave(String clave) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(clave.getBytes());
+            byte[] convertidor = md.digest();
+            return DatatypeConverter.printHexBinary(convertidor).toUpperCase();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "Error";
+    }
 
     /** This Converts java objects in JSON objects
     @Author: Adrian Gonzalez
