@@ -49,7 +49,7 @@ public class UsersServlet extends HttpServlet {
                             {
                                 if(((JSONObject)i).get("contrasena").equals(req.getParameter("Contrasena")))
                                     {
-                                        resp.getWriter().write(String.valueOf(true));
+                                        resp.getWriter().write(i.toString());
                                         break;
                                     }
 
