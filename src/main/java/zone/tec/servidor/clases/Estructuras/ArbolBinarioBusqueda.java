@@ -237,11 +237,11 @@ public class ArbolBinarioBusqueda<T extends Comparable<? super T>> {
             return lookForOneForID(Integer.parseInt(id),raiz);
         }
 
-    private JSONObject lookForOneForID(int thing,NodoArbolBusqueda puntero)
+    private JSONObject lookForOneForID(int thing, NodoArbolBusqueda puntero)
         {   //Si es igual
             if( Integer.parseInt(((Usuario)puntero.getElemento()).getId()) == thing)
                 {
-                    return  new JSONManager(AlmacenDeEstructuras.getContexto()).convertToJSON(puntero.getElemento());
+                    return new JSONManager(AlmacenDeEstructuras.getContexto()).convertToJSON(puntero.getElemento());
                 }
             else
                 {
