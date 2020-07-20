@@ -11,8 +11,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.bind.DatatypeConverter;
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/users")
 
@@ -47,7 +50,8 @@ public class UsersServlet extends HttpServlet {
                     {
                         if(((JSONObject)i).get("correo").equals(req.getParameter("Correo")))
                             {
-                                if(((JSONObject)i).get("contrasena").equals(req.getParameter("Contrasena")))
+                                String hash = verificarClave(req.getParameter("Contrasena"));
+                                if(((JSONObject)i).get("contrasena").equals(hash))
                                     {
                                         resp.getWriter().write(i.toString());
                                         break;
@@ -93,7 +97,8 @@ public class UsersServlet extends HttpServlet {
 
                 //verifico que usuario tiene lo minimo para ingresar
 
-                if(newJson.get("nombre") != null && newJson.get("contrasena")!=null &&newJson.get("edad")!=null && newJson.get("correo")!=null&& newJson.get("apellido1")!=null&&newJson.get("apellido2")!=null)
+                if(newJson.get("nombre") != null && newJson.get("contrasena")!=null && newJson.get("edad")!=null &&
+                        newJson.get("correo")!=null && newJson.get("apellido1")!=null&& newJson.get("apellido2")!=null)
                     {   //Creo un nuevo usuario
 
                         Usuario nuevoUsuario= new Usuario(newJson);
@@ -157,6 +162,17 @@ public class UsersServlet extends HttpServlet {
             }
 
 
+        }
+        private String verificarClave(String clave) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                md.update(clave.getBytes());
+                byte[] convertidor = md.digest();
+                return DatatypeConverter.printHexBinary(convertidor).toUpperCase();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+            return "Error";
         }
 
 }
