@@ -56,11 +56,11 @@ public class UsersServlet extends HttpServlet {
                                         resp.getWriter().write(i.toString());
                                         break;
                                     }
-
+                                else {
+                                    resp.getWriter().write("false");
+                                }
                             }
-                        else {
-                            resp.getWriter().write("false");
-                            break;}
+
                     }
 
 

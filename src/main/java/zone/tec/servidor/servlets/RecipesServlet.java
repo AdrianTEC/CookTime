@@ -29,11 +29,10 @@ public class RecipesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
-            if(req.getParameter("Nombre")!=null)
-            {
+            if(req.getParameter("Nombre")!=null) {
                 resp.getWriter().write(AlmacenDeEstructuras.getRecipes().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
             }
-            if(req.getParameter("Id")!=null)
+            else if(req.getParameter("Id")!=null)
                 {
                     resp.getWriter().write(AlmacenDeEstructuras.getRecipes().giveMebyID(req.getParameter("Id")).toString());
                 }
