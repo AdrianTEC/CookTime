@@ -19,14 +19,13 @@
               "correo": "x",
               "edad": "19",
               "Foto": "https://cdn.playbuzz.com/cdn/7e89fc26-49fe-4dad-96c2-3f9c26e3471a/6b00321c-f486-4ca8-9f3d-1afbb0347d26.jpg",
-              "MyMenu": [],
+              "MyMenu": ["1","2"],
               "Following": [],
               "Followers": [],
               "calificaciones": []
                }
 
     },
-
   {
     "id": "541",
     "nombre":"Arnold",
