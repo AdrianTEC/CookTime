@@ -119,22 +119,25 @@ public class RecipesServlet extends HttpServlet {
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         JSONManager manager= new JSONManager(AlmacenDeEstructuras.getContexto());
+        ArbolAVL arbolAVL= AlmacenDeEstructuras.getRecipes();
+
         //para los likes y dislikes
         if(req.getParameter("Target").equals("opinion"))
             {
-                ArbolAVL arbolAVL= AlmacenDeEstructuras.getRecipes();
                 Receta receta= (Receta) arbolAVL.giveMebyID(req.getParameter("Id")).getElemento();
 
                 if(req.getParameter("DATA").equals("1"))
                     {
 
                             receta.setLikes(String.valueOf(Integer.parseInt(receta.getLikes())+1));
-
+                            JSONObject object= manager.giveMeObjetWithdId("Recipes",req.getParameter("Id"));
+                            object.put("likes",String.valueOf(Integer.parseInt((String) object.get("likes"))+1));
                     }
                 else
                     {
                         receta.setDislikes(String.valueOf(Integer.parseInt(receta.getDislikes())+1));
-
+                        JSONObject object= manager.giveMeObjetWithdId("Recipes",req.getParameter("Id"));
+                        object.put("dislikes",String.valueOf(Integer.parseInt((String) object.get("dislikes"))+1));
                     }
 
 
@@ -143,9 +146,13 @@ public class RecipesServlet extends HttpServlet {
             }
         //para agregar comentarios
         if(req.getParameter("Target").equals("comentarios"))
-        {
+            {
+                Receta receta= (Receta) arbolAVL.giveMebyID(req.getParameter("Id")).getElemento();
+            
 
-        }
+
+
+            }
 
 
 
