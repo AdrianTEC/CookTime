@@ -148,12 +148,14 @@ public class RecipesServlet extends HttpServlet {
         if(req.getParameter("Target").equals("comentarios"))
             {
                 Receta receta= (Receta) arbolAVL.giveMebyID(req.getParameter("Id")).getElemento();
-            
+                Comentario nuevocomentario= new Comentario(req.getParameter("DATA"));
+                JSONObject comment= new JSONManager(getServletContext()).convertToJSON(nuevocomentario);
+                receta.getComentarios().add(comment);
 
 
 
             }
-
+        resp.getWriter().write("se ha enviado la peticion");
 
 
 
