@@ -28,13 +28,13 @@ public class RecipesServlet extends HttpServlet {
      **/
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
-        {
+        { JSONManager xe= new JSONManager(getServletContext());
             if(req.getParameter("Nombre")!=null) {
                 resp.getWriter().write(AlmacenDeEstructuras.getRecipes().lookForSome(req.getParameter("Nombre"), 15).toJSONString());
             }
             else if(req.getParameter("Id")!=null)
                 {
-                    resp.getWriter().write(AlmacenDeEstructuras.getRecipes().giveMebyID(req.getParameter("Id")).toString());
+                    resp.getWriter().write((xe.convertToJSON(AlmacenDeEstructuras.getRecipes().giveMebyID(req.getParameter("Id")).getElemento()).toString()));
                 }
             else
             {
@@ -114,5 +114,45 @@ public class RecipesServlet extends HttpServlet {
                 */
             }else { resp.getWriter().write("Esta Receta No es Agregable"); }
         } catch (ParseException e) { e.printStackTrace(); }
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        JSONManager manager= new JSONManager(AlmacenDeEstructuras.getContexto());
+        //para los likes y dislikes
+        if(req.getParameter("Target").equals("opinion"))
+            {
+                ArbolAVL arbolAVL= AlmacenDeEstructuras.getRecipes();
+                Receta receta= (Receta) arbolAVL.giveMebyID(req.getParameter("Id")).getElemento();
+
+                if(req.getParameter("DATA").equals("1"))
+                    {
+
+                            receta.setLikes(String.valueOf(Integer.parseInt(receta.getLikes())+1));
+
+                    }
+                else
+                    {
+                        receta.setDislikes(String.valueOf(Integer.parseInt(receta.getDislikes())+1));
+
+                    }
+
+
+
+
+            }
+        //para agregar comentarios
+        if(req.getParameter("Target").equals("comentarios"))
+        {
+
+        }
+
+
+
+
+
+
+
+
     }
 }
