@@ -53,7 +53,20 @@ public class AdminServlet extends HttpServlet
             //remplazo el valor en el archivo de texto
             userJSON.put("chef","2");
 
+            if (AlmacenDeEstructuras.getPeticionesChef().size() == 1){
+                peticionesArray.remove(peticionesArray.get((Integer) sesion.getAttribute("ActualID")));
+                sesion.setAttribute("ActualID", null);
 
+            }
+            else if (AlmacenDeEstructuras.getPeticionesChef().size() > 1){
+                peticionesArray.remove(peticionesArray.get((Integer) sesion.getAttribute("ActualID")));
+                sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") - 1);
+            }
+            else {
+                sesion.setAttribute("ActualID", (Integer) sesion.getAttribute("ActualID") -1);
+                sesion.setAttribute("ActualID", null);
+
+            }
             x.saveJSONfile();
 
         }

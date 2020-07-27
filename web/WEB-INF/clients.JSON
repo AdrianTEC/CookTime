@@ -57,7 +57,7 @@
     "apellido2": "Jimenez",
     "correo": "AdrianE@gmail.com",
     "edad": "19",
-    "chef": "0",
+    "chef": "2",
     "contrasena": "laProgramacionEsDivertida",
     "perfil": {
       "nombre":"Cristiano",
@@ -285,7 +285,7 @@
         }
 
       ],
-      "autor":"user1",
+      "autor":"54",
       "tipo":"cena",
       "tiempo":"1h",
       "dieta":"Veg",
@@ -300,7 +300,7 @@
       "likes": "1",
       "dislikes":"34" ,
       "nombre":"frijoles",
-      "autor":"user2",
+      "autor":"30",
       "tipo":"almuerzo",
       "tiempo":"2h",
       "dieta":"Carnívoro",
@@ -324,7 +324,7 @@
       "nombre":"Sopa De Mondongo",
       "likes": "3111",
       "dislikes":"2" ,
-      "autor":"user3",
+      "autor":"54",
       "tipo":"Almuerzo",
       "tiempo":"3h",
       "comentarios": [
@@ -345,10 +345,11 @@
     },
     {
       "id":"4",
+
       "likes": "31",
       "dislikes":"211" ,
       "nombre":"CornFles",
-      "autor":"user4",
+      "autor":"80",
       "tipo":"Cena",
       "tiempo":"30min",
       "dieta":"Vegetariano",
@@ -373,7 +374,7 @@
       "likes": "31",
       "dislikes":"22" ,
       "nombre":"Pastel de Chocolate",
-      "autor":"user5",
+      "autor":"80",
       "tipo":"Especial",
       "tiempo":"5h",
       "dieta":"Carnívoro",
