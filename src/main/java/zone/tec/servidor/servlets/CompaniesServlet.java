@@ -28,25 +28,37 @@ public class CompaniesServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException
     {                        JSONManager js= new JSONManager(getServletContext());
 
-
+            //si NO tiene objetivo---------------------------
         if (req.getParameter("Target")==null)
             {
+                //Recomendaciones------------------------------------------------
+                if(req.getParameter("Nombre")!=null)
+                {
+                    resp.getWriter().write(AlmacenDeEstructuras.getEmpresas().lookForSome(req.getParameter("Nombre"),5).toString());
+
+                }
+                else {
                 GeneralServlet getter= new GeneralServlet();
-                getter.getting(getServletContext(),req,resp,"Companies");
+                getter.getting(getServletContext(),req,resp,"Companies");}
             }
         else
             {
+
+                //ultimos consultados-----------------------------------------
                 if(req.getParameter("Target").equals("consulted"))
                     {   JSONArray response;
                         response= AlmacenDeEstructuras.getEmpresas().LastConsulted();
                         resp.getWriter().write(response.toString());
                     }
+                //empresa en especifico
                 if(req.getParameter("Target").equals("company"))
                     {
                         Empresa x= new Empresa();
                         x.setNombre(req.getParameter("Name"));
                         resp.getWriter().write( AlmacenDeEstructuras.getEmpresas().find(x).toString());
                     }
+
+
 
             }
     }

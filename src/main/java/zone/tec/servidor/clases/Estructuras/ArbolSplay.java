@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 import zone.tec.servidor.clases.AlmacenDeEstructuras;
 import zone.tec.servidor.clases.Empresa;
 import zone.tec.servidor.clases.JSONManager;
-import zone.tec.servidor.clases.Usuario;
 
 /**
  * Árbol binario de búsqueda en el que el último nodo accesado pasa a ser la raíz. Utiliza el Mismo nodo que el árbol
@@ -195,7 +194,64 @@ public class ArbolSplay<T extends Comparable<? super T>> {
             }
         }
 
+    public  JSONArray lookForSome(String  thing, int cantidad)
+        {
+            return lookForSome(thing,raiz,cantidad,new JSONArray());
+        }
+    private JSONArray lookForSome(String thing, NodoArbolBusqueda puntero,int cantidad,JSONArray respuesta)
+        {
+            if(cantidad>0)
+            {
+                //si contiene lo que busco, o es igual, o tiene la primera letra....
+                if (((Empresa) puntero.getElemento()).getNombre().equals(thing) || ((Empresa) puntero.getElemento()).getNombre().contains(thing) )
+                {   //lo añado a mi respuesta
+                    cantidad-=1;
+                    respuesta.add(new JSONManager(AlmacenDeEstructuras.getContexto()).convertToJSON(puntero.getElemento()));
+                }
+                //si estoy en un nodo que no contiene lo que busco
+                else
+                {int comparacion= thing.compareTo(((Empresa) puntero.getElemento()).getNombre());
+                    NodoArbolBusqueda newPuntero=puntero;
+                    if(comparacion > 0)
+                    {   if(puntero.getNodoDerecho()!=null){
+                        newPuntero= puntero.getNodoDerecho();}
+                    }
+                    else
+                    {
+                        if(puntero.getNodoIzquierdo()!=null){
+                            newPuntero=puntero.getNodoIzquierdo();}
+                    }
+                    return lookForSome(thing,newPuntero,cantidad,respuesta);
 
+
+                }
+                //si resulta y acontece que su nodo derecho posee igualmente la cosa, analicemoslo a él
+                if(puntero.getNodoDerecho()!=null)
+                {
+                    if (((Empresa) puntero.getNodoDerecho().getElemento()).getNombre().contains(thing)) {
+                        //añado si tengo que añadir
+                        //respuesta = lookForSome(thing, puntero.getNodoDerecho(), cantidad, respuesta);
+
+
+                        respuesta=  lookForSome(thing,puntero.getNodoDerecho(),cantidad,respuesta);
+
+                    }
+                }
+                //si resulta y acontece que su nodo izquierdo posee igualmente la cosa, analicemoslo a él
+                if(puntero.getNodoIzquierdo()!=null)
+                {
+                    if (((Empresa) puntero.getNodoIzquierdo().getElemento()).getNombre().contains(thing)) {   //añado si tengo que añadir
+                        //respuesta = lookForSome(thing, puntero.getNodoDerecho(), cantidad, respuesta);
+
+                        respuesta=  lookForSome(thing,puntero.getNodoIzquierdo(),cantidad,respuesta);
+
+
+                    }
+                }
+            }
+            else {return respuesta;}
+            return respuesta;
+        }
     public JSONArray LastConsulted()
         {
             return LastConsulted(2, new JSONArray(), (NodoArbolBusqueda<Empresa>) raiz);
