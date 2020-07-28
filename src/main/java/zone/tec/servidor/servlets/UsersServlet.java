@@ -133,19 +133,18 @@ public class UsersServlet extends HttpServlet {
             if(!req.getParameter("Target").equals("chef")) {
 
                 JSONObject user = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(req.getParameter("Id"));
-                //cambio el dato --------------------------------
+        //--------------cambio el dato EN EL ARBOL --------------------------------
                 if(!req.getParameter("Target").equals("Foto"))
                     {
-                        if(!req.getParameter("Target").equals("contrasena"))
+                        if(!req.getParameter("Target").equals("contrasena"))//NO ES UNA CONTRASENA
                         {
-                            // NO VOY A EDITAR LA CONTRASENA
-                            if(!req.getParameter("Target").equals("followers"))
+                            if(!req.getParameter("Target").equals("Following"))// NO SON FOLLOWERS
                                 {
                                     user.put(req.getParameter("Target"), req.getParameter("Value"));
                                 }
                             else
                                 {
-
+                                    ((JSONArray)((JSONObject)user.get("perfil")).get("Following")).add(req.getParameter("Value"));
                                 }
 
                         }
@@ -159,9 +158,12 @@ public class UsersServlet extends HttpServlet {
 
                 //si NO es la contrasena puede agregarlo al perfil
                 if(!req.getParameter("Target").equals("contrasena"))
-                    {                JSONObject profile = (JSONObject) user.get("perfil");
+                    {   JSONObject profile = (JSONObject) user.get("perfil");
 
-                        try { profile.put(req.getParameter("Target"), req.getParameter("Value")); } catch (Exception ignored) { }
+                        try {
+                            if(!req.getParameter("Target").equals("Following")){
+                            profile.put(req.getParameter("Target"), req.getParameter("Value"));}
+                        } catch (Exception ignored) { }
                     }
 
                 //---------------------------------------------------------------------------------
@@ -182,8 +184,13 @@ public class UsersServlet extends HttpServlet {
                     {  JSONObject perfil = (JSONObject) userJSON.get("perfil");
 
                         try {
-                            perfil.put(req.getParameter("Target"), req.getParameter("Value"));
+                            if(!req.getParameter("Target").equals("Following")){
+                            perfil.put(req.getParameter("Target"), req.getParameter("Value"));}
+                            else {
+                                ((JSONArray)perfil.get("Following")).add(req.getParameter("Value"));
                             }
+                            }
+
                         catch (Exception ignored) { }
                     }
                 else
