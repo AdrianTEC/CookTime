@@ -2,6 +2,7 @@
   "Usuarios": [
     {
       "apellido2": "Jimenez",
+
       "apellido1": "Rodriguez",
       "correo": "z",
       "chef": "0",
@@ -149,7 +150,7 @@
         "apellido1": "Rojas",
         "correo": "yordanelsexyrojas@gmail.com",
         "Following": [],
-        "MyMenu": [ ],
+        "MyMenu": ["6","4"],
         "Followers": [ ],
         "nombre": "Yordan",
         "edad": "17"
