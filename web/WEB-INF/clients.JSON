@@ -1,394 +1,433 @@
-{"Usuarios":
-[
-
-
-
-  {
-    "id": "54",
-    "nombre":"Arnolf",
-    "apellido1": "Rodriguez",
-    "apellido2": "Jimenez",
-    "correo": "z",
-    "chef": "0",
-    "edad": "19",
-    "contrasena": "x",
-    "perfil": {
-              "nombre":"Arnolf",
-              "apellido1": "Rodriguez",
-              "apellido2": "Jimenez",
-              "correo": "x",
-              "edad": "19",
-              "Foto": "https://cdn.playbuzz.com/cdn/7e89fc26-49fe-4dad-96c2-3f9c26e3471a/6b00321c-f486-4ca8-9f3d-1afbb0347d26.jpg",
-              "MyMenu": ["1","2"],
-              "Following": [],
-              "Followers": [],
-              "calificaciones": []
-               }
-
-    },
-  {
-    "id": "541",
-    "nombre":"Arnold",
-    "apellido1": "Rodriguez",
-    "apellido2": "Jimenez",
-    "correo": "z",
-    "chef": "0",
-    "edad": "19",
-    "contrasena": "x",
-    "perfil": {
-      "nombre":"Arnold",
+{
+  "Usuarios": [
+    {
+      "apellido2": "Jimenez",
       "apellido1": "Rodriguez",
-      "apellido2": "Jimenez",
-      "correo": "x",
+      "correo": "z",
+      "chef": "0",
+      "contrasena": "9DD4E461268C8034F5C8564E155C67A6",
+      "id": "54",
+      "nombre": "Arnolf",
       "edad": "19",
-      "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
-      "MyMenu": [],
-      "Following": [],
-      "Followers": [],
-      "calificaciones": []
-    }
+      "perfil": {
+        "apellido2": "Jimenez",
+        "Foto": "https:\/\/cdn.playbuzz.com\/cdn\/7e89fc26-49fe-4dad-96c2-3f9c26e3471a\/6b00321c-f486-4ca8-9f3d-1afbb0347d26.jpg",
+        "calificaciones": [
+        ],
+        "apellido1": "Rodriguez",
+        "correo": "x",
+        "Following": [
 
-  },
+        ],
+        "MyMenu": [
+          "1",
+          "2"
+        ],
+        "Followers": [
 
-  {
-    "id": "90",
-    "nombre":"Cristiano",
-    "apellido1": "González",
-    "apellido2": "Jimenez",
-    "correo": "AdrianE@gmail.com",
-    "edad": "19",
-    "chef": "2",
-    "contrasena": "laProgramacionEsDivertida",
-    "perfil": {
-      "nombre":"Cristiano",
-      "apellido1": "González",
+        ],
+        "nombre": "Arnolf",
+        "edad": "19"
+      }
+    },
+    {
       "apellido2": "Jimenez",
+      "apellido1": "Rodriguez",
+      "correo": "z",
+      "chef": "0",
+      "contrasena": "9DD4E461268C8034F5C8564E155C67A6",
+      "id": "541",
+      "nombre": "Arnold",
+      "edad": "19",
+      "perfil": {
+        "apellido2": "Jimenez",
+        "Foto": "https:\/\/media.metrolatam.com\/2019\/10\/16\/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
+        "calificaciones": [
+
+        ],
+        "apellido1": "Rodriguez",
+        "correo": "x",
+        "Following": [
+
+        ],
+        "MyMenu": [
+
+        ],
+        "Followers": [
+
+        ],
+        "nombre": "Arnold",
+        "edad": "19"
+      }
+    },
+    {
+      "apellido2": "Jimenez",
+      "apellido1": "Gonzalez",
       "correo": "AdrianE@gmail.com",
+      "chef": "2",
+      "contrasena": "E6DDDD1993DF8D61243D541E63C664C3",
+      "id": "90",
+      "nombre": "Cristiano",
       "edad": "19",
-      "Foto": "https://www.hola.com/imagenes/moda/actualidad/2016120890183/cristiano-ronaldo-gafas/0-408-801/cristiano-gafas2-gt3-z.jpg",
-      "MyMenu": [],
-      "Following": [],
-      "Followers": [],
-      "calificaciones": []
-    }
+      "perfil": {
+        "apellido2": "Jimenez",
+        "Foto": "https:\/\/www.hola.com\/imagenes\/moda\/actualidad\/2016120890183\/cristiano-ronaldo-gafas\/0-408-801\/cristiano-gafas2-gt3-z.jpg",
+        "calificaciones": [
 
-  },
-  {
-    "id": "30",
-    "nombre":"AdrianG",
-    "apellido1": "González",
-    "apellido2": "Herrero",
-    "correo": "AdriaDn@gmail.com",
-    "edad": "19",
-    "chef": "0",
-    "contrasena": "santaNoexiste",
-    "perfil": {
-        "nombre":"AdrianG",
-      "apellido1": "González",
+        ],
+        "apellido1": "González",
+        "correo": "AdrianE@gmail.com",
+        "Following": [
+
+        ],
+        "MyMenu": [
+
+        ],
+        "Followers": [
+
+        ],
+        "nombre": "Cristiano",
+        "edad": "19"
+      }
+    },
+    {
       "apellido2": "Herrero",
-      "correo": "AdriaDn@gmail.com",
-      "edad": "19",
-      "Foto": "https://i.ytimg.com/vi/jfB8HFBLyyg/hqdefault.jpg",
-      "MyMenu": [],
-      "Following": [],
-      "Followers": [],
-      "calificaciones": []
-    }
-
-  },
-  {
-    "id": "80",
-    "nombre":"AdrianC",
-    "apellido1": "González",
-    "apellido2": "Jimenez",
-    "correo": "AdrianC@gmail.com",
-    "chef": "0",
-    "edad": "19",
-    "contrasena": "laProgramacionEsDivertida",
-    "perfil": {
-      "nombre":"AdrianC",
       "apellido1": "González",
-      "apellido2": "Jimenez",
-      "correo": "AdrianC@gmail.com",
+      "correo": "AdriaDn@gmail.com",
+      "chef": "0",
+      "contrasena": "F5A251D5CC03C9C62F80B3CC459624D4",
+      "id": "30",
+      "nombre": "AdrianG",
       "edad": "19",
-      "Foto": "https://media.metrolatam.com/2019/10/16/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
-      "MyMenu": [],
-      "Following": [],
-      "Followers": [],
-      "calificaciones": []
-    }
+      "perfil": {
+        "apellido2": "Herrero",
+        "Foto": "https:\/\/i.ytimg.com\/vi\/jfB8HFBLyyg\/hqdefault.jpg",
+        "calificaciones": [
 
-  },
-  {
+        ],
+        "apellido1": "González",
+        "correo": "AdriaDn@gmail.com",
+        "Following": [
 
-    "id": "3",
-    "nombre":"AdrianC",
-    "apellido1": "González",
-    "apellido2": "Jimenez",
-    "chef": "0",
-    "correo": "Adrianh@gmail.com",
-    "edad": "19",
-    "contrasena": "laProgramacionEsEstresante",
-    "perfil": {
-                "nombre":"AdrianC",
-                "apellido1": "González",
-                "apellido2": "Jimenez",
-                "correo": "Adrianh@gmail.com",
-                "edad": "19",
-                "Foto": "https://i.ytimg.com/vi/6mRLju55waw/hqdefault.jpg",
-                "MyMenu": [],
-                "Following": [],
-                "Followers":[],
-                "calificaciones": []
-              }
+        ],
+        "MyMenu": [
 
+        ],
+        "Followers": [
 
-  },
-  {
-    "id": "40",
-    "nombre":"Yordan",
-    "apellido1": "Rojas",
-    "apellido2": "Diaz",
-    "correo": "yordanelsexyrojas@gmail.com",
-    "edad": "17",
-    "chef": "0",
-    "contrasena": "IdontLikeIt",
-    "perfil": {
-              "nombre":"Yordan",
-              "apellido1": "Rojas",
-              "apellido2": "Diaz",
-              "correo": "yordanelsexyrojas@gmail.com",
-              "edad": "17",
-              "Foto": "https://pbs.twimg.com/profile_images/3550680490/c18277bddf17b9759afd7da6f38d3283_400x400.jpeg",
-              "MyMenu": [],
-              "Following": [],
-              "Followers":[],
-              "calificaciones": []
-            }
-
-  }
-],
-
-  "Empresas":
-  [
-    {
-
-      "nombre":"LaVacaFeliz",
-      "contacto": "333-2222",
-      "horario": "7am-7pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://as2.ftcdn.net/jpg/00/47/80/71/500_F_47807127_C1DOxLVxMd5oNWCdJLHtQESGxVP2p0ur.jpg"
+        ],
+        "nombre": "AdrianG",
+        "edad": "19"
+      }
     },
     {
-      "nombre":"PollosDonBeto",
-      "contacto": "123443322",
-      "horario": "7am-7pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://i.pinimg.com/originals/f6/42/8e/f6428e245c574ce5b8ef56dd2f43665f.jpg"
+      "apellido2": "Jimenez",
+      "apellido1": "González",
+      "correo": "AdrianC@gmail.com",
+      "chef": "0",
+      "contrasena": "E6DDDD1993DF8D61243D541E63C664C3",
+      "id": "80",
+      "nombre": "AdrianC",
+      "edad": "19",
+      "perfil": {
+        "apellido2": "Jimenez",
+        "Foto": "https:\/\/media.metrolatam.com\/2019\/10\/16\/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
+        "calificaciones": [
+
+        ],
+        "apellido1": "González",
+        "correo": "AdrianC@gmail.com",
+        "Following": [
+
+        ],
+        "MyMenu": [
+
+        ],
+        "Followers": [
+
+        ],
+        "nombre": "AdrianC",
+        "edad": "19"
+      }
     },
     {
+      "apellido2": "Jimenez",
+      "apellido1": "González",
+      "correo": "Adrianh@gmail.com",
+      "chef": "0",
+      "contrasena": "C669E860050BCD2B98DF5D2CD6665FA0",
+      "id": "3",
+      "nombre": "AdrianC",
+      "edad": "19",
+      "perfil": {
+        "apellido2": "Jimenez",
+        "Foto": "https:\/\/i.ytimg.com\/vi\/6mRLju55waw\/hqdefault.jpg",
+        "calificaciones": [
 
-      "nombre":"Restaurante El pollo",
-      "contacto": "88888888",
-      "horario": "9am-11pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://static.vecteezy.com/system/resources/previews/000/602/664/non_2x/vector-chicken-restaurant-logo.jpg"
+        ],
+        "apellido1": "González",
+        "correo": "Adrianh@gmail.com",
+        "Following": [
 
+        ],
+        "MyMenu": [
+
+        ],
+        "Followers": [
+
+        ],
+        "nombre": "AdrianC",
+        "edad": "19"
+      }
     },
     {
-      "nombre":"SapoSabroso",
-      "contacto": "1999922",
-      "horario": "7am-9pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://ceibal.elpais.com.uy/wp-content/uploads/2012/07/sapo.jpg"
-    },
-    {
+      "apellido2": "Diaz",
+      "apellido1": "Rojas",
+      "correo": "yordanelsexyrojas@gmail.com",
+      "chef": "0",
+      "contrasena": "C3C44B35BB6403A2E751FC22FFF6D29D",
+      "id": "40",
+      "nombre": "Yordan",
+      "edad": "17",
+      "perfil": {
+        "apellido2": "Diaz",
+        "Foto": "https:\/\/pbs.twimg.com\/profile_images\/3550680490\/c18277bddf17b9759afd7da6f38d3283_400x400.jpeg",
+        "calificaciones": [
 
-      "nombre":"Restaurante El pez",
-      "contacto": "88888888",
-      "horario": "9am-11pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://thumbs.dreamstime.com/z/pescados-felices-de-la-historieta-17450783.jpg"
+        ],
+        "apellido1": "Rojas",
+        "correo": "yordanelsexyrojas@gmail.com",
+        "Following": [
 
-    },
-    {
+        ],
+        "MyMenu": [
 
-      "nombre":"Restaurante la almeja",
-      "contacto": "822-34418",
-      "horario": "9am-11pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://misanimales.com/wp-content/uploads/2018/07/tipos-de-almejas.jpg"
+        ],
+        "Followers": [
 
-    },
-    {
-
-      "nombre":"Restaurante la ballena",
-      "contacto": "822-34418",
-      "horario": "9am-11pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://animalchaman.com/wp-content/uploads/ballena-1024x548.jpg"
-
-    },
-    {
-
-      "nombre":"Restaurante el perro",
-      "contacto": "822-34418",
-      "horario": "9am-5pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://okdiario.com/img/2019/11/25/-que-nos-dice-el-perro-con-los-movimientos-de-su-cola_-655x368.jpg"
-
-    },
-    {
-
-      "nombre":"Restaurante el zaguate",
-      "contacto": "11114-4418",
-      "horario": "5am-11pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://www.caracteristicas.co/wp-content/uploads/2017/02/perro-1-e1561678907722.jpg"
-
-    },
-    {
-
-      "nombre":"Restaurante el chino",
-      "contacto": "2321118",
-      "horario": "9am-11pm",
-      "MyMenu": [],
-      "puntuacion": [],
-      "Foto": "https://cdn2.cocinadelirante.com/sites/default/files/styles/gallerie/public/images/2018/05/receta-facil-de-comida-china-casera.jpg"
-
+        ],
+        "nombre": "Yordan",
+        "edad": "17"
+      }
     }
   ],
-
-  "Recetas":
-  [
+  "Empresas": [
     {
-      "id":"1",
-      "nombre":"arroz",
-      "likes": "31",
-      "dislikes":"2" ,
-
-      "comentarios": [
-        {
-          "contenido":"delicioso"
-        },
-        {
-          "contenido":"terrible"
-        }
+      "contacto": "333-2222",
+      "horario": "7am-7pm",
+      "puntuacion": [
 
       ],
-      "autor":"54",
-      "tipo":"cena",
-      "tiempo":"1h",
-      "dieta":"Veg",
-      "instrucciones":"x",
-      "precio":"$12",
-      "porciones":"5",
-      "dificultad":"fácil",
-      "foto": "https://ichef.bbci.co.uk/news/ws/410/amz/worldservice/live/assets/images/2015/03/24/150324162836_arroz_624x351_thinkstock.jpg"
+      "Foto": "https:\/\/as2.ftcdn.net\/jpg\/00\/47\/80\/71\/500_F_47807127_C1DOxLVxMd5oNWCdJLHtQESGxVP2p0ur.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "LaVacaFeliz"
     },
     {
-      "id":"2",
+      "contacto": "123443322",
+      "horario": "7am-7pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/i.pinimg.com\/originals\/f6\/42\/8e\/f6428e245c574ce5b8ef56dd2f43665f.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "PollosDonBeto"
+    },
+    {
+      "contacto": "88888888",
+      "horario": "9am-11pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/static.vecteezy.com\/system\/resources\/previews\/000\/602\/664\/non_2x\/vector-chicken-restaurant-logo.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "Restaurante El pollo"
+    },
+    {
+      "contacto": "1999922",
+      "horario": "7am-9pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/ceibal.elpais.com.uy\/wp-content\/uploads\/2012\/07\/sapo.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "SapoSabroso"
+    },
+    {
+      "contacto": "88888888",
+      "horario": "9am-11pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/thumbs.dreamstime.com\/z\/pescados-felices-de-la-historieta-17450783.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "Restaurante El pez"
+    },
+    {
+      "contacto": "822-34418",
+      "horario": "9am-11pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/misanimales.com\/wp-content\/uploads\/2018\/07\/tipos-de-almejas.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "Restaurante la almeja"
+    },
+    {
+      "contacto": "822-34418",
+      "horario": "9am-11pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/animalchaman.com\/wp-content\/uploads\/ballena-1024x548.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "Restaurante la ballena"
+    },
+    {
+      "contacto": "822-34418",
+      "horario": "9am-5pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/okdiario.com\/img\/2019\/11\/25\/-que-nos-dice-el-perro-con-los-movimientos-de-su-cola_-655x368.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "Restaurante el perro"
+    },
+    {
+      "contacto": "11114-4418",
+      "horario": "5am-11pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/www.caracteristicas.co\/wp-content\/uploads\/2017\/02\/perro-1-e1561678907722.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "Restaurante el zaguate"
+    },
+    {
+      "contacto": "2321118",
+      "horario": "9am-11pm",
+      "puntuacion": [
+
+      ],
+      "Foto": "https:\/\/cdn2.cocinadelirante.com\/sites\/default\/files\/styles\/gallerie\/public\/images\/2018\/05\/receta-facil-de-comida-china-casera.jpg",
+      "MyMenu": [
+
+      ],
+      "nombre": "Restaurante el chino"
+    }
+  ],
+  "Recetas": [
+    {
+      "instrucciones": "x",
+      "tipo": "cena",
+      "porciones": "5",
+      "dislikes": "2",
+      "nombre": "arroz",
+      "autor": "54",
+      "precio": "$12",
+      "foto": "https:\/\/ichef.bbci.co.uk\/news\/ws\/410\/amz\/worldservice\/live\/assets\/images\/2015\/03\/24\/150324162836_arroz_624x351_thinkstock.jpg",
+      "tiempo": "1h",
+      "id": "1",
+      "comentarios": [
+        {
+          "contenido": "delicioso"
+        },
+        {
+          "contenido": "terrible"
+        }
+      ],
+      "dificultad": "fácil",
+      "likes": "32",
+      "dieta": "Veg"
+    },
+    {
+      "instrucciones": "x2",
+      "tipo": "almuerzo",
+      "porciones": "2",
+      "dislikes": "34",
+      "nombre": "frijoles",
+      "autor": "30",
+      "precio": "$1",
+      "foto": "https:\/\/frijoleros.info\/wp-content\/uploads\/frijoles-negros-cocido.jpg",
+      "tiempo": "2h",
+      "id": "2",
+      "comentarios": [
+        {
+          "contenido": "delicioso"
+        },
+        {
+          "contenido": "terrible"
+        }
+      ],
+      "dificultad": "difícil",
       "likes": "1",
-      "dislikes":"34" ,
-      "nombre":"frijoles",
-      "autor":"30",
-      "tipo":"almuerzo",
-      "tiempo":"2h",
-      "dieta":"Carnívoro",
-      "instrucciones":"x2",
-      "precio":"$1",
-      "comentarios": [
-        {
-          "contenido":"delicioso"
-        },
-        {
-          "contenido":"terrible"
-        }
-
-      ],
-      "porciones":"2",
-      "dificultad":"difícil",
-      "foto": "https://frijoleros.info/wp-content/uploads/frijoles-negros-cocido.jpg"
+      "dieta": "Carnívoro"
     },
     {
-      "id":"3",
-      "nombre":"Sopa De Mondongo",
+      "instrucciones": "x2",
+      "tipo": "Almuerzo",
+      "porciones": "5",
+      "dislikes": "2",
+      "nombre": "Sopa De Mondongo",
+      "autor": "54",
+      "precio": "$1",
+      "foto": "https:\/\/cdn.queapetito.com\/wp-content\/uploads\/2020\/01\/sopa-de-mondongo-1200-amp.jpg",
+      "tiempo": "3h",
+      "id": "3",
+      "comentarios": [
+        {
+          "contenido": "delicioso"
+        },
+        {
+          "contenido": "exelente"
+        }
+      ],
+      "dificultad": "difícil",
       "likes": "3111",
-      "dislikes":"2" ,
-      "autor":"54",
-      "tipo":"Almuerzo",
-      "tiempo":"3h",
-      "comentarios": [
-        {
-          "contenido":"delicioso"
-        },
-        {
-          "contenido":"exelente"
-        }
-
-      ],
-      "dieta":"Carnívoro",
-      "instrucciones":"x2",
-      "precio":"$1",
-      "porciones":"5",
-      "dificultad":"difícil",
-      "foto": "https://cdn.queapetito.com/wp-content/uploads/2020/01/sopa-de-mondongo-1200-amp.jpg"
+      "dieta": "Carnívoro"
     },
     {
-      "id":"4",
-
-      "likes": "31",
-      "dislikes":"211" ,
+      "instrucciones": "x2",
+      "tipo": "Cena",
+      "porciones":"1",
+      "dislikes":"211",
       "nombre":"CornFles",
       "autor":"80",
-      "tipo":"Cena",
-      "tiempo":"30min",
-      "dieta":"Vegetariano",
-      "instrucciones":"x2",
-      "comentarios": [
-        {
-          "contenido":"Ñehhh, hay cosas mejores"
-        },
-        {
-          "contenido":"terrible"
-        }
-
-      ],
-
       "precio":"$1",
-      "porciones":"1",
-      "dificultad":"facil",
-      "foto": "https://cdnimg.webstaurantstore.com/images/products/large/429821/1659430.jpg"
-    },
-    {
-      "id":"5",
-      "likes": "31",
-      "dislikes":"22" ,
-      "nombre":"Pastel de Chocolate",
-      "autor":"80",
-      "tipo":"Especial",
-      "tiempo":"5h",
-      "dieta":"Carnívoro",
-      "comentarios": [
-      ],
-      "instrucciones":"x2",
-      "precio":"$2",
-      "porciones":"16",
-      "dificultad":"difícil",
-      "foto": "https://content-recetas.lecturas.com/medio/2018/07/19/pastel-de-trufa-y-frutas-rojas_f9c768c4_800x800.jpg"
-    }
-  ]
+      "foto":"https:\/\/cdnimg.webstaurantstore.com\/images\/products\/large\/429821\/1659430.jpg",
+      "tiempo":"30min","id":"4",
+      "comentarios":[{"contenido":"�\u2018ehhh, hay cosas mejores"},
+        {"contenido":"terrible"}],"dificultad":"facil","likes":"31","dieta":"Vegetariano"},
 
-
-
+        {"instrucciones":"x2",
+          "tipo":"Especial",
+          "porciones":"16",
+          "dislikes":"22",
+          "nombre":"Pastel de Chocolate",
+          "autor":"80",
+          "precio":"$2",
+          "foto":"https:\/\/content-recetas.lecturas.com\/medio\/2018\/07\/19\/pastel-de-trufa-y-frutas-rojas_f9c768c4_800x800.jpg",
+          "tiempo":"5h","id":"5",
+          "comentarios":[],
+          "dificultad":"dificil",
+          "likes":"31",
+          "dieta":"Carnivoro"}]
 
 }

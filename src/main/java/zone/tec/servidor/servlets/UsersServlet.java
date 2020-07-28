@@ -45,7 +45,7 @@ public class UsersServlet extends HttpServlet {
             {
                 JSONManager x= new JSONManager(getServletContext());
                 JSONArray array = x.giveMeJson("Users");
-
+                String response= "false";
                 for(Object i: array)
                     {
                         if(((JSONObject)i).get("correo").equals(req.getParameter("Correo")))
@@ -53,16 +53,14 @@ public class UsersServlet extends HttpServlet {
                                 String hash = verificarClave(req.getParameter("Contrasena"));
                                 if(((JSONObject)i).get("contrasena").equals(hash))  //cambiar hash a req.getParameter("Contrasena")
                                     {
-                                        resp.getWriter().write(i.toString());
+                                        response=   i.toString();//responde con el objeto solicitado
                                         break;
                                     }
-                                else {
-                                    resp.getWriter().write("false");
-                                }
+
                             }
 
                     }
-
+                resp.getWriter().write(response);
 
             }
            else

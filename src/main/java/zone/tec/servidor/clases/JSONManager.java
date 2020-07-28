@@ -6,6 +6,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.google.gson.Gson;
+import org.apache.catalina.startup.Catalina;
+import org.apache.catalina.startup.Tomcat;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -129,11 +131,16 @@ public class JSONManager {
     public void saveJSONfile()
         {
             try {
+                jsonObject.put("Usuarios",userArray);
+                jsonObject.put("Empresas",companiesArray);
+                jsonObject.put("Recetas",recipesArray);
+
                 FileWriter escritor= new FileWriter(datafile);
                 escritor.write(jsonObject.toJSONString());
                 escritor.flush();
                 escritor.close();
-            }catch (Exception ignored){}
+            }catch (Exception ignored){
+            }
 
         }
     /** This updates the context of "array" in case of deleting or adding something
@@ -149,14 +156,11 @@ public class JSONManager {
             try {
                 JSONParser parser = new JSONParser();
                 datafile = new File(context.getRealPath("WEB-INF/clients.JSON"));//  Esto adquiere el documento desde el archivo WAR, por lo tanto si usamos este no podremos editar el texto
+                //datafile = new File("C:\\Users\\Adrián González\\Desktop\\CookTime\\web\\WEB-INF\\clients.JSON");//  Esto adquiere el documento desde el archivo WAR, por lo tanto si usamos este no podremos editar el texto
+
                 jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
                 userArray = (JSONArray) jsonObject.get("Usuarios");
-                for(Object i:userArray)
-                    {
-                        ((JSONObject) i).put("contrasena",verificarClave((String) ((JSONObject) i).get("contrasena")));
-
-                    }
-
+       
 
                 profilesArray=(JSONArray) jsonObject.get("Perfiles");
                 companiesArray=(JSONArray) jsonObject.get("Empresas");

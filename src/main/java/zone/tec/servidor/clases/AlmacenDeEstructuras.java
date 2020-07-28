@@ -26,10 +26,9 @@ public class AlmacenDeEstructuras
     private static ServletContext contexto;
     private static final JSONArray peticionesChef=new JSONArray();
     private static JSONArray mails= new JSONArray();
-
+    public  static boolean Starting= true;
     private  AlmacenDeEstructuras() //Porqué privado? porque solo yo voy a existir y yo controlo mi propia existencia
         { }
-
     public  synchronized  static void renovarArboles( ServletContext context)
         {
             //ocupo meterle un JSON a un árbol
