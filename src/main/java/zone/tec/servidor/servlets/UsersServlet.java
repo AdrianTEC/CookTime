@@ -197,6 +197,8 @@ public class UsersServlet extends HttpServlet {
             //-----------CHEF CHEF CHEF------------------------------------------------
             else {
                 AlmacenDeEstructuras.getPeticionesChef().add( req.getParameter("Id"));
+
+
                 resp.getWriter().write("se ha recibido una petición");
                 }
             //--------------------------------------------------------------------------

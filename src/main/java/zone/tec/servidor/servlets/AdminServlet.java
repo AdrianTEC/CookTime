@@ -67,7 +67,10 @@ public class AdminServlet extends HttpServlet
                 sesion.setAttribute("ActualID", null);
 
             }
+
             x.saveJSONfile();
+            x.refreshArray();
+            AlmacenDeEstructuras.renovarArboles(AlmacenDeEstructuras.getContexto());
 
         }
         else if (request.getParameter("Rechazar") != null) {
