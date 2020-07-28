@@ -128,10 +128,13 @@ public class RecipesServlet extends HttpServlet {
 
                 if(req.getParameter("DATA").equals("1"))
                     {
-
+                            //modifico la receta en el árbol
                             receta.setLikes(String.valueOf(Integer.parseInt(receta.getLikes())+1));
+
                             JSONObject object= manager.giveMeObjetWithdId("Recipes",req.getParameter("Id"));
+
                             object.put("likes",String.valueOf(Integer.parseInt((String) object.get("likes"))+1));
+
                     }
                 else
                     {
@@ -139,7 +142,7 @@ public class RecipesServlet extends HttpServlet {
                         JSONObject object= manager.giveMeObjetWithdId("Recipes",req.getParameter("Id"));
                         object.put("dislikes",String.valueOf(Integer.parseInt((String) object.get("dislikes"))+1));
                     }
-
+                manager.saveJSONfile();
 
 
 
