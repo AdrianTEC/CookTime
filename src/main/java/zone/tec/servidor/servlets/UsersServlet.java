@@ -74,13 +74,13 @@ public class UsersServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
         {
-            //String que se va a armar
+            //String que se va a armar----------------------------------------------------
             StringBuilder agregado= new StringBuilder();
 
-            //El contexto es requerido para ubicar los archivos
+            //El contexto es requerido para ubicar los archivos------------------------------
             JSONManager manager = new JSONManager(getServletContext());
 
-            //Lector del mensaje HTTP, lee la primera linea
+            //Lector del mensaje HTTP, lee la primera linea------------------------------
             BufferedReader x=req.getReader();// esto es para leer el JSON
             String line= x.readLine();
 
@@ -93,12 +93,13 @@ public class UsersServlet extends HttpServlet {
                 JSONParser parser = new JSONParser();
                 JSONObject newJson= (JSONObject) parser.parse(String.valueOf(agregado));
 
-                //verifico que usuario tiene lo minimo para ingresar
+                //verifico que usuario tiene lo minimo para ingresar------------------------------
 
                 if(newJson.get("nombre") != null && newJson.get("contrasena")!=null && newJson.get("edad")!=null &&
                         newJson.get("correo")!=null && newJson.get("apellido1")!=null&& newJson.get("apellido2")!=null)
-                    {   //Creo un nuevo usuario
+                    {   //Creo un nuevo usuario----------------------------------------
 
+                        newJson.put("contrasena",encriptarContrasena((String) newJson.get("contrasena")));
                         Usuario nuevoUsuario= new Usuario(newJson);
                         AlmacenDeEstructuras.getUsers().insert( nuevoUsuario,false);
 
