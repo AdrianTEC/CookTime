@@ -10,25 +10,18 @@
       "nombre": "Arnolf",
       "edad": "19",
       "perfil": {
-        "apellido2": "Jimenez",
-        "Foto": "https:\/\/cdn.playbuzz.com\/cdn\/7e89fc26-49fe-4dad-96c2-3f9c26e3471a\/6b00321c-f486-4ca8-9f3d-1afbb0347d26.jpg",
-        "calificaciones": [
-        ],
-        "apellido1": "Rodriguez",
-        "correo": "x",
-        "Following": [
-
-        ],
-        "MyMenu": [
-          "1",
-          "2"
-        ],
-        "Followers": [
-
-        ],
-        "nombre": "Arnolf",
-        "edad": "19"
-      }
+                "apellido2": "Jimenez",
+                "Foto": "https:\/\/cdn.playbuzz.com\/cdn\/7e89fc26-49fe-4dad-96c2-3f9c26e3471a\/6b00321c-f486-4ca8-9f3d-1afbb0347d26.jpg",
+                "calificaciones": [
+                ],
+                "apellido1": "Rodriguez",
+                "correo": "x",
+                "Following": [],
+                "MyMenu": ["1", "2"],
+                "Followers": [],
+                "nombre": "Arnolf",
+                "edad": "19"
+                  }
     },
     {
       "apellido2": "Jimenez",
@@ -40,25 +33,17 @@
       "nombre": "Arnold",
       "edad": "19",
       "perfil": {
-        "apellido2": "Jimenez",
-        "Foto": "https:\/\/media.metrolatam.com\/2019\/10\/16\/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
-        "calificaciones": [
-
-        ],
-        "apellido1": "Rodriguez",
-        "correo": "x",
-        "Following": [
-
-        ],
-        "MyMenu": [
-
-        ],
-        "Followers": [
-
-        ],
-        "nombre": "Arnold",
-        "edad": "19"
-      }
+              "apellido2": "Jimenez",
+              "Foto": "https:\/\/media.metrolatam.com\/2019\/10\/16\/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
+              "calificaciones": [],
+              "apellido1": "Rodriguez",
+              "correo": "x",
+              "Following": [],
+              "MyMenu": [],
+              "Followers": [],
+              "nombre": "Arnold",
+              "edad": "19"
+                }
     },
     {
       "apellido2": "Jimenez",
@@ -72,20 +57,12 @@
       "perfil": {
         "apellido2": "Jimenez",
         "Foto": "https:\/\/www.hola.com\/imagenes\/moda\/actualidad\/2016120890183\/cristiano-ronaldo-gafas\/0-408-801\/cristiano-gafas2-gt3-z.jpg",
-        "calificaciones": [
-
-        ],
+        "calificaciones": [],
         "apellido1": "González",
         "correo": "AdrianE@gmail.com",
-        "Following": [
-
-        ],
-        "MyMenu": [
-
-        ],
-        "Followers": [
-
-        ],
+        "Following": [],
+        "MyMenu": [ ],
+        "Followers": [],
         "nombre": "Cristiano",
         "edad": "19"
       }
@@ -102,20 +79,12 @@
       "perfil": {
         "apellido2": "Herrero",
         "Foto": "https:\/\/i.ytimg.com\/vi\/jfB8HFBLyyg\/hqdefault.jpg",
-        "calificaciones": [
-
-        ],
+        "calificaciones": [ ],
         "apellido1": "González",
         "correo": "AdriaDn@gmail.com",
-        "Following": [
-
-        ],
-        "MyMenu": [
-
-        ],
-        "Followers": [
-
-        ],
+        "Following": [],
+        "MyMenu": [],
+        "Followers": [],
         "nombre": "AdrianG",
         "edad": "19"
       }
@@ -132,20 +101,12 @@
       "perfil": {
         "apellido2": "Jimenez",
         "Foto": "https:\/\/media.metrolatam.com\/2019\/10\/16\/18ps27-638137169a2d73f9f63481c115a7f092.jpg",
-        "calificaciones": [
-
-        ],
+        "calificaciones": [ ],
         "apellido1": "González",
         "correo": "AdrianC@gmail.com",
-        "Following": [
-
-        ],
-        "MyMenu": [
-
-        ],
-        "Followers": [
-
-        ],
+        "Following": [],
+        "MyMenu": [],
+        "Followers": [],
         "nombre": "AdrianC",
         "edad": "19"
       }
@@ -160,25 +121,17 @@
       "nombre": "AdrianC",
       "edad": "19",
       "perfil": {
-        "apellido2": "Jimenez",
-        "Foto": "https:\/\/i.ytimg.com\/vi\/6mRLju55waw\/hqdefault.jpg",
-        "calificaciones": [
-
-        ],
-        "apellido1": "González",
-        "correo": "Adrianh@gmail.com",
-        "Following": [
-
-        ],
-        "MyMenu": [
-
-        ],
-        "Followers": [
-
-        ],
-        "nombre": "AdrianC",
-        "edad": "19"
-      }
+          "apellido2": "Jimenez",
+          "Foto": "https:\/\/i.ytimg.com\/vi\/6mRLju55waw\/hqdefault.jpg",
+          "calificaciones": [],
+          "apellido1": "González",
+          "correo": "Adrianh@gmail.com",
+          "Following": [ ],
+          "MyMenu": [],
+          "Followers": [ ],
+          "nombre": "AdrianC",
+          "edad": "19"
+        }
     },
     {
       "apellido2": "Diaz",
@@ -192,20 +145,12 @@
       "perfil": {
         "apellido2": "Diaz",
         "Foto": "https:\/\/pbs.twimg.com\/profile_images\/3550680490\/c18277bddf17b9759afd7da6f38d3283_400x400.jpeg",
-        "calificaciones": [
-
-        ],
+        "calificaciones": [ ],
         "apellido1": "Rojas",
         "correo": "yordanelsexyrojas@gmail.com",
-        "Following": [
-
-        ],
-        "MyMenu": [
-
-        ],
-        "Followers": [
-
-        ],
+        "Following": [],
+        "MyMenu": [ ],
+        "Followers": [ ],
         "nombre": "Yordan",
         "edad": "17"
       }
@@ -215,121 +160,81 @@
     {
       "contacto": "333-2222",
       "horario": "7am-7pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [],
       "Foto": "https:\/\/as2.ftcdn.net\/jpg\/00\/47\/80\/71\/500_F_47807127_C1DOxLVxMd5oNWCdJLHtQESGxVP2p0ur.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "LaVacaFeliz"
     },
     {
       "contacto": "123443322",
       "horario": "7am-7pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [ ],
       "Foto": "https:\/\/i.pinimg.com\/originals\/f6\/42\/8e\/f6428e245c574ce5b8ef56dd2f43665f.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "PollosDonBeto"
     },
     {
       "contacto": "88888888",
       "horario": "9am-11pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [],
       "Foto": "https:\/\/static.vecteezy.com\/system\/resources\/previews\/000\/602\/664\/non_2x\/vector-chicken-restaurant-logo.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [],
       "nombre": "Restaurante El pollo"
     },
     {
       "contacto": "1999922",
       "horario": "7am-9pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [ ],
       "Foto": "https:\/\/ceibal.elpais.com.uy\/wp-content\/uploads\/2012\/07\/sapo.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "SapoSabroso"
     },
     {
       "contacto": "88888888",
       "horario": "9am-11pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [],
       "Foto": "https:\/\/thumbs.dreamstime.com\/z\/pescados-felices-de-la-historieta-17450783.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "Restaurante El pez"
     },
     {
       "contacto": "822-34418",
       "horario": "9am-11pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [],
       "Foto": "https:\/\/misanimales.com\/wp-content\/uploads\/2018\/07\/tipos-de-almejas.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "Restaurante la almeja"
     },
     {
       "contacto": "822-34418",
       "horario": "9am-11pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [ ],
       "Foto": "https:\/\/animalchaman.com\/wp-content\/uploads\/ballena-1024x548.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [],
       "nombre": "Restaurante la ballena"
     },
     {
       "contacto": "822-34418",
       "horario": "9am-5pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [ ],
       "Foto": "https:\/\/okdiario.com\/img\/2019\/11\/25\/-que-nos-dice-el-perro-con-los-movimientos-de-su-cola_-655x368.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "Restaurante el perro"
     },
     {
       "contacto": "11114-4418",
       "horario": "5am-11pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [ ],
       "Foto": "https:\/\/www.caracteristicas.co\/wp-content\/uploads\/2017\/02\/perro-1-e1561678907722.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "Restaurante el zaguate"
     },
     {
       "contacto": "2321118",
       "horario": "9am-11pm",
-      "puntuacion": [
-
-      ],
+      "puntuacion": [ ],
       "Foto": "https:\/\/cdn2.cocinadelirante.com\/sites\/default\/files\/styles\/gallerie\/public\/images\/2018\/05\/receta-facil-de-comida-china-casera.jpg",
-      "MyMenu": [
-
-      ],
+      "MyMenu": [ ],
       "nombre": "Restaurante el chino"
     }
   ],

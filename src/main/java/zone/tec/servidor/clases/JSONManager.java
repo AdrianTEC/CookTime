@@ -160,7 +160,7 @@ public class JSONManager {
 
                 jsonObject = (JSONObject) parser.parse(new FileReader(datafile));
                 userArray = (JSONArray) jsonObject.get("Usuarios");
-       
+
 
                 profilesArray=(JSONArray) jsonObject.get("Perfiles");
                 companiesArray=(JSONArray) jsonObject.get("Empresas");
