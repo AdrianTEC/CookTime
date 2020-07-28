@@ -22,7 +22,7 @@ public class ProfilesServlet extends HttpServlet {
     private JSONManager manager;
 
 
-    /* This returns a Requested user or users list in JSON format
+    /** This returns a Requested user or users list in JSON format
        @Author: Adrian Gonzalez
        @Version: 5/07/20
        @Params: HttpServlet Request and HttpServletResponse
@@ -79,38 +79,7 @@ public class ProfilesServlet extends HttpServlet {
                 JSONArray current= new JSONArray();
                 JSONManager manager = new JSONManager(getServletContext());
 
-                if (campo.equals("mymenu")) //el cliente quiere agregar una receta
-                    {
-                    //debo explorar el arbol binario de los usuarios
-                    //por el momento no lo tengo entonces lo agarraré a la fuerza
-                    JSONObject usuario = manager.giveMeObjetWithdId("Profiles", req.getParameter("ID"));
-                    current = (JSONArray) usuario.get("MyMenu");
-                    //String que se va a armar
-                    StringBuilder agregado= new StringBuilder();
-                    BufferedReader x=req.getReader();
-                    String line= x.readLine();
 
-                    while (line!=null)
-                    {
-                        agregado.append(line);
-                        line=x.readLine();
-                    }
-                    try {
-                        JSONParser parser = new JSONParser();
-                        JSONObject newJson= (JSONObject) parser.parse(String.valueOf(agregado));
-
-                        //Creo un nuevo usuario
-                        Receta nuevaReceta= new Receta(newJson);
-                        //Convierto ese usuario en un JSON
-                        newJson = manager.convertToJSON(nuevaReceta);
-                        current.add(newJson);
-
-
-
-
-                    } catch (ParseException e) { e.printStackTrace(); }
-
-                }
                 if (campo.equals("followers")) {
                     JSONObject usuario = manager.giveMeObjetWithdId("Profiles", req.getParameter("ID"));
                     current = (JSONArray) usuario.get("Followers");

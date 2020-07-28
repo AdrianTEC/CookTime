@@ -93,7 +93,7 @@ public class RecipesServlet extends HttpServlet {
                 AlmacenDeEstructuras.getRecipes().insert(nuevaReceta);
 
                 //referencio la id de la receta en MyMenu del usuario que realizó la peticion
-                JSONObject usuario = AlmacenDeEstructuras.getUsers().findUserBynameAndID(req.getParameter("Nombre"),req.getParameter("Id"));
+                JSONObject usuario = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(req.getParameter("Id"));
                 JSONObject perfil= (JSONObject) usuario.get("perfil");
                 JSONArray mymenu= (JSONArray) perfil.get("MyMenu");
                 mymenu.add(nuevaReceta.getId());

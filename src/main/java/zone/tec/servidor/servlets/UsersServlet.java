@@ -136,9 +136,20 @@ public class UsersServlet extends HttpServlet {
                 //cambio el dato --------------------------------
                 if(!req.getParameter("Target").equals("Foto"))
                     {
-                        if(!req.getParameter("Target").equals("contrasena")){
+                        if(!req.getParameter("Target").equals("contrasena"))
+                        {
                             // NO VOY A EDITAR LA CONTRASENA
-                            user.put(req.getParameter("Target"), req.getParameter("Value"));}
+                            if(!req.getParameter("Target").equals("followers"))
+                                {
+                                    user.put(req.getParameter("Target"), req.getParameter("Value"));
+                                }
+                            else
+                                {
+
+                                }
+
+                        }
+
                         else {
                             // SI VOY A EDITAR LA CONTRASENA
                             user.put(req.getParameter("Target"), encriptarContrasena(req.getParameter("Value")));
@@ -146,12 +157,12 @@ public class UsersServlet extends HttpServlet {
                     }
                 //-----------------------------------------------
 
+                //si NO es la contrasena puede agregarlo al perfil
+                if(!req.getParameter("Target").equals("contrasena"))
+                    {                JSONObject profile = (JSONObject) user.get("perfil");
 
-                //Ahora, si cambié algo en el usuario así debe ser en el perfil------------------
-                JSONObject profile = (JSONObject) user.get("perfil");
-                if(!req.getParameter("Target").equals("contrasena")){
-
-                    try { profile.put(req.getParameter("Target"), req.getParameter("Value")); } catch (Exception ignored) { } }
+                        try { profile.put(req.getParameter("Target"), req.getParameter("Value")); } catch (Exception ignored) { }
+                    }
 
                 //---------------------------------------------------------------------------------
 
@@ -163,22 +174,24 @@ public class UsersServlet extends HttpServlet {
 
 
                 //remplazo el valor en el archivo de texto----------------------------------------
+                    //si es distinto a la contrasena
 
-                if(!req.getParameter("Target").equals("contrasena")){
 
-                    userJSON.put(req.getParameter("Target"), req.getParameter("Value"));}
+
+                if(!req.getParameter("Target").equals("contrasena"))
+                    {  JSONObject perfil = (JSONObject) userJSON.get("perfil");
+
+                        try {
+                            perfil.put(req.getParameter("Target"), req.getParameter("Value"));
+                            }
+                        catch (Exception ignored) { }
+                    }
                 else
                     {
-                        userJSON.put(req.getParameter("Target"), encriptarContrasena(req.getParameter("Value")));}
-
-                JSONObject perfil = (JSONObject) userJSON.get("perfil");
-                if(!req.getParameter("Target").equals("contrasena")) {
-                    try {
-                        perfil.put(req.getParameter("Target"), req.getParameter("Value"));
-                    } catch (Exception ignored) {
+                        userJSON.put(req.getParameter("Target"), encriptarContrasena(req.getParameter("Value")));
                     }
-                }
-                resp.getWriter().write("se ha realizado una petición");
+                resp.getWriter().write("se ha realizado una peticion");
+
                 x.saveJSONfile();
             }
             //-----------CHEF CHEF CHEF------------------------------------------------
