@@ -160,7 +160,7 @@
     {
       "contacto": "333-2222",
       "horario": "7am-7pm",
-      "puntuacion": [],
+      "puntuacion": "-1",
       "Foto": "https:\/\/as2.ftcdn.net\/jpg\/00\/47\/80\/71\/500_F_47807127_C1DOxLVxMd5oNWCdJLHtQESGxVP2p0ur.jpg",
       "MyMenu": [ ],
       "nombre": "LaVacaFeliz"
@@ -168,7 +168,7 @@
     {
       "contacto": "123443322",
       "horario": "7am-7pm",
-      "puntuacion": [ ],
+      "puntuacion": "-11",
       "Foto": "https:\/\/i.pinimg.com\/originals\/f6\/42\/8e\/f6428e245c574ce5b8ef56dd2f43665f.jpg",
       "MyMenu": [ ],
       "nombre": "PollosDonBeto"
@@ -176,7 +176,7 @@
     {
       "contacto": "88888888",
       "horario": "9am-11pm",
-      "puntuacion": [],
+      "puntuacion": "19",
       "Foto": "https:\/\/static.vecteezy.com\/system\/resources\/previews\/000\/602\/664\/non_2x\/vector-chicken-restaurant-logo.jpg",
       "MyMenu": [],
       "nombre": "Restaurante El pollo"
@@ -184,7 +184,7 @@
     {
       "contacto": "1999922",
       "horario": "7am-9pm",
-      "puntuacion": [ ],
+      "puntuacion":"17",
       "Foto": "https:\/\/ceibal.elpais.com.uy\/wp-content\/uploads\/2012\/07\/sapo.jpg",
       "MyMenu": [ ],
       "nombre": "SapoSabroso"
@@ -192,7 +192,7 @@
     {
       "contacto": "88888888",
       "horario": "9am-11pm",
-      "puntuacion": [],
+      "puntuacion": "11",
       "Foto": "https:\/\/thumbs.dreamstime.com\/z\/pescados-felices-de-la-historieta-17450783.jpg",
       "MyMenu": [ ],
       "nombre": "Restaurante El pez"
@@ -200,7 +200,7 @@
     {
       "contacto": "822-34418",
       "horario": "9am-11pm",
-      "puntuacion": [],
+      "puntuacion": "-12",
       "Foto": "https:\/\/misanimales.com\/wp-content\/uploads\/2018\/07\/tipos-de-almejas.jpg",
       "MyMenu": [ ],
       "nombre": "Restaurante la almeja"
@@ -208,7 +208,7 @@
     {
       "contacto": "822-34418",
       "horario": "9am-11pm",
-      "puntuacion": [ ],
+      "puntuacion": "23",
       "Foto": "https:\/\/animalchaman.com\/wp-content\/uploads\/ballena-1024x548.jpg",
       "MyMenu": [],
       "nombre": "Restaurante la ballena"
@@ -216,7 +216,7 @@
     {
       "contacto": "822-34418",
       "horario": "9am-5pm",
-      "puntuacion": [ ],
+      "puntuacion": "1",
       "Foto": "https:\/\/okdiario.com\/img\/2019\/11\/25\/-que-nos-dice-el-perro-con-los-movimientos-de-su-cola_-655x368.jpg",
       "MyMenu": [ ],
       "nombre": "Restaurante el perro"
@@ -224,7 +224,7 @@
     {
       "contacto": "11114-4418",
       "horario": "5am-11pm",
-      "puntuacion": [ ],
+      "puntuacion": "1",
       "Foto": "https:\/\/www.caracteristicas.co\/wp-content\/uploads\/2017\/02\/perro-1-e1561678907722.jpg",
       "MyMenu": [ ],
       "nombre": "Restaurante el zaguate"
@@ -232,7 +232,7 @@
     {
       "contacto": "2321118",
       "horario": "9am-11pm",
-      "puntuacion": [ ],
+      "puntuacion": "1",
       "Foto": "https:\/\/cdn2.cocinadelirante.com\/sites\/default\/files\/styles\/gallerie\/public\/images\/2018\/05\/receta-facil-de-comida-china-casera.jpg",
       "MyMenu": [ ],
       "nombre": "Restaurante el chino"
