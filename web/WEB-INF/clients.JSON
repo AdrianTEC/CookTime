@@ -2,6 +2,7 @@
   "Usuarios": [
     {
       "apellido2": "Jimenez",
+
       "apellido1": "Rodriguez",
       "correo": "z",
       "chef": "0",
@@ -149,7 +150,7 @@
         "apellido1": "Rojas",
         "correo": "yordanelsexyrojas@gmail.com",
         "Following": [],
-        "MyMenu": [ ],
+        "MyMenu": ["6","4"],
         "Followers": [ ],
         "nombre": "Yordan",
         "edad": "17"
@@ -322,7 +323,7 @@
       "precio":"$1",
       "foto":"https:\/\/cdnimg.webstaurantstore.com\/images\/products\/large\/429821\/1659430.jpg",
       "tiempo":"30min","id":"4",
-      "comentarios":[{"contenido":"Ã\u2018ehhh, hay cosas mejores"},
+      "comentarios":[{"contenido":"ï¿½\u2018ehhh, hay cosas mejores"},
         {"contenido":"terrible"}],"dificultad":"facil","likes":"31","dieta":"Vegetariano"},
 
         {"instrucciones":"x2",
