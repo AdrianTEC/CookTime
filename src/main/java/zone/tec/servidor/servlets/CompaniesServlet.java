@@ -44,7 +44,7 @@ public class CompaniesServlet extends HttpServlet {
                 if(req.getParameter("Target").equals("company"))
                     {
                         Empresa x= new Empresa();
-                        x.setNombre(req.getParameter("name"));
+                        x.setNombre(req.getParameter("Name"));
                         resp.getWriter().write( AlmacenDeEstructuras.getEmpresas().find(x).toString());
                     }
 

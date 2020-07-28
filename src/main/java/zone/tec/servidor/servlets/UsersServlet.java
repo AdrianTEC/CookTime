@@ -50,7 +50,7 @@ public class UsersServlet extends HttpServlet {
                     {
                         if(((JSONObject)i).get("correo").equals(req.getParameter("Correo")))
                             {
-                                String hash = verificarClave(req.getParameter("Contrasena"));
+                                String hash = encriptarContrasena(req.getParameter("Contrasena"));
                                 if(((JSONObject)i).get("contrasena").equals(hash))  //cambiar hash a req.getParameter("Contrasena")
                                     {
                                         response=   i.toString();//responde con el objeto solicitado
@@ -128,44 +128,71 @@ public class UsersServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws IOException
-        {
+        {   //LA PETICION ES DISTINTA A CHEF
             if(!req.getParameter("Target").equals("chef")) {
 
                 JSONObject user = AlmacenDeEstructuras.getUsersPorID().lookForOneForID(req.getParameter("Id"));
-                //cambio el dato
+                //cambio el dato --------------------------------
                 if(!req.getParameter("Target").equals("Foto"))
                     {
-                        user.put(req.getParameter("Target"), req.getParameter("Value"));
+                        if(!req.getParameter("Target").equals("contrasena")){
+                            // NO VOY A EDITAR LA CONTRASENA
+                            user.put(req.getParameter("Target"), req.getParameter("Value"));}
+                        else {
+                            // SI VOY A EDITAR LA CONTRASENA
+                            user.put(req.getParameter("Target"), encriptarContrasena(req.getParameter("Value")));
+                        }
                     }
-                
-                //Ahora, si cambié algo en el usuario así debe ser en el perfil
+                //-----------------------------------------------
+
+
+                //Ahora, si cambié algo en el usuario así debe ser en el perfil------------------
                 JSONObject profile = (JSONObject) user.get("perfil");
-                try {
-                    profile.put(req.getParameter("Target"), req.getParameter("Value"));
-                } catch (Exception ignored) {
-                }
-                //posteriormente ocupo editarlo en el JSON para esto lo debo de encontrar
+                if(!req.getParameter("Target").equals("contrasena")){
+
+                    try { profile.put(req.getParameter("Target"), req.getParameter("Value")); } catch (Exception ignored) { } }
+
+                //---------------------------------------------------------------------------------
+
+
+                //posteriormente ocupo editarlo en el JSON para esto lo debo de encontrar----------
                 JSONManager x = new JSONManager(getServletContext());
                 JSONObject userJSON = x.giveMeObjetWithdId("Users", req.getParameter("Id"));
+                //--------------------------------------------------------------------------------
 
-                //remplazo el valor en el archivo de texto
-                userJSON.put(req.getParameter("Target"), req.getParameter("Value"));
+
+                //remplazo el valor en el archivo de texto----------------------------------------
+
+                if(!req.getParameter("Target").equals("contrasena")){
+
+                    userJSON.put(req.getParameter("Target"), req.getParameter("Value"));}
+                else
+                    {
+                        userJSON.put(req.getParameter("Target"), encriptarContrasena(req.getParameter("Value")));}
+
                 JSONObject perfil = (JSONObject) userJSON.get("perfil");
-                try {
-                    perfil.put(req.getParameter("Target"), req.getParameter("Value"));
-                } catch (Exception ignored) {
+                if(!req.getParameter("Target").equals("contrasena")) {
+                    try {
+                        perfil.put(req.getParameter("Target"), req.getParameter("Value"));
+                    } catch (Exception ignored) {
+                    }
                 }
                 resp.getWriter().write("se ha realizado una petición");
                 x.saveJSONfile();
             }
+            //-----------CHEF CHEF CHEF------------------------------------------------
             else {
-            AlmacenDeEstructuras.getPeticionesChef().add( req.getParameter("Id"));
+                AlmacenDeEstructuras.getPeticionesChef().add( req.getParameter("Id"));
                 resp.getWriter().write("se ha recibido una petición");
-            }
-
+                }
+            //--------------------------------------------------------------------------
 
         }
-        private String verificarClave(String clave) {
+
+
+
+
+        private String encriptarContrasena(String clave) {
             try {
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 md.update(clave.getBytes());
